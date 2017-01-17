@@ -114,25 +114,15 @@
 
             <Button
                 android:text="@string/btn_link_to_back"
-                android:layout_height="wrap_content"
                 android:id="@+id/btnBack"
-                android:background="@color/colorAccent"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_gravity="bottom|left" />
+                android:layout_gravity="bottom|left"
+                style="@style/ButtonsSign" />
 
             <Button
                 android:id="@+id/sign_up_button"
-                style="?android:textAppearanceSmall"
+                style="@style/ButtonsSign"
                 android:background="@color/colorAccent"
                 android:text="@string/action_sign_in_short"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_gravity="bottom|right" />
 
             <ProgressBar
