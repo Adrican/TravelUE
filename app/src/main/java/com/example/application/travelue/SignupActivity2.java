@@ -44,6 +44,7 @@ public class SignupActivity2 extends AppCompatActivity {
     private FloatingActionButton btnFloat;
     private static final int SELECT_FILE = 1;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
