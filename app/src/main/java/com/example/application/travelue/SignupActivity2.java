@@ -35,7 +35,7 @@ import java.util.Map;
 
 public class SignupActivity2 extends AppCompatActivity {
 
-    private EditText inputEmail, inputPassword, inputName, inputSurname;
+    private EditText inputLive, inputNacionality, inputLanguages, inputEmail, inputSurname, inputPassword, inputName;
     private Button btnSignIn, btnSignUp, btnResetPassword;
 
     private ProgressBar progressBar;
@@ -54,7 +54,9 @@ public class SignupActivity2 extends AppCompatActivity {
 
 
         btnSignUp = (Button) findViewById(R.id.sign_up_button);
-        inputName = (EditText) findViewById(R.id.name);
+        inputLive = (EditText) findViewById(R.id.etLive);
+        inputNacionality = (EditText) findViewById(R.id.etNacionality);
+        inputLanguages = (EditText) findViewById(R.id.etLanguages);
         inputSurname = (EditText) findViewById(R.id.surname);
         inputEmail = (EditText) findViewById(R.id.email);
         inputPassword = (EditText) findViewById(R.id.password);

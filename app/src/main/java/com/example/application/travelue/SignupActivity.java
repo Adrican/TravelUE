@@ -26,7 +26,7 @@ import java.util.Map;
 public class SignupActivity extends AppCompatActivity {
 
     private EditText inputEmail, inputPassword, inputName, inputSurname;
-    private Button btnSignIn, btnSignUp, btnResetPassword;
+    private Button btnSignIn, btnSignUp, btnResetPassword, mbtnBack;
     private ProgressBar progressBar;
     private FirebaseAuth auth;
 
@@ -45,6 +45,7 @@ public class SignupActivity extends AppCompatActivity {
         inputPassword = (EditText) findViewById(R.id.password);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         btnResetPassword = (Button) findViewById(R.id.btn_reset_password);
+        mbtnBack = (Button) findViewById(R.id.btnBack);
 /**
  btnResetPassword.setOnClickListener(new View.OnClickListener() {
 @Override
@@ -61,6 +62,13 @@ startActivity(new Intent(SignupActivity.this, ResetPasswordActivity.class));
         }
         });
          */
+        mbtnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SignupActivity.this,LoginActivity.class);
+                startActivity(intent);
+            }
+        });
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
