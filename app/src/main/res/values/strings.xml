@@ -50,4 +50,9 @@
         completions."
     </string>
     <string name="title_activity_signup2">Sign in</string>
+    <string name="title_activity_menu_principal">MenuPrincipal</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_activity_main">MainActivity</string>
 </resources>
