@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/content_main"
@@ -21,34 +22,58 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true">
+        android:layout_alignParentTop="true"
+        android:background="@color/colorPrimario">
 
         <LinearLayout
             android:layout_width="362dp"
             android:layout_height="494dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            >
 
             <TabWidget
                 android:id="@android:id/tabs"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                />
 
             <FrameLayout
                 android:id="@android:id/tabcontent"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimario"
+
+                >
 
                 <LinearLayout
                     android:id="@+id/tab1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:textColor="@color/white"
+                    >
 
+                    <android.support.v7.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scrollbars="vertical"
+                        android:id="@+id/recyclertab1"
+
+                        >
+
+                        <!--<android.support.v7.widget.CardView
+                            android:id="@+id/card1"
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp"
+                            card_view:cardBackgroundColor="@color/btn_logut_bg"  />
+                            -->
+                    </android.support.v7.widget.RecyclerView>
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/tab2"
-                    android:layout_width="match_parent"
+                    android:layout_width="361dp"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 

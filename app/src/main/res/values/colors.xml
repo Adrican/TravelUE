@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimario">#771f1b</color>
-    <color name="colorPrimarioOscuro">#a42e36</color>
+    <color name="colorPrimario">#a42e36</color>
+    <color name="colorPrimarioOscuro">#771f1b</color>
     <color name="colorAccent">#e9bd15</color>
 
     <color name="bg_login">#26ae90</color>
@@ -17,4 +17,7 @@
     <color name="btn_login_bg">#eceef1</color>
     <color name="lbl_name">#333333</color>
     <color name="btn_logut_bg">#ff6861</color>
+
+    <color name="text_tab_selected">#ffffff</color>
+    <color name="text_tab_unselected">#222222</color>
 </resources>
