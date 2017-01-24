@@ -5,6 +5,9 @@
 
     <string name="action_settings">something here</string>
 
+
+    <string name="slogan">Dont have a radish trip</string>
+    <string name="slogan2">Beet, beet, beet travel with us!</string>
     <string name="minimum_password">Password too short, enter minimum 6 characters!</string>
     <string name="auth_failed">Authentication failed, check your email and password or sign up</string>
     <string name="change_email">Change Email</string>
@@ -18,6 +21,11 @@
     <string name="hint_languages">Languages you speak</string>
     <string name="hint_email">Email</string>
     <string name="hint_live">Where do you live?</string>
+    <string name="hint_time">Time</string>
+    <string name="hint_date">From</string>
+    <string name="hint_date2">To</string>
+    <string name="hint_car">Car model</string>
+    <string name="hint_carinsurance">Type of insurance</string>
     <string name="hint_password">Password</string>
     <string name="hint_name">Name</string>
     <string name="hint_surname">Surname</string>

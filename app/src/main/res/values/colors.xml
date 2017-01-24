@@ -3,6 +3,7 @@
     <color name="colorPrimario">#771f1b</color>
     <color name="colorPrimarioOscuro">#a42e36</color>
     <color name="colorAccent">#e9bd15</color>
+    <color name="colorAccentOscuro">#C19E0F</color>
 
     <color name="bg_login">#26ae90</color>
     <color name="bg_register">#2e3237</color>

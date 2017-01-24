@@ -23,6 +23,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.example.application.travelue.SignupActivity2.setUser;
+
 public class SignupActivity extends AppCompatActivity {
 
     private EditText inputEmail, inputPassword, inputName, inputSurname;
@@ -97,7 +99,7 @@ startActivity(new Intent(SignupActivity.this, ResetPasswordActivity.class));
                         .addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                Toast.makeText(SignupActivity.this, "User created succesfully" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignupActivity.this, "User created " + task.isSuccessful(), Toast.LENGTH_SHORT).show();
                                 progressBar.setVisibility(View.GONE);
                                 // If sign in fails, display a message to the user. If sign in succeeds
                                 // the auth state listener will be notified and logic to handle the
@@ -106,7 +108,7 @@ startActivity(new Intent(SignupActivity.this, ResetPasswordActivity.class));
                                 String apellido=inputSurname.getText().toString();
                                 String email=inputEmail.getText().toString();
                                 Usuario user=new Usuario(nombre, apellido, email);
-                                insertarContacto(user);
+                                setUser(user);
 
                                 if (!task.isSuccessful()) {
                                     Toast.makeText(SignupActivity.this, "Authentication failed." + task.getException(),
@@ -118,6 +120,8 @@ startActivity(new Intent(SignupActivity.this, ResetPasswordActivity.class));
                                 }
                             }
                         });
+
+
 
             }
         });

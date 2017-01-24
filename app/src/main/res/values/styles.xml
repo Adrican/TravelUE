@@ -5,7 +5,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimario</item>
         <item name="colorPrimaryDark">@color/colorPrimarioOscuro</item>
-        <item name="colorAccent">@color/white</item>
+        <item name="colorAccent">@color/colorAccent</item>
 
 
     </style>
@@ -27,5 +27,7 @@
         <item name="android:layout_weight">1</item>
         <item name="android:layout_width">wrap_content</item>
     </style>
+
+
 
 </resources>

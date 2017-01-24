@@ -1,6 +1,7 @@
 package com.example.application.travelue;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -22,12 +23,18 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.HashMap;
@@ -43,7 +50,11 @@ public class SignupActivity2 extends AppCompatActivity {
     private FirebaseAuth auth;
     private FloatingActionButton btnFloat;
     private static final int SELECT_FILE = 1;
+    private static Usuario user;
 
+    private StorageReference mStorage;
+    private static final int  GALLERY_INTENT = 2;
+    private ProgressDialog mProgresDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,12 +77,19 @@ public class SignupActivity2 extends AppCompatActivity {
         imgProfile = (ImageView) findViewById(R.id.ivNoPhoto);
         btnFloat = (FloatingActionButton) findViewById(R.id.fab);
 
+
         btnFloat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 abrirGaleria(v);
             }
         });
+
+
+        mStorage = FirebaseStorage.getInstance().getReference();
+        mProgresDialog = new ProgressDialog(this);
+
+
 /**
  btnResetPassword.setOnClickListener(new View.OnClickListener() {
 @Override
@@ -93,7 +111,7 @@ finish();
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+/**
                 String email = inputEmail.getText().toString().trim();
                 String password = inputPassword.getText().toString().trim();
 
@@ -111,50 +129,114 @@ finish();
                     Toast.makeText(getApplicationContext(), "Password too short, enter minimum 6 characters!", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                /*
 
-                progressBar.setVisibility(View.VISIBLE);
+
                 //create user
+                /**
                 auth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(SignupActivity2.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 Toast.makeText(SignupActivity2.this, "Only a last few things!", Toast.LENGTH_SHORT).show();
-                                progressBar.setVisibility(View.GONE);
+                */
+                                progressBar.setVisibility(View.VISIBLE);
+
                                 // If sign in fails, display a message to the user. If sign in succeeds
                                 // the auth state listener will be notified and logic to handle the
                                 // signed in user can be handled in the listener.
-                                String nombre=inputName.getText().toString();
-                                String apellido=inputSurname.getText().toString();
-                                String email=inputEmail.getText().toString();
-                                Usuario user=new Usuario(nombre, apellido, email);
-                                insertarContacto(user);
+                                String residencia=inputLive.getText().toString();
+                                String nacionalidad=inputNacionality.getText().toString();
+                                String idiomas=inputLanguages.getText().toString();
 
+                                user.setResidencia(residencia);
+                                user.setNacionalidad(nacionalidad);
+                                user.setIdiomas(idiomas);
+                                insertarContacto(user);
+/**
                                 if (!task.isSuccessful()) {
                                     Toast.makeText(SignupActivity2.this, "Authentication failed." + task.getException(),
                                             Toast.LENGTH_SHORT).show();
 
                                 } else {
-                                    startActivity(new Intent(SignupActivity2.this, SignupActivity2.class));
+ */                                 //meterImagenEnFirebase();
+                                    progressBar.setVisibility(View.GONE);
+                                    startActivity(new Intent(SignupActivity2.this, CreateRoute.class));
                                     finish();
-                                }
+
                             }
                         });
 
-            }
-        });
+
 
 
     }
 
     public void abrirGaleria(View v){
+
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        startActivityForResult(intent, GALLERY_INTENT);
+        /**
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(
                 Intent.createChooser(intent, "Seleccione una imagen"),
                 SELECT_FILE);
+         */
+
+
     }
 
+
+        protected void onActivityResult ( int requestCode, int resultCode, Intent data){
+            super.onActivityResult(requestCode, resultCode, data);
+
+            if (requestCode == GALLERY_INTENT && resultCode == RESULT_OK) {
+
+                //Code for the progressBar Craeted
+                mProgresDialog.setMessage("Uploading...");
+                mProgresDialog.show();
+
+
+                Uri selectedImageUri = data.getData();
+                if (null != selectedImageUri) {
+                    // Get the path from the Uri
+                    String path = getPathFromURI(selectedImageUri);
+                    //Log.i(TAG, "Image Path : " + path);
+                    // Set the image in ImageView
+                    imgProfile.setImageURI(selectedImageUri);
+                }
+                StorageReference filepath = mStorage.child("Photos").child(selectedImageUri.getLastPathSegment());
+
+                filepath.putFile(selectedImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        Toast.makeText(SignupActivity2.this, "Upload new Image file to Firebase done", Toast.LENGTH_LONG).show();
+                        mProgresDialog.dismiss();
+
+                    }
+                });
+            }
+        }
+
+    public String getPathFromURI(Uri contentUri) {
+        String res = null;
+        String[] proj = {MediaStore.Images.Media.DATA};
+        Cursor cursor = getContentResolver().query(contentUri, proj, null, null, null);
+        if (cursor.moveToFirst()) {
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            res = cursor.getString(column_index);
+        }
+        cursor.close();
+        return res;
+    }
+
+
+
+
+/** FUNCIONA
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
             if (requestCode == SELECT_FILE) {
@@ -166,6 +248,7 @@ finish();
                     //Log.i(TAG, "Image Path : " + path);
                     // Set the image in ImageView
                     imgProfile.setImageURI(selectedImageUri);
+
                 }
             }
         }
@@ -182,6 +265,7 @@ finish();
         cursor.close();
         return res;
     }
+    */
 
     private void insertarContacto(Usuario user)
     {
@@ -197,6 +281,10 @@ finish();
     protected void onResume() {
         super.onResume();
         progressBar.setVisibility(View.GONE);
+    }
+
+    public static void setUser(Usuario usuario){
+        user=usuario;
     }
 }
 
