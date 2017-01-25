@@ -15,23 +15,23 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="162dp"
+        android:layout_height="match_parent"
         android:padding="16dp" >
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_weight="1">
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="147dp">
+                android:layout_height="137dp">
 
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="344dp"
-                    android:layout_height="137dp"
+                    android:layout_height="match_parent"
                     android:weightSum="1">
 
                     <LinearLayout
@@ -75,31 +75,88 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="234dp"
-                        android:layout_height="117dp"
-                        android:layout_weight="0.55"
+                        android:layout_width="104dp"
+                        android:layout_height="74dp"
                         android:orientation="vertical">
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="32dp"
-                            android:id="@+id/item_title"
-                            android:text="Texto 1"
-                            android:textSize="30sp"
-                            android:layout_alignParentTop="true"
-                            android:layout_centerHorizontal="true"
-                            android:layout_weight="0.52" />
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="35dp">
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/item_detail"
-                            android:text="Texto 2"
-                            android:layout_below="@+id/item_title"
-                            android:layout_toLeftOf="@+id/item_title"
-                            android:layout_toStartOf="@+id/item_title"
-                            android:layout_marginTop="19dp"
-                            android:layout_weight="0.52" />
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:id="@+id/item_title"
+                                android:text="Texto 1"
+                                android:textSize="30sp"
+                                android:layout_alignParentTop="true"
+                                android:layout_centerHorizontal="true"
+                                android:layout_weight="0.52" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/item_detail"
+                                android:text="Texto 2"
+                                android:layout_below="@+id/item_title"
+                                android:layout_toLeftOf="@+id/item_title"
+                                android:layout_toStartOf="@+id/item_title"
+                                android:layout_marginTop="19dp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="36dp"
+                        android:weightSum="1">
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="33dp"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                card_view:srcCompat="@android:drawable/radiobutton_on_background"
+                                android:id="@+id/imageView1" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="36dp"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                card_view:srcCompat="@android:drawable/radiobutton_on_background"
+                                android:id="@+id/imageView2" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="39dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.05">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                card_view:srcCompat="@android:drawable/radiobutton_on_background"
+                                android:id="@+id/imageView3" />
+                        </LinearLayout>
                     </LinearLayout>
 
                 </LinearLayout>
