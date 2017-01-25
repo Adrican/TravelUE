@@ -18,23 +18,28 @@
             android:label="@string/title_activity_signup" />
         <activity
             android:name=".SignupActivity2"
-            android:label="@string/title_activity_signup2">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:label="@string/title_activity_signup2" />
         <activity
             android:name=".LoginActivity"
-            android:label="@string/title_activity_login" />
+            android:label="@string/title_activity_login">
+
+        </activity>
         <activity
             android:name=".ResetPasswordActivity"
             android:label="@string/title_activity_reset_password" />
         <activity
-            android:name=".MainActivity"
-            android:label="@string/title_activity_main"
+            android:name=".PaginaPrincipalRutas"
+            android:label="@string/title_activity_pagina_principal_rutas"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".splash_screen"
+            android:label="@string/title_activity_splash_screen"
+            android:theme="@style/AppTheme.NoActionBar">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter></activity>
     </application>
 
 </manifest>

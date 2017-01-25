@@ -2,60 +2,111 @@
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:clickable="true"
+    android:layout_width="370dp"
+    android:layout_height="162dp"
     android:id="@+id/card_view"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    card_view:cardCornerRadius="4dp"
-    android:layout_marginBottom="10dp">
+    android:layout_margin="8dp"
+    card_view:cardBackgroundColor="@color/btn_logut_bg"
+    card_view:cardCornerRadius="12dp"
+    card_view:cardElevation="3dp"
+    card_view:contentPadding="4dp"
+    android:foreground="?selectableItemBackground"
+    android:clickable="true" >
 
     <RelativeLayout
-        android:layout_width="366dp"
-        android:layout_height="143dp"
-        android:layout_float="wrap_content"
-        android:layout_below="@+id/tvTitle"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_width="match_parent"
+        android:layout_height="162dp"
+        android:padding="16dp" >
 
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:id="@+id/ivUsuario"
-            android:src="@drawable/nophoto"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:id="@+id/ivCoche"
-            android:src="@drawable/nophoto"
-            android:layout_below="@+id/ivUsuario"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="147dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Marco Perez"
-            android:layout_marginLeft="32dp"
-            android:id="@+id/tvUser"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="13dp"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/ivUsuario"
-            android:layout_toEndOf="@+id/ivUsuario" />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="344dp"
+                    android:layout_height="137dp"
+                    android:weightSum="1">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Madrid"
-            android:id="@+id/tvOrigen"
-            android:layout_above="@+id/ivCoche"
-            android:layout_centerHorizontal="true" />
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="84dp"
+                        android:layout_height="126dp">
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="55dp"
+                            android:layout_height="63dp"
+                            android:weightSum="1">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:id="@+id/item_image2"
+                                android:src="@drawable/nophoto"
+                                android:layout_alignParentBottom="true"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="true"
+                                android:layout_weight="0.03" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:weightSum="1">
+
+                            <ImageView
+                                android:layout_width="57dp"
+                                android:layout_height="match_parent"
+                                android:id="@+id/item_image"
+                                android:src="@drawable/nophoto"
+                                android:layout_alignParentBottom="true"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="true" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="234dp"
+                        android:layout_height="117dp"
+                        android:layout_weight="0.55"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="32dp"
+                            android:id="@+id/item_title"
+                            android:text="Texto 1"
+                            android:textSize="30sp"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_weight="0.52" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/item_detail"
+                            android:text="Texto 2"
+                            android:layout_below="@+id/item_title"
+                            android:layout_toLeftOf="@+id/item_title"
+                            android:layout_toStartOf="@+id/item_title"
+                            android:layout_marginTop="19dp"
+                            android:layout_weight="0.52" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+        </LinearLayout>
 
     </RelativeLayout>
 </android.support.v7.widget.CardView>
