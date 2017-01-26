@@ -20,9 +20,9 @@
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -72,10 +72,64 @@
                                 android:layout_alignParentLeft="true"
                                 android:layout_alignParentStart="true" />
                         </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"></LinearLayout>
+
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="140dp"
+                        android:orientation="vertical"
+                        android:layout_width="28dp"
+                        android:layout_height="match_parent"
+                        android:weightSum="1">
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="37dp">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                card_view:srcCompat="@android:drawable/checkbox_off_background"
+                                android:id="@+id/imageView4" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="27dp"
+                            android:layout_marginTop="30dp"
+                            android:weightSum="1">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                card_view:srcCompat="@android:drawable/checkbox_off_background"
+                                android:id="@+id/imageView5" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="27dp"
+                            android:layout_marginTop="7dp">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                card_view:srcCompat="@android:drawable/checkbox_off_background"
+                                android:id="@+id/imageView6" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="110dp"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
 
@@ -121,7 +175,7 @@
                                 android:layout_height="match_parent"
                                 android:id="@+id/textView2"
                                 android:textSize="18sp"
-                                android:layout_marginTop="19dp" />
+                                android:layout_marginTop="15dp" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -136,6 +190,7 @@
                                 android:id="@+id/textView3"
                                 android:textSize="18sp"
                                 android:layout_marginTop="12dp" />
+
                         </LinearLayout>
 
                     </LinearLayout>
