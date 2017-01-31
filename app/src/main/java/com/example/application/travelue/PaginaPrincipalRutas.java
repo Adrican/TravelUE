@@ -17,7 +17,7 @@ import android.view.MenuItem;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
-
+/**/
 public class PaginaPrincipalRutas extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
