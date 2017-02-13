@@ -4,4 +4,10 @@
             <item>Driver</item>
             <item>Passenger</item>
         </string-array>
-    </resources>
+    <string-array name="insurance">
+        <item>All risk</item>
+        <item>Third party insurance</item>
+    </string-array>
+</resources>
+
+

@@ -30,6 +30,8 @@ public class SignupActivity extends AppCompatActivity {
     private EditText inputEmail, inputPassword, inputName, inputSurname;
     private Button btnSignIn, btnSignUp, btnResetPassword, mbtnBack;
     private ProgressBar progressBar;
+
+    private DatabaseReference mDatabase;
     private FirebaseAuth auth;
 
     @Override
@@ -39,6 +41,7 @@ public class SignupActivity extends AppCompatActivity {
 
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("usuarios");
 
         btnSignUp = (Button) findViewById(R.id.sign_up_button);
         inputName = (EditText) findViewById(R.id.name);
@@ -99,7 +102,7 @@ startActivity(new Intent(SignupActivity.this, ResetPasswordActivity.class));
                         .addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                Toast.makeText(SignupActivity.this, "User created " + task.isSuccessful(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignupActivity.this, "User created ", Toast.LENGTH_SHORT).show();
                                 progressBar.setVisibility(View.GONE);
                                 // If sign in fails, display a message to the user. If sign in succeeds
                                 // the auth state listener will be notified and logic to handle the
@@ -115,6 +118,8 @@ startActivity(new Intent(SignupActivity.this, ResetPasswordActivity.class));
                                             Toast.LENGTH_SHORT).show();
 
                                 } else {
+                                    DatabaseReference currentUser = mDatabase.child("usuario");
+                                    currentUser.child("nombre").setValue(nombre);
                                     Intent intent = new Intent(SignupActivity.this,SignupActivity2.class);
                                     startActivity(intent);
                                 }

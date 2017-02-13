@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.example.application.travelue.SearchActivity"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/colorPrimarioOscuro">
+
+        <AutoCompleteTextView
+            android:textColor="@color/white"
+            android:hint="Origin"
+            android:textColorHint="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/etOrigen"
+            android:padding="@dimen/activity_horizontal_margin" />
+
+
+        <AutoCompleteTextView
+            android:textColor="@color/white"
+            android:hint="Destination"
+            android:textColorHint="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/etDestino"
+            android:padding="@dimen/activity_horizontal_margin" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/activity_horizontal_margin">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Find path"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:background="@drawable/shape"
+                android:id="@+id/btnFindPath" />
+            <ImageView
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_distance"
+                />
+            <TextView
+                android:textColor="@color/white"
+                android:layout_marginLeft="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0 km"
+                android:id="@+id/tvDistance" />
+
+            <ImageView
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="5dp"
+                android:src="@drawable/ic_query_builder_white_48dp"
+
+                />
+            <TextView
+                android:textColor="@color/white"
+                android:layout_marginLeft="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0 min"
+                android:id="@+id/tvDuration" />
+
+        </LinearLayout>
+
+
+        <fragment
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:id="@+id/map" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimarioOscuro"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/activity_horizontal_margin"
+                android:weightSum="1">
+
+
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:id="@+id/spEstado"
+                    />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="time"
+                    android:textColorHint="@color/white"
+                    android:hint="@string/hint_time"
+                    android:textColor="@color/white"
+                    android:ems="10"
+                    android:id="@+id/etTime"
+                    android:focusable="false"
+                    android:layout_marginTop="20dp" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="1"
+                    android:layout_marginTop="20dp">
+
+                    <EditText
+                        android:layout_height="wrap_content"
+                        android:inputType="none"
+                        android:hint="@string/hint_date"
+                        android:textColorHint="@color/white"
+                        android:textColor="@color/white"
+                        android:ems="10"
+                        android:id="@+id/etDate"
+                        android:focusable="false"
+                        android:layout_width="187dp" />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:inputType="none"
+                        android:hint="@string/hint_date2"
+                        android:textColorHint="@color/white"
+                        android:textColor="@color/white"
+                        android:ems="10"
+                        android:id="@+id/etDate2"
+                        android:focusable="false"
+                        android:gravity="left" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="186dp"
+                        android:layout_height="wrap_content"
+                        android:textColorHint="@color/white"
+                        app:hintAnimationEnabled="true"
+                        android:textColorLink="@android:color/white">
+
+
+
+                    </android.support.design.widget.TextInputLayout>
+
+                </LinearLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/white"
+                    app:hintAnimationEnabled="true"
+                    android:textColorLink="@android:color/white" >
+
+                    <EditText
+                        android:id="@+id/etCarInsurance"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/hint_carinsurance"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="@android:color/white"
+                        android:textColorHint="@color/input_register"
+                        android:textColorLink="@android:color/white" />
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="80dp">
+
+                        <Button
+                            android:text="@string/btn_link_to_back"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/btnBack"
+                            android:background="@drawable/button_custom"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_gravity="bottom|left"
+                            android:layout_marginRight="30dp" />
+
+                        <Button
+                            android:id="@+id/btnSearchRoute"
+                            style="?android:textAppearanceSmall"
+                            android:background="@drawable/button_custom"
+                            android:text="@string/action_search"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|right" />
+
+
+
+                    </LinearLayout>
+
+
+                </android.support.design.widget.TextInputLayout>
+
+
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+
+    <!-- Link to Login Screen -->
+
+
+</android.support.design.widget.CoordinatorLayout>

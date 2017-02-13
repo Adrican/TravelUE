@@ -15,13 +15,69 @@
         >
 
 
-        <ImageView
-            android:src="@drawable/rabano"
-            android:layout_height="170dp"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_gravity="center"
-            android:layout_marginTop="80dp"
-            android:id="@+id/imgRabano" />
+            android:layout_height="wrap_content">
+
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                app:srcCompat="@drawable/rabanosplash"
+                android:layout_gravity="center"
+                android:layout_marginTop="80dp"
+                android:id="@+id/imgRabano"
+                android:visibility="visible" />
+
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                app:srcCompat="@drawable/mordisco1"
+                android:layout_gravity="center"
+                android:layout_marginTop="80dp"
+                android:id="@+id/imgRabano1"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:src="@drawable/mordisco2"
+                android:layout_height="200dp"
+                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginTop="80dp"
+                android:id="@+id/imgRabano2"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:src="@drawable/mordisco3"
+                android:layout_height="200dp"
+                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginTop="80dp"
+                android:id="@+id/imgRabano3"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:src="@drawable/mordisco4"
+                android:layout_height="200dp"
+                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginTop="80dp"
+                android:id="@+id/imgRabano4"
+                android:visibility="invisible" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:text="@string/app_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="80dp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:id="@+id/tvName" />
+        android:id="@+id/textView" />
 
         <TextView
             android:text="@string/slogan2"

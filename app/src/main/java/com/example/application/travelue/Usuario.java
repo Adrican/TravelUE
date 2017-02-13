@@ -5,7 +5,7 @@ package com.example.application.travelue;
  */
 
 public class Usuario {
-    String nombre, apellido, email, residencia, nacionalidad, idiomas;
+    String nombre, apellido, email, residencia, nacionalidad, idiomas, urlFoto;
 
     public Usuario() {
 
@@ -16,6 +16,16 @@ public class Usuario {
         this.apellido = apellido;
         this.email = email;
 
+    }
+
+    public Usuario(String nombre, String apellido, String email, String residencia, String nacionalidad, String idiomas, String urlFoto) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
+        this.residencia = residencia;
+        this.nacionalidad = nacionalidad;
+        this.idiomas = idiomas;
+        this.urlFoto = urlFoto;
     }
 
     public String getNombre() {
@@ -52,5 +62,9 @@ public class Usuario {
 
     public void setIdiomas(String idiomas) {
         this.idiomas = idiomas;
+    }
+
+    public void setUrlFoto(String urlFoto) {
+        this.urlFoto = urlFoto;
     }
 }

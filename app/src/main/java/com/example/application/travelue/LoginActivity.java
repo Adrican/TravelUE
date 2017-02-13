@@ -34,12 +34,13 @@ public class LoginActivity extends AppCompatActivity {
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
 
-        /**
+/**
         if (auth.getCurrentUser() != null) {
-            startActivity(new Intent(LoginActivity.this, SignupActivity.class));
+            startActivity(new Intent(LoginActivity.this, PaginaPrincipalRutas.class));
             finish();
         }
-*/
+ */
+
         // set the view now
         setContentView(R.layout.activity_login);
 
@@ -105,7 +106,7 @@ public class LoginActivity extends AppCompatActivity {
                                         Toast.makeText(LoginActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
                                     }
                                 } else {
-                                    Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
+                                    Intent intent = new Intent(LoginActivity.this, CreateRouteMap.class);
                                     startActivity(intent);
                                     finish();
                                 }

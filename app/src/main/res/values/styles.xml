@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimario</item>
         <item name="colorPrimaryDark">@color/colorPrimarioOscuro</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorHint">@color/hint</item>
 
 
     </style>
@@ -19,6 +20,9 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="mySpinnerItemStyle" parent="Base.Widget.AppCompat.Spinner.Underlined"></style>
+
+    <!--
     <style name="ButtonsSign">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@color/colorAccent</item>
@@ -26,8 +30,7 @@
         <item name="android:textStyle">bold</item>
         <item name="android:layout_weight">1</item>
         <item name="android:layout_width">wrap_content</item>
-    </style>
-
+    </style>-->
 
 
 </resources>
