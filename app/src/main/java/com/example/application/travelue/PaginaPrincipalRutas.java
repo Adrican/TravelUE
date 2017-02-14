@@ -3,6 +3,7 @@ package com.example.application.travelue;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
@@ -21,8 +22,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.TabHost;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserInfo;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -40,16 +44,23 @@ public class PaginaPrincipalRutas extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
 
+    DatabaseReference mDataBase;
+    private FirebaseAuth mauth;
+
+
     RecyclerView recyclerView, recyclerBusqueda;
     TabHost tablaPrincipal;
     TabHost.TabSpec tab1;
     TabHost.TabSpec tab2;
     TabHost.TabSpec tab3;
 
+    private TextView pruebita;
+
     private ProgressDialog progressDialog;
     private FloatingActionButton btnFloat, btnAtras, btnBuscar;
 
-    private FirebaseAuth auth;
+
+
     static ArrayList<Route> lista_busquedas;
     RecyclerView.LayoutManager layoutManager;
     RecyclerView.Adapter adapter = new RecyclerView.Adapter() {
@@ -80,6 +91,8 @@ public class PaginaPrincipalRutas extends AppCompatActivity
 
 
 
+        mDataBase = FirebaseDatabase.getInstance().getReference().child("usuarios");
+
         progressDialog = new ProgressDialog(this);
 
 
@@ -102,13 +115,16 @@ public class PaginaPrincipalRutas extends AppCompatActivity
         tablaPrincipal.addTab(tab1);
         tablaPrincipal.addTab(tab2);
         tablaPrincipal.addTab(tab3);
-        auth = FirebaseAuth.getInstance();
+        //auth = FirebaseAuth.getInstance();
         cargaContactos();
 
         btnFloat = (FloatingActionButton) findViewById(R.id.fabCrearRuta);
         btnAtras = (FloatingActionButton) findViewById(R.id.fabVolverAtras);
         btnBuscar = (FloatingActionButton) findViewById(R.id.fabBuscarRuta);
 
+        //pruebita = (TextView) findViewById(R.id.tvPruebaMagica);
+
+        //mostrarNombre();
         seleccionDeTab();
 
         btnFloat.setOnClickListener(new View.OnClickListener() {
@@ -166,6 +182,9 @@ public class PaginaPrincipalRutas extends AppCompatActivity
         }
 
 
+        //startSetupAccount();
+
+
         //Use of Fab
 
 
@@ -199,6 +218,31 @@ public class PaginaPrincipalRutas extends AppCompatActivity
 
     }
 
+
+public void mostrarNombre(){
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    if (user != null) {
+        // User is signed in
+        String displayName = user.getDisplayName();
+        Uri profileUri = user.getPhotoUrl();
+
+        // If the above were null, iterate the provider data
+        // and set with the first non null data
+        for (UserInfo userInfo : user.getProviderData()) {
+            if (displayName == null && userInfo.getDisplayName() != null) {
+                displayName = userInfo.getDisplayName();
+            }
+            if (profileUri == null && userInfo.getPhotoUrl() != null) {
+                profileUri = userInfo.getPhotoUrl();
+            }
+        }
+
+        pruebita.setText(displayName);
+
+
+    }
+
+}
 
     public void prueba() {
         progressDialog.setMessage("Loading...");

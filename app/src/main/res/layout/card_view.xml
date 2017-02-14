@@ -67,16 +67,16 @@
                     android:background="@color/white">
 
                     <ImageView
-                        android:layout_height="wrap_content"
-                        card_view:srcCompat="@drawable/ic_audiotrack_light"
-                        android:id="@+id/imageView2"
-                        android:layout_width="wrap_content"
-                        android:layout_gravity="center" />
+                        card_view:srcCompat="@drawable/ic_airline_seat_recline_normal_black_24dp"
+                        android:id="@+id/ivEstado"
+                        android:layout_gravity="center"
+                        android:layout_width="40dp"
+                        android:layout_height="30dp" />
 
                     <LinearLayout
                         android:orientation="vertical"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1">
 
                         <TextView
@@ -92,30 +92,75 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/tvEstado"
                             android:layout_gravity="top" />
+
                     </LinearLayout>
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        card_view:srcCompat="@drawable/cast_ic_mini_controller_closed_caption"
-                        android:id="@+id/imageView3"
-                        android:layout_gravity="center" />
+                    <FrameLayout
+                        android:layout_width="110dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2.09">
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        card_view:srcCompat="@drawable/cast_ic_expanded_controller_play"
-                        android:id="@+id/imageView4"
-                        android:layout_weight="0.39"
-                        android:layout_gravity="center" />
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        card_view:srcCompat="@drawable/cast_ic_mini_controller_forward30"
-                        android:id="@+id/imageView5"
-                        android:layout_weight="1"
-                        android:layout_gravity="center" />
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                card_view:srcCompat="@drawable/sifumar"
+                                android:id="@+id/ivSiFumar"
+                                android:layout_gravity="center"
+                                android:layout_weight="1" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                card_view:srcCompat="@drawable/sicomer"
+                                android:id="@+id/ivSiComer"
+                                android:layout_weight="1"
+                                android:layout_gravity="center" />
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                card_view:srcCompat="@drawable/numpersonas"
+                                android:id="@+id/ivPersonas"
+                                android:layout_weight="1" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                card_view:srcCompat="@drawable/nofumarbueno"
+                                android:id="@+id/ivNoFumar"
+                                android:layout_gravity="center"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                card_view:srcCompat="@drawable/nocomer"
+                                android:id="@+id/ivNoComer"
+                                android:layout_weight="1"
+                                android:layout_gravity="center" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                card_view:srcCompat="@drawable/numpersonas"
+                                android:id="@+id/imageView3"
+                                android:layout_weight="1" />
+
+                        </LinearLayout>
+
+                    </FrameLayout>
 
 
                 </LinearLayout>
@@ -127,10 +172,10 @@
                     android:layout_marginTop="10dp">
 
                     <ImageView
-                        android:layout_height="wrap_content"
-                        card_view:srcCompat="@drawable/ic_audiotrack_light"
+                        card_view:srcCompat="@drawable/origen"
                         android:id="@+id/ivOrigen"
-                        android:layout_width="wrap_content" />
+                        android:layout_width="40dp"
+                        android:layout_height="40dp" />
 
                     <TextView
                         android:text="TextView"
@@ -151,10 +196,10 @@
                     android:gravity="center">
 
                     <ImageView
-                        android:layout_height="wrap_content"
-                        card_view:srcCompat="@drawable/ic_audiotrack_light"
+                        android:layout_height="40dp"
+                        card_view:srcCompat="@drawable/destino"
                         android:id="@+id/ivDestino"
-                        android:layout_width="wrap_content" />
+                        android:layout_width="40dp" />
 
                     <TextView
                         android:text="TextView"
