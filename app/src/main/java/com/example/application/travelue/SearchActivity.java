@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,8 +24,10 @@ import java.util.Iterator;
 
 public class SearchActivity extends AppCompatActivity {
     ArrayList<Route> lista_contactos;
-    TextView txt_Origen;
-    TextView txt_Destino;
+    //TextView txt_Origen;
+    //TextView txt_Destino;
+    private AutoCompleteTextView etOrigin;
+    private AutoCompleteTextView etDestination;
     TextView txt_Time;
     TextView txt_Date;
     TextView txt_Date_2;
@@ -49,8 +52,11 @@ public class SearchActivity extends AppCompatActivity {
      * Charge all the tools that will be used
      */
     public void componetsCharge() {
-        txt_Origen = (TextView) findViewById(R.id.etOrigen);
-        txt_Destino = (TextView) findViewById(R.id.etDestino);
+        etOrigin = (AutoCompleteTextView) findViewById(R.id.etOrigen);
+        etOrigin.setAdapter(new PlacesAutoCompleteAdapter(this, R.layout.autocomplete_list_item));
+
+        etDestination = (AutoCompleteTextView) findViewById(R.id.etDestino);
+        etDestination.setAdapter(new PlacesAutoCompleteAdapter(this, R.layout.autocomplete_list_item));
         txt_Time = (TextView) findViewById(R.id.etTime);
         txt_Date = (TextView) findViewById(R.id.etDate);
         txt_Date_2 = (TextView) findViewById(R.id.etDate2);
@@ -107,7 +113,7 @@ public class SearchActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 //Set the user in the
-                PaginaPrincipalRutas.setArrayList(ChargeRoutes(txt_Origen.getText().toString(), txt_Destino.getText().toString()));
+                PaginaPrincipalRutas.setArrayList(ChargeRoutes(etOrigin.getText().toString(), etDestination.getText().toString()));
 
                 //Change to layout PaguinaPrincipalRutas
                 Intent intent = new Intent(SearchActivity.this, PaginaPrincipalRutas.class);
@@ -144,7 +150,7 @@ public class SearchActivity extends AppCompatActivity {
                 Iterator<DataSnapshot> iterador = i.iterator();
                 while (iterador.hasNext()) {
                     Route route = iterador.next().getValue(Route.class);
-                    if (route.getStartAddress().equals(origen) && route.getEndAddress().equals(destiny)) {
+                    if(route.getStartAddress().equals(origen) && route.getEndAddress().equals(destiny)) {
                         lista_contactos.add(route);
                     }
                 }

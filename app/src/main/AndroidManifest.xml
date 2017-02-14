@@ -54,12 +54,17 @@
             android:label="@string/title_activity_create_route_map"
             android:screenOrientation="portrait">
 
+
         </activity>
         <activity
             android:name=".PaginaPrincipalRutas"
             android:label="@string/title_activity_pagina_principal_rutas"
             android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
 
         </activity>
@@ -71,11 +76,7 @@
 
         </activity>
         <activity android:name=".SearchActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
 
         </activity>

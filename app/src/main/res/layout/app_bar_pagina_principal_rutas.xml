@@ -28,8 +28,17 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|start"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/nophoto"
+        app:srcCompat="@drawable/ic_undo_white_24dp"
         android:visibility="invisible"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabBuscarRuta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@drawable/ic_search_white_24dp"
+        android:visibility="visible" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fabCrearRuta"
@@ -37,8 +46,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/nophoto"
-        android:visibility="visible" />
+        app:srcCompat="@drawable/ic_add_white_24dp"
+        android:visibility="invisible" />
 
 
 

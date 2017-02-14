@@ -41,9 +41,13 @@ public class PaginaPrincipalRutas extends AppCompatActivity
 
 
     RecyclerView recyclerView, recyclerBusqueda;
+    TabHost tablaPrincipal;
+    TabHost.TabSpec tab1;
+    TabHost.TabSpec tab2;
+    TabHost.TabSpec tab3;
 
     private ProgressDialog progressDialog;
-    private FloatingActionButton btnFloat, btnAtras;
+    private FloatingActionButton btnFloat, btnAtras, btnBuscar;
 
     private FirebaseAuth auth;
     static ArrayList<Route> lista_busquedas;
@@ -72,28 +76,19 @@ public class PaginaPrincipalRutas extends AppCompatActivity
         setContentView(R.layout.activity_pagina_principal_rutas);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-/**
- Button bprueba;
- TextView tvPrueba;
- CheckBox cbPrueba;
- ImageView coche;
 
 
- tvPrueba = (TextView) findViewById(R.id.textViewPrueba);
- bprueba = (Button) findViewById(R.id.buttonPrueba);
- cbPrueba = (CheckBox) findViewById(R.id.checkBoxPrueba);
- */
 
-// coche = (ImageView) findViewById(R.drawable.car);
 
         progressDialog = new ProgressDialog(this);
-        TabHost tablaPrincipal;
+
+
         tablaPrincipal = (TabHost) findViewById(R.id.tabHost);
         tablaPrincipal.setup();
 
-        TabHost.TabSpec tab1 = tablaPrincipal.newTabSpec("Etiqueta1");
-        TabHost.TabSpec tab2 = tablaPrincipal.newTabSpec("Etiqueta2");
-        TabHost.TabSpec tab3 = tablaPrincipal.newTabSpec("Etiqueta3");
+        tab1 = tablaPrincipal.newTabSpec("Etiqueta1");
+        tab2 = tablaPrincipal.newTabSpec("Etiqueta2");
+        tab3 = tablaPrincipal.newTabSpec("Etiqueta3");
 
         tab1.setIndicator("Rutas");
         tab2.setIndicator("Mis Rutas");
@@ -112,6 +107,9 @@ public class PaginaPrincipalRutas extends AppCompatActivity
 
         btnFloat = (FloatingActionButton) findViewById(R.id.fabCrearRuta);
         btnAtras = (FloatingActionButton) findViewById(R.id.fabVolverAtras);
+        btnBuscar = (FloatingActionButton) findViewById(R.id.fabBuscarRuta);
+
+        seleccionDeTab();
 
         btnFloat.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,11 +119,22 @@ public class PaginaPrincipalRutas extends AppCompatActivity
             }
         });
 
+
+
         btnAtras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                lista_busquedas.clear();
                 cargaContactos();
                 btnAtras.setVisibility(View.INVISIBLE);
+            }
+        });
+
+        btnBuscar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PaginaPrincipalRutas.this, SearchActivity.class);
+                startActivity(intent);
             }
         });
 /**
@@ -139,6 +148,8 @@ public class PaginaPrincipalRutas extends AppCompatActivity
          */
 
 
+
+
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view2);
 
 
@@ -150,8 +161,9 @@ public class PaginaPrincipalRutas extends AppCompatActivity
         recyclerBusqueda = (RecyclerView) findViewById(R.id.recycler_view2);
         recyclerBusqueda.setHasFixedSize(true);
 
-
-        prueba();
+        if (lista_busquedas != null && !lista_busquedas.isEmpty()) {
+            prueba();
+        }
 
 
         //Use of Fab
@@ -167,6 +179,27 @@ public class PaginaPrincipalRutas extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
     }
 
+
+    public void seleccionDeTab(){
+
+        tablaPrincipal.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+            @Override
+            public void onTabChanged(String arg0) {
+                if (tablaPrincipal.getCurrentTab() == 1){
+                    btnFloat.setVisibility(View.VISIBLE);
+                    btnBuscar.setVisibility(View.INVISIBLE);
+                    btnAtras.setVisibility(View.INVISIBLE);
+                } else if (tablaPrincipal.getCurrentTab()==0){
+                    btnFloat.setVisibility(View.INVISIBLE);
+                    btnBuscar.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+
+    }
+
+
     public void prueba() {
         progressDialog.setMessage("Loading...");
         progressDialog.show();
@@ -181,6 +214,7 @@ public class PaginaPrincipalRutas extends AppCompatActivity
 
             }
         }, 3000);
+
     }
 
 
