@@ -121,44 +121,34 @@
                                 android:id="@+id/ivSiComer"
                                 android:layout_weight="1"
                                 android:layout_gravity="center" />
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                card_view:srcCompat="@drawable/numpersonas"
-                                android:id="@+id/ivPersonas"
-                                android:layout_weight="1" />
+
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    card_view:srcCompat="@drawable/numpersonas"
+                                    android:id="@+id/ivPersonas"
+                                    android:layout_weight="1" />
+
+                                <TextView
+                                    android:text="0"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/tvNumberPassengers"
+                                    android:layout_weight="1"
+                                    android:textColor="@color/white"
+                                    android:layout_gravity="center"
+                                    android:layout_marginTop="5dp" />
+
+                            </FrameLayout>
 
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent">
 
-                            <ImageView
-                                card_view:srcCompat="@drawable/nofumarbueno"
-                                android:id="@+id/ivNoFumar"
-                                android:layout_gravity="center"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1" />
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                card_view:srcCompat="@drawable/nocomer"
-                                android:id="@+id/ivNoComer"
-                                android:layout_weight="1"
-                                android:layout_gravity="center" />
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                card_view:srcCompat="@drawable/numpersonas"
-                                android:id="@+id/imageView3"
-                                android:layout_weight="1" />
-
-                        </LinearLayout>
 
                     </FrameLayout>
 

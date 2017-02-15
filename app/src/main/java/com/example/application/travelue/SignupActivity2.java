@@ -174,9 +174,12 @@ finish();
 
  } else {
  */                                 //meterImagenEnFirebase();
+
+
                 progressBar.setVisibility(View.GONE);
                 startActivity(new Intent(SignupActivity2.this, PaginaPrincipalRutas.class));
                 finish();
+
 
             }
         });
@@ -235,6 +238,24 @@ finish();
                                 }
                             });
 
+
+                    auth.signInWithEmailAndPassword(usuario.getEmail(), usuario.getUid())
+                            .addOnCompleteListener(SignupActivity2.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    // If sign in fails, display a message to the user. If sign in succeeds
+                                    // the auth state listener will be notified and logic to handle the
+                                    // signed in user can be handled in the listener.
+                                    progressBar.setVisibility(View.GONE);
+                                    if (!task.isSuccessful()) {
+                                        // there was an error
+                                    } else {
+                                        Intent intent = new Intent(SignupActivity2.this, PaginaPrincipalRutas.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                }
+                            });
 
                     Toast.makeText(SignupActivity2.this, "Upload new Image file to Firebase done", Toast.LENGTH_LONG).show();
                     mProgresDialog.dismiss();

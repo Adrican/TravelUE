@@ -1,3 +1,5 @@
+
+
 package com.example.application.travelue;
 
 import android.animation.Animator;
@@ -22,16 +24,13 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 
-/**
- * Created by Eduardo on 24/11/2016.
+    /**
+     * Created by Eduardo on 24/11/2016.
  */
-
 public class RecContactos extends RecyclerView.Adapter<RecContactos.ContactoViewHolder>  {
 
     private ArrayList<Route> items;
     public Context context;
-
-
 
     public class ContactoViewHolder extends RecyclerView.ViewHolder {
 
@@ -39,34 +38,31 @@ public class RecContactos extends RecyclerView.Adapter<RecContactos.ContactoView
         public TextView estado;
         public TextView origen;
         public TextView destino;
+        public TextView numberPassengers;
         public ImageView imagen;
         public ImageView imagen2;
-
+        public ImageView imageSmoke;
+        public ImageView imageEat;
 
         public ContactoViewHolder(View itemView) {
             super(itemView);
             nombre = (TextView) itemView.findViewById(R.id.tvNombre);
+            numberPassengers = (TextView) itemView.findViewById(R.id.tvNumberPassengers);
             estado = (TextView) itemView.findViewById(R.id.tvEstado);
             origen = (TextView) itemView.findViewById(R.id.tvOrigen);
             destino = (TextView) itemView.findViewById(R.id.tvDestino);
             imagen = (ImageView) itemView.findViewById(R.id.item_image);
             imagen2 = (ImageView) itemView.findViewById(R.id.item_image2);
-
-
-
+            ///Creamos
+            imageSmoke = (ImageView) itemView.findViewById(R.id.ivSiFumar);
+            imageEat = (ImageView) itemView.findViewById(R.id.ivSiComer);
         }
     }
-
-
-
-
-
 
     public RecContactos(Context context,ArrayList<Route> items){
         this.context = context;
         this.items = items;
     }
-
 
     @Override
     public ContactoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -78,29 +74,32 @@ public class RecContactos extends RecyclerView.Adapter<RecContactos.ContactoView
     @Override
     public void onBindViewHolder(ContactoViewHolder holder, int position) {
 
-
         //holder.nombre.setText(items.get(position).getStartAddress());
         holder.estado.setText(items.get(position).getTypeOfUser());
         holder.origen.setText(items.get(position).getStartAddress());
         holder.destino.setText(items.get(position).getEndAddress());
-        holder.imagen.setImageResource(R.drawable.nophoto);
-        holder.imagen2.setImageResource(R.drawable.nophoto);
+        holder.numberPassengers.setText(String.valueOf(items.get(position).getNumberOfPasangers()));
 
+        //See if smoke is permited
+        if(items.get(position).isAllowSmoking()){
+            holder.imageSmoke.setImageResource(R.drawable.sifumar);
+        }else{
+            holder.imageSmoke.setImageResource(R.drawable.nofumarbueno);
+        }
 
-
+        //See if the eating is permited
+        if(items.get(position).isAllowEating()){
+            holder.imageEat.setImageResource(R.drawable.sicomer);
+        }else{
+            holder.imageEat.setImageResource(R.drawable.nocomer);
+        }
     }
     public void onViewAttachedToWindow(ContactoViewHolder holder) {
         super.onViewAttachedToWindow(holder);
     }
 
-
     @Override
     public int getItemCount() {
         return items.size();
     }
-
-
-
-
-
 }

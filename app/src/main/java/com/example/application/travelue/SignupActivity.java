@@ -129,7 +129,7 @@ startActivity(new Intent(SignupActivity.this, ResetPasswordActivity.class));
                                     DatabaseReference currentUser = mDatabase.child("usuario");
                                     currentUser.child("nombre").setValue(nombre);
                                      */
-                                    FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
+                                    final FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
 
                                     UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                                             .setDisplayName(nombre)
@@ -140,12 +140,36 @@ startActivity(new Intent(SignupActivity.this, ResetPasswordActivity.class));
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     if (task.isSuccessful()) {
-                                                        Log.d("TAG", "User profile updated.");
+                                                        if (usuario.equals(null)){
+                                                            Log.d("TAG", "no existe");
+                                                        }
+
                                                     }
                                                 }
                                             });
+
+
+                                    auth.signInWithEmailAndPassword(inputEmail.getText().toString(), inputPassword.getText().toString())
+                                            .addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                                    // If sign in fails, display a message to the user. If sign in succeeds
+                                                    // the auth state listener will be notified and logic to handle the
+                                                    // signed in user can be handled in the listener.
+                                                    progressBar.setVisibility(View.GONE);
+                                                    if (!task.isSuccessful()) {
+                                                        // there was an error
+                                                    } else {
+                                                        Intent intent = new Intent(SignupActivity.this, SignupActivity2.class);
+                                                        startActivity(intent);
+                                                        finish();
+                                                    }
+                                                }
+                                            });
+                                    /**
                                     Intent intent = new Intent(SignupActivity.this,SignupActivity2.class);
                                     startActivity(intent);
+                                     */
                                 }
                             }
                         });

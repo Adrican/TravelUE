@@ -115,16 +115,16 @@ public class PaginaPrincipalRutas extends AppCompatActivity
         tablaPrincipal.addTab(tab1);
         tablaPrincipal.addTab(tab2);
         tablaPrincipal.addTab(tab3);
-        //auth = FirebaseAuth.getInstance();
+        mauth = FirebaseAuth.getInstance();
         cargaContactos();
 
         btnFloat = (FloatingActionButton) findViewById(R.id.fabCrearRuta);
         btnAtras = (FloatingActionButton) findViewById(R.id.fabVolverAtras);
         btnBuscar = (FloatingActionButton) findViewById(R.id.fabBuscarRuta);
 
-        //pruebita = (TextView) findViewById(R.id.tvPruebaMagica);
 
-        //mostrarNombre();
+
+
         seleccionDeTab();
 
         btnFloat.setOnClickListener(new View.OnClickListener() {
@@ -196,6 +196,9 @@ public class PaginaPrincipalRutas extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View header = navigationView.getHeaderView(0);
+        pruebita = (TextView) header.findViewById(R.id.tvNombreUsuario);
+        mostrarNombre();
     }
 
 
