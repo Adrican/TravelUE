@@ -6,8 +6,10 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.FloatingActionButton;
+import com.github.clans.fab.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -24,6 +26,7 @@ import android.view.ViewGroup;
 import android.widget.TabHost;
 import android.widget.TextView;
 
+import com.github.clans.fab.FloatingActionMenu;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserInfo;
@@ -44,15 +47,14 @@ public class PaginaPrincipalRutas extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
 
+    FloatingActionMenu materialDesignFAM;
+    FloatingActionButton floatingActionButton1, floatingActionButton2, floatingActionButton3;
+    TabRutasTotales content = null;
     DatabaseReference mDataBase;
     private FirebaseAuth mauth;
 
 
     RecyclerView recyclerView, recyclerBusqueda;
-    TabHost tablaPrincipal;
-    TabHost.TabSpec tab1;
-    TabHost.TabSpec tab2;
-    TabHost.TabSpec tab3;
 
     private TextView pruebita;
 
@@ -62,6 +64,8 @@ public class PaginaPrincipalRutas extends AppCompatActivity
 
 
     static ArrayList<Route> lista_busquedas;
+
+
     RecyclerView.LayoutManager layoutManager;
     RecyclerView.Adapter adapter = new RecyclerView.Adapter() {
         @Override
@@ -79,6 +83,7 @@ public class PaginaPrincipalRutas extends AppCompatActivity
             return 0;
         }
     };
+
     ArrayList<Route> lista_contactos = new ArrayList<>();
 
     @Override
@@ -96,63 +101,46 @@ public class PaginaPrincipalRutas extends AppCompatActivity
         progressDialog = new ProgressDialog(this);
 
 
-        tablaPrincipal = (TabHost) findViewById(R.id.tabHost);
-        tablaPrincipal.setup();
-
-        tab1 = tablaPrincipal.newTabSpec("Etiqueta1");
-        tab2 = tablaPrincipal.newTabSpec("Etiqueta2");
-        tab3 = tablaPrincipal.newTabSpec("Etiqueta3");
-
-        tab1.setIndicator("Rutas");
-        tab2.setIndicator("Mis Rutas");
-        tab3.setIndicator("Historial");
-
-
-        tab1.setContent(R.id.recycler_view2);
-        tab2.setContent(R.id.recycler_busqueda);
-        tab3.setContent(R.id.recycler_view2);
-
-        tablaPrincipal.addTab(tab1);
-        tablaPrincipal.addTab(tab2);
-        tablaPrincipal.addTab(tab3);
         mauth = FirebaseAuth.getInstance();
-        cargaContactos();
+        //content.cargaContactos();
+/**
+ btnFloat = (FloatingActionButton) findViewById(R.id.fabCrearRuta);
+ btnAtras = (FloatingActionButton) findViewById(R.id.fabVolverAtras);
+ btnBuscar = (FloatingActionButton) findViewById(R.id.fabBuscarRuta);
 
-        btnFloat = (FloatingActionButton) findViewById(R.id.fabCrearRuta);
-        btnAtras = (FloatingActionButton) findViewById(R.id.fabVolverAtras);
-        btnBuscar = (FloatingActionButton) findViewById(R.id.fabBuscarRuta);
+ *//**
 
 
+         //seleccionDeTab();
 
-
-        seleccionDeTab();
-
-        btnFloat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(PaginaPrincipalRutas.this, CreateRouteMap.class);
-                startActivity(intent);
-            }
+         btnFloat.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+        Intent intent = new Intent(PaginaPrincipalRutas.this, CreateRouteMap.class);
+        startActivity(intent);
+        }
         });
 
 
 
-        btnAtras.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                lista_busquedas.clear();
-                cargaContactos();
-                btnAtras.setVisibility(View.INVISIBLE);
-            }
+         btnAtras.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+        lista_busquedas.clear();
+        //content.cargaContactos();
+        btnAtras.setVisibility(View.INVISIBLE);
+        }
         });
 
-        btnBuscar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(PaginaPrincipalRutas.this, SearchActivity.class);
-                startActivity(intent);
-            }
+         btnBuscar.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+        Intent intent = new Intent(PaginaPrincipalRutas.this, SearchActivity.class);
+        startActivity(intent);
+        }
         });
+         */
 /**
  Usuario us = new Usuario("Paco","Lucas","123");
  lista_contactos.add(us);
@@ -165,27 +153,61 @@ public class PaginaPrincipalRutas extends AppCompatActivity
 
 
 
-
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view2);
-
-
-        recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
+/**
+ recyclerView = (RecyclerView) findViewById(R.id.recyclerPrincipal);
 
 
-        recyclerBusqueda = (RecyclerView) findViewById(R.id.recycler_view2);
-        recyclerBusqueda.setHasFixedSize(true);
+ recyclerView.setHasFixedSize(true);
+ layoutManager = new LinearLayoutManager(this);
+ recyclerView.setLayoutManager(layoutManager);
 
-        if (lista_busquedas != null && !lista_busquedas.isEmpty()) {
-            prueba();
-        }
+
+ recyclerBusqueda = (RecyclerView) findViewById(R.id.recyclerPrincipal);
+ recyclerBusqueda.setHasFixedSize(true);
+
+
+
+
+ */
 
 //
         //startSetupAccount();
 
 
         //Use of Fab
+
+
+        materialDesignFAM = (FloatingActionMenu) findViewById(R.id.material_design_android_floating_action_menu);
+        floatingActionButton1 = (FloatingActionButton) findViewById(R.id.material_design_floating_action_menu_item1);
+        floatingActionButton2 = (FloatingActionButton) findViewById(R.id.material_design_floating_action_menu_item2);
+        floatingActionButton3 = (FloatingActionButton) findViewById(R.id.material_design_floating_action_menu_item3);
+
+        floatingActionButton1.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(PaginaPrincipalRutas.this, CreateRouteMap.class);
+                startActivity(intent);
+            }
+        });
+        floatingActionButton2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(PaginaPrincipalRutas.this, SearchActivity.class);
+                startActivity(intent);
+            }
+        });
+        floatingActionButton3.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (TabRutasTotales.lista_busquedas != null && !TabRutasTotales.lista_busquedas.isEmpty()) {
+                    TabRutasTotales.lista_busquedas.clear();
+                }
+                recargarLayout();
+
+                //cargaContactos();
+
+
+            }
+        });
+
+
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -196,84 +218,68 @@ public class PaginaPrincipalRutas extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        setFragment(new TabController());
         View header = navigationView.getHeaderView(0);
         pruebita = (TextView) header.findViewById(R.id.tvNombreUsuario);
         mostrarNombre();
+
+
     }
 
+    /**
+     public void seleccionDeTab(){
 
-    public void seleccionDeTab(){
+     tablaPrincipal.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+    @Override
+    public void onTabChanged(String arg0) {
+    if (tablaPrincipal.getCurrentTab() == 1){
+    btnFloat.setVisibility(View.VISIBLE);
+    btnBuscar.setVisibility(View.INVISIBLE);
+    btnAtras.setVisibility(View.INVISIBLE);
+    } else if (tablaPrincipal.getCurrentTab()==0){
+    btnFloat.setVisibility(View.INVISIBLE);
+    btnBuscar.setVisibility(View.VISIBLE);
+    }
+    }
+    });
 
-        tablaPrincipal.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
-            @Override
-            public void onTabChanged(String arg0) {
-                if (tablaPrincipal.getCurrentTab() == 1){
-                    btnFloat.setVisibility(View.VISIBLE);
-                    btnBuscar.setVisibility(View.INVISIBLE);
-                    btnAtras.setVisibility(View.INVISIBLE);
-                } else if (tablaPrincipal.getCurrentTab()==0){
-                    btnFloat.setVisibility(View.INVISIBLE);
-                    btnBuscar.setVisibility(View.VISIBLE);
+
+     }
+     */
+
+
+    public void recargarLayout() {
+        startActivity(new Intent(this, PaginaPrincipalRutas.class));
+
+    }
+    public void mostrarNombre(){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            // User is signed in
+            String displayName = user.getDisplayName();
+            Uri profileUri = user.getPhotoUrl();
+
+            // If the above were null, iterate the provider data
+            // and set with the first non null data
+            for (UserInfo userInfo : user.getProviderData()) {
+                if (displayName == null && userInfo.getDisplayName() != null) {
+                    displayName = userInfo.getDisplayName();
+                }
+                if (profileUri == null && userInfo.getPhotoUrl() != null) {
+                    profileUri = userInfo.getPhotoUrl();
                 }
             }
-        });
+
+            pruebita.setText(displayName);
 
 
-    }
-
-
-public void mostrarNombre(){
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    if (user != null) {
-        // User is signed in
-        String displayName = user.getDisplayName();
-        Uri profileUri = user.getPhotoUrl();
-
-        // If the above were null, iterate the provider data
-        // and set with the first non null data
-        for (UserInfo userInfo : user.getProviderData()) {
-            if (displayName == null && userInfo.getDisplayName() != null) {
-                displayName = userInfo.getDisplayName();
-            }
-            if (profileUri == null && userInfo.getPhotoUrl() != null) {
-                profileUri = userInfo.getPhotoUrl();
-            }
         }
 
-        pruebita.setText(displayName);
-
-
     }
-
-}
-
-    public void prueba() {
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
+    /**
 
 
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            public void run() {
-                recyclerBusqueda(lista_busquedas);
-                btnAtras.setVisibility(View.VISIBLE);
-                progressDialog.dismiss();
-
-            }
-        }, 3000);
-
-    }
-
-
-    private void recyclerBusqueda(ArrayList<Route> lista) {
-        RecContactos rec = new RecContactos(this, lista);
-        recyclerBusqueda.setAdapter(rec);
-    }
-
-    private void recycler(ArrayList<Route> lista) {
-        RecContactos rec = new RecContactos(this, lista);
-        recyclerView.setAdapter(rec);
-    }
+     */
 
     @Override
     public void onBackPressed() {
@@ -315,6 +321,7 @@ public void mostrarNombre(){
 
         if (id == R.id.nav_camera) {
             // Handle the camera action
+            setFragment(new TabController());
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
@@ -326,44 +333,26 @@ public void mostrarNombre(){
         } else if (id == R.id.nav_send) {
 
         }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
+    public void setFragment (Fragment fragment){
 
-    protected void cargaContactos() {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference("rutas");
+        if (fragment !=null){
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.content_pagina_principal_rutas, fragment);
+            ft.commit();
+        }
 
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
 
-                lista_contactos.clear();
-                Iterable i = dataSnapshot.getChildren();
-                Iterator<DataSnapshot> iterador = i.iterator();
-                while (iterador.hasNext()) {
 
-                    Route r = iterador.next().getValue(Route.class);
-                    lista_contactos.add(r);
-
-                }
-                //cargarListView(lista_contactos);
-                recycler(lista_contactos);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.v("mira mi huevo", "");
-            }
-        });
 
     }
 
-    public static void setArrayList(ArrayList<Route> lista_busqueda) {
-        lista_busquedas = lista_busqueda;
-    }
+
+
+
 
 }

@@ -113,7 +113,7 @@ public class SearchActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 //Set the user in the
-                PaginaPrincipalRutas.setArrayList(ChargeRoutes(etOrigin.getText().toString(), etDestination.getText().toString()));
+                TabRutasTotales.setArrayList(ChargeRoutes(etOrigin.getText().toString(), etDestination.getText().toString()));
 
                 //Change to layout PaguinaPrincipalRutas
                 Intent intent = new Intent(SearchActivity.this, PaginaPrincipalRutas.class);
