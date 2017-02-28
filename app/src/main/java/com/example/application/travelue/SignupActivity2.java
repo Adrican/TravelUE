@@ -262,6 +262,7 @@ finish();
 
                                 }
                             });
+                    //
 
                     auth.signInWithEmailAndPassword(user.getEmail().toString(), password.toString())
                             .addOnCompleteListener(SignupActivity2.this, new OnCompleteListener<AuthResult>() {
