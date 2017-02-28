@@ -48,6 +48,8 @@ public class SignupActivity2 extends AppCompatActivity {
     private EditText inputLive, inputNacionality, inputLanguages, inputEmail, inputSurname, inputPassword, inputName;
     private Button mbtnBack, btnSignUp, btnResetPassword;
 
+    private static String password = "";
+
     private ProgressBar progressBar;
     private ImageView imgProfile;
     private FirebaseAuth auth;
@@ -167,7 +169,23 @@ finish();
                 String idiomas = inputLanguages.getText().toString();
                  */
 
+
                 startPosting();
+
+                /*
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+
+                        progressBar.setVisibility(View.GONE);
+                        startActivity(new Intent(SignupActivity2.this, PaginaPrincipalRutas.class));
+                        finish();
+                        progressDialog.dismiss();
+
+                    }
+                }, 3000);
+                */
+
 
 
 
@@ -180,9 +198,7 @@ finish();
  */                                 //meterImagenEnFirebase();
 
 
-                progressBar.setVisibility(View.GONE);
-                startActivity(new Intent(SignupActivity2.this, PaginaPrincipalRutas.class));
-                finish();
+
 
 
             }
@@ -216,15 +232,6 @@ finish();
 
 
         if (!TextUtils.isEmpty(live) && !TextUtils.isEmpty(nacionality) && !TextUtils.isEmpty(languages) && mImageUri != null) {
-            Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                public void run() {
-
-                    //btnAtras.setVisibility(View.VISIBLE);
-                    progressDialog.dismiss();
-
-                }
-            }, 3000);
             StorageReference filepath = mStorage.child("Photos").child(mImageUri.getLastPathSegment());
             filepath.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
@@ -239,8 +246,7 @@ finish();
 
                     FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
 
-                    progressDialog.setMessage("Loading...");
-                    progressDialog.show();
+
 
 
 
@@ -257,8 +263,7 @@ finish();
                                 }
                             });
 
-
-                    auth.signInWithEmailAndPassword(usuario.getEmail(), usuario.getUid())
+                    auth.signInWithEmailAndPassword(user.getEmail().toString(), password.toString())
                             .addOnCompleteListener(SignupActivity2.this, new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
@@ -276,11 +281,21 @@ finish();
                                 }
                             });
 
+
+
+
                     Toast.makeText(SignupActivity2.this, "Upload new Image file to Firebase done", Toast.LENGTH_LONG).show();
+
                     mProgresDialog.dismiss();
+                    /*
+                    Intent intent = new Intent(SignupActivity2.this, PaginaPrincipalRutas.class);
+                    startActivity(intent);
+                    finish();
+                    */
                 }
             });
         }
+
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -381,6 +396,9 @@ finish();
 
     public static void setUser(Usuario usuario) {
         user = usuario;
+    }
+    public static void setPassword(String pass) {
+        password = pass;
     }
 }
 

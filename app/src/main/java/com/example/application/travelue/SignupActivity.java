@@ -83,7 +83,7 @@ startActivity(new Intent(SignupActivity.this, ResetPasswordActivity.class));
             public void onClick(View v) {
 
                 String email = inputEmail.getText().toString().trim();
-                String password = inputPassword.getText().toString().trim();
+                final String password = inputPassword.getText().toString().trim();
 
                 if (TextUtils.isEmpty(email)) {
                     Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
@@ -117,7 +117,7 @@ startActivity(new Intent(SignupActivity.this, ResetPasswordActivity.class));
                                 String email=inputEmail.getText().toString();
                                 Usuario user=new Usuario(nombre, apellido, email);
                                 setUser(user);
-
+                                SignupActivity2.setPassword(password);
 
 
                                 if (!task.isSuccessful()) {
@@ -133,6 +133,7 @@ startActivity(new Intent(SignupActivity.this, ResetPasswordActivity.class));
 
                                     UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                                             .setDisplayName(nombre)
+
                                             .build();
 
                                     usuario.updateProfile(profileUpdates)
