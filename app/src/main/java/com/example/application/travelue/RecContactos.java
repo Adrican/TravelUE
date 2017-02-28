@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,25 +15,32 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 
-    /**
+/**
      * Created by Eduardo on 24/11/2016.
  */
 public class RecContactos extends RecyclerView.Adapter<RecContactos.ContactoViewHolder>  {
 
     private ArrayList<Route> items;
     public Context context;
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     public class ContactoViewHolder extends RecyclerView.ViewHolder {
 
+        public CardView cv;
         public TextView nombre;
         public TextView estado;
         public TextView origen;
@@ -45,8 +53,14 @@ public class RecContactos extends RecyclerView.Adapter<RecContactos.ContactoView
         public ImageView imageSmoke;
         public ImageView imageEat;
 
+
         public ContactoViewHolder(View itemView) {
             super(itemView);
+
+
+            cv = (CardView) itemView.findViewById(R.id.card_view);
+
+
             nombre = (TextView) itemView.findViewById(R.id.tvNombre);
             numberPassengers = (TextView) itemView.findViewById(R.id.tvNumberPassengers);
             estado = (TextView) itemView.findViewById(R.id.tvEstado);
@@ -64,6 +78,8 @@ public class RecContactos extends RecyclerView.Adapter<RecContactos.ContactoView
             imageSmoke = (ImageView) itemView.findViewById(R.id.ivSiFumar);
             imageEat = (ImageView) itemView.findViewById(R.id.ivSiComer);
             imagen.setScaleType(ImageView.ScaleType.CENTER_CROP);//CENTER_CROP
+
+
 
         }
     }
@@ -111,7 +127,7 @@ public class RecContactos extends RecyclerView.Adapter<RecContactos.ContactoView
     }
 
     @Override
-    public void onBindViewHolder(ContactoViewHolder holder, int position) {
+    public void onBindViewHolder(final ContactoViewHolder holder, final int position) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
 
@@ -131,6 +147,37 @@ public class RecContactos extends RecyclerView.Adapter<RecContactos.ContactoView
         holder.origen.setText(items.get(position).getStartAddress());
         holder.destino.setText(items.get(position).getEndAddress());
         holder.numberPassengers.setText(String.valueOf(items.get(position).getNumberOfPasangers()));
+
+
+
+        holder.cv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference ref = database.getReference("rutas");
+                final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+/**
+                ref.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+                        Iterable i = dataSnapshot.getChildren();
+                        Iterator<DataSnapshot> iterador = i.iterator();
+                        while (iterador.hasNext()) {
+
+                            Route r = iterador.next().getValue(Route.class);
+                */
+                            if (user.getEmail().equals(items.get(position).getEmailUser())){
+                                holder.cv.setVisibility(View.INVISIBLE);
+                           }
+
+
+                        }
+
+
+        });
+
 
         //See if smoke is permited
         if(items.get(position).isAllowSmoking()){
