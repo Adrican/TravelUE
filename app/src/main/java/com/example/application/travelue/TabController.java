@@ -9,9 +9,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 /**
  * Created by Adri on 16/02/2017.
@@ -20,6 +23,8 @@ public class TabController extends Fragment {
     View view;
     ViewPager viewPager;
     TabLayout tabLayout;
+    Context context;
+
 
 
     @Nullable
@@ -35,11 +40,32 @@ public class TabController extends Fragment {
             @Override
             public void run() {
                 tabLayout.setupWithViewPager(viewPager);
-                tabLayout.setupWithViewPager(viewPager);
+                //tabLayout.setupWithViewPager(viewPager);
 
-                for (int i = 0; i < tabLayout.getTabCount(); i++) {
-                    tabLayout.getTabAt(i).setIcon(R.drawable.rabanopng);
-                }
+
+
+
+                    tabLayout.getTabAt(0).setIcon(R.drawable.ic_explore_white_24dp);
+                    tabLayout.getTabAt(1).setIcon(R.drawable.misrutasbuenas);
+                    tabLayout.getTabAt(2).setIcon(R.drawable.ic_mail_outline_white_24dp);
+
+/**
+                view = getActivity().getLayoutInflater().inflate(R.layout.customtab, null);
+                view.findViewById(R.id.icon).setBackgroundResource(R.drawable.ic_explore_white_24dp);
+                tabLayout.addTab(tabLayout.newTab().setCustomView(view));
+
+
+                view = getActivity().getLayoutInflater().inflate(R.layout.customtab, null);
+                view.findViewById(R.id.icon).setBackgroundResource(R.drawable.misrutasbuenas);
+                tabLayout.addTab(tabLayout.newTab().setCustomView(view));
+
+
+                view = getActivity().getLayoutInflater().inflate(R.layout.customtab, null);
+                view.findViewById(R.id.icon).setBackgroundResource(R.drawable.ic_mail_outline_white_24dp);
+                tabLayout.addTab(tabLayout.newTab().setCustomView(view));
+*/
+
+
             }
         });
 
@@ -51,7 +77,7 @@ public class TabController extends Fragment {
                 R.drawable.button_custom,
 
         };
-        final  String tabs[]={"Rutas", "tab2", "prueba"};
+        //final  String tabs[]={"Rutas", "tab2", "prueba"};
         public sliderAdapter(FragmentManager fm) {
             super(fm);
         }
@@ -62,7 +88,7 @@ public class TabController extends Fragment {
                 case 0:
                     return new TabRutasTotales();
                 case 1:
-                    return new TabRutasTotales();
+                    return new TabMisRutas();
                 case 2:
                     return new TabRutasTotales();
                 default:
@@ -77,10 +103,13 @@ public class TabController extends Fragment {
         public int getCount() {
             return 3;
         }
+        /**
         @Override
         public CharSequence getPageTitle(int position) {
             return tabs[position];
 
+
         }
+        */
     }
 }

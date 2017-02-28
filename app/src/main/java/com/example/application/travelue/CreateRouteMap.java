@@ -37,6 +37,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -500,7 +502,8 @@ public class CreateRouteMap extends FragmentActivity implements OnMapReadyCallba
      * @return new Route()
      */
     private Route createRoute(){
-        String distance,duration,enAdress,startAddress,typeOfUser,carModel,typeOfInsurance,hour,startDay,finisDay;
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String distance,duration,enAdress,startAddress,typeOfUser,carModel,typeOfInsurance,hour,startDay,finisDay, emailUser, nombreUser, fotoPerfil;
         Duration dura;
         Distance dist;
         //Route distancia = ;
@@ -521,13 +524,17 @@ public class CreateRouteMap extends FragmentActivity implements OnMapReadyCallba
         hour = ((TextView) findViewById(R.id.etTime)).getText().toString();
         startDay = ((TextView) findViewById(R.id.etDate)).getText().toString();
         finisDay = ((TextView) findViewById(R.id.etDate2)).getText().toString();
+        nombreUser = user.getDisplayName();
+        emailUser = user.getEmail();
+        fotoPerfil = String.valueOf(user.getPhotoUrl());
+
 
         allowEating = isVisible(imgSiComer);
         allowSmoking = isVisible(imgSiFumar);
         numberOfPasangers = Integer.parseInt(String.valueOf(etCantidadPasajeros.getText()));
 
         try {
-            return new Route(distance, duration, enAdress, startAddress, typeOfUser, carModel, typeOfInsurance, hour, startDay, finisDay, allowEating, allowSmoking, numberOfPasangers);
+            return new Route(distance, duration, enAdress, startAddress, typeOfUser, carModel, typeOfInsurance, hour, startDay, finisDay, allowEating, allowSmoking, numberOfPasangers, emailUser, nombreUser, fotoPerfil);
         }catch (Exception e){
             return null;
         }

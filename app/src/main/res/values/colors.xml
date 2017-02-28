@@ -8,10 +8,13 @@
 
     <color name="my_spinner_text_color">@color/colorAccentOscuro</color>
 
+    <color name="fondo_cards">#D5D5D5</color>
     <color name="bg_login">#26ae90</color>
     <color name="bg_register">#2e3237</color>
     <color name="bg_main">#428bca</color>
     <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="perfil">#d8eeed</color>
     <color name="input_login">#222222</color>
     <color name="grey">#9999</color>
     <color name="letras_editText">#999999</color>

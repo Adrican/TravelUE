@@ -5,7 +5,9 @@ package com.example.application.travelue;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -41,6 +43,11 @@ public class SearchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+        Toolbar toolbar2 = (Toolbar) findViewById(R.id.toolbar2);
+        setSupportActionBar(toolbar2);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle("Profile");
         componetsCharge();
     }
 
@@ -57,17 +64,19 @@ public class SearchActivity extends AppCompatActivity {
 
         etDestination = (AutoCompleteTextView) findViewById(R.id.etDestino);
         etDestination.setAdapter(new PlacesAutoCompleteAdapter(this, R.layout.autocomplete_list_item));
+        /**
         txt_Time = (TextView) findViewById(R.id.etTime);
         txt_Date = (TextView) findViewById(R.id.etDate);
         txt_Date_2 = (TextView) findViewById(R.id.etDate2);
         txt_Duration = (TextView) findViewById(R.id.tvDuration);
         txt_Distance = (TextView) findViewById(R.id.tvDistance);
         //btn_Find_Path = (Button) findViewById(R.id.btnFindPath);
-        btn_Back = (Button) findViewById(R.id.btnBack);
+         */
+        //btn_Back = (Button) findViewById(R.id.btnBack);
         btn_Search = (Button) findViewById(R.id.btnSearchRoute);
 
         //btnFindPathListner();
-        btnBackListener();
+        //btnBackListener();
         btnSearchListener();
     }
 
@@ -91,6 +100,7 @@ public class SearchActivity extends AppCompatActivity {
     /**
      * Listener to get to the other layaout
      */
+    /**
     public void btnBackListener() {
         btn_Back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -166,5 +176,16 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
         return lista_contactos;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+            case android.R.id.home:
+                Intent homeIntent = new Intent(this, PaginaPrincipalRutas.class);
+                homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(homeIntent);
+        }
+        return (super.onOptionsItemSelected(menuItem));
     }
 }

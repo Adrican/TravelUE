@@ -2,8 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/nav_header_height"
-    android:background="@color/btn_logut_bg"
+    android:background="@color/colorAccentOscuro"
     android:gravity="bottom"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -11,7 +10,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:layout_height="150dp">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -22,22 +22,36 @@
 
         <FrameLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:paddingTop="@dimen/nav_header_vertical_spacing"
-                android:background="@drawable/rabano"
-                android:layout_width="100dp"
-                android:layout_height="100dp" />
+            <android.support.v7.widget.CardView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:elevation="12dp"
+                android:id="@+id/view2"
+                app:cardCornerRadius="40dp"
+                android:layout_centerHorizontal="true"
+                android:innerRadius="0dp"
+                android:shape="ring"
+                android:thicknessRatio="1.9">
+                <ImageView
+                    android:layout_height="80dp"
+                    android:layout_width="match_parent"
+                    android:id="@+id/imageView1"
+                    android:src="@drawable/rabano"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true">
+                </ImageView>
+            </android.support.v7.widget.CardView>
         </FrameLayout>
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="126dp"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="59dp"
             android:weightSum="1"
-            android:layout_weight="0.16">
+            android:layout_gravity="center">
 
             <TextView
                 android:layout_width="match_parent"
@@ -48,12 +62,6 @@
                 android:id="@+id/tvNombreUsuario"
                 android:layout_weight="0.12"
                 android:layout_marginLeft="20dp"/>
-
-            <RatingBar
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/ratingBar"
-                android:layout_weight="0.12" />
 
             <TextView
                 android:id="@+id/tvValoraciones"

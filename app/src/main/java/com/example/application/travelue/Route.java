@@ -19,7 +19,11 @@ public class Route {
     public LatLng endLocation;//
     public String startAddress;
     public LatLng startLocation;//
+    public String emailUser;
+    public String nombreUser;
+    public String fotoPerfil;
     public boolean allowEating, allowSmoking;
+    public boolean isDriver;
     public int numberOfPasangers;
     public String typeOfUser, carModel,typeOfInsurance,hour,startDay,finisDay;
     public List<LatLng> points;//no
@@ -41,7 +45,7 @@ public class Route {
         this.finisDay = finisDay;
     }
 */
-    public Route(String distance, String duration, String endAddress, String startAddress, String typeOfUser, String carModel, String typeOfInsurance, String hour, String startDay, String finisDay, boolean allowEating, boolean allowSmoking, int numberOfPasangers) {
+    public Route(String distance, String duration, String endAddress, String startAddress, String typeOfUser, String carModel, String typeOfInsurance, String hour, String startDay, String finisDay, boolean allowEating, boolean allowSmoking, int numberOfPasangers, String emailUser, String nombreUser, String fotoPerfil) {
         this.distance = distance;
         this.duration = duration;
         this.endAddress = endAddress;
@@ -55,8 +59,30 @@ public class Route {
         this.hour = hour;
         this.startDay = startDay;
         this.finisDay = finisDay;
+        this.emailUser = emailUser;
+        this.nombreUser = nombreUser;
+        this.fotoPerfil = fotoPerfil;
+
     }
 
+    public String getFotoPerfil() {
+        return fotoPerfil;
+    }
+    public void setFotoPerfil(String fotoPerfil){
+        this.fotoPerfil = fotoPerfil;
+    }
+
+    public String getNombreUser() {
+        return nombreUser;
+    }
+
+    public String getEmailUser() {
+        return emailUser;
+    }
+
+    public void setEmailUser(String emailUser) {
+        this.emailUser = emailUser;
+    }
 
     public String getDistance() {
         return distance;
@@ -137,6 +163,14 @@ public class Route {
 
     public void setTypeOfUser(String typeOfUser) {
         this.typeOfUser = typeOfUser;
+    }
+
+    public boolean estadoConductor() {
+        if (typeOfUser.equalsIgnoreCase("driver")) {
+            return true;
+        }else {
+            return false;
+        }
     }
 
     public String getCarModel() {

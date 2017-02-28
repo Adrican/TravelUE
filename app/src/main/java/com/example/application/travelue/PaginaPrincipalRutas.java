@@ -3,7 +3,10 @@ package com.example.application.travelue;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import com.github.clans.fab.FloatingActionButton;
@@ -23,6 +26,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
 
@@ -37,6 +41,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -51,7 +56,8 @@ public class PaginaPrincipalRutas extends AppCompatActivity
     FloatingActionButton floatingActionButton1, floatingActionButton2, floatingActionButton3;
     TabRutasTotales content = null;
     DatabaseReference mDataBase;
-    private FirebaseAuth mauth;
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
 
 
     RecyclerView recyclerView, recyclerBusqueda;
@@ -61,6 +67,7 @@ public class PaginaPrincipalRutas extends AppCompatActivity
     private ProgressDialog progressDialog;
     private FloatingActionButton btnFloat, btnAtras, btnBuscar;
 
+    private ImageView ivPerfil;
 
 
     static ArrayList<Route> lista_busquedas;
@@ -101,7 +108,7 @@ public class PaginaPrincipalRutas extends AppCompatActivity
         progressDialog = new ProgressDialog(this);
 
 
-        mauth = FirebaseAuth.getInstance();
+
         //content.cargaContactos();
 /**
  btnFloat = (FloatingActionButton) findViewById(R.id.fabCrearRuta);
@@ -177,6 +184,7 @@ public class PaginaPrincipalRutas extends AppCompatActivity
         //Use of Fab
 
 
+
         materialDesignFAM = (FloatingActionMenu) findViewById(R.id.material_design_android_floating_action_menu);
         floatingActionButton1 = (FloatingActionButton) findViewById(R.id.material_design_floating_action_menu_item1);
         floatingActionButton2 = (FloatingActionButton) findViewById(R.id.material_design_floating_action_menu_item2);
@@ -223,6 +231,9 @@ public class PaginaPrincipalRutas extends AppCompatActivity
         pruebita = (TextView) header.findViewById(R.id.tvNombreUsuario);
         mostrarNombre();
 
+        ivPerfil = (ImageView) header.findViewById(R.id.imageView1);
+        cogerImagen();
+        ivPerfil.setScaleType(ImageView.ScaleType.CENTER_CROP);//CENTER_CROP
 
     }
 
@@ -298,6 +309,9 @@ public class PaginaPrincipalRutas extends AppCompatActivity
         return true;
     }
 
+
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -307,7 +321,8 @@ public class PaginaPrincipalRutas extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            Intent intent = new Intent(PaginaPrincipalRutas.this, Profile.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
@@ -352,7 +367,43 @@ public class PaginaPrincipalRutas extends AppCompatActivity
     }
 
 
+    public void cogerImagen(){
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        View header = navigationView.getHeaderView(0);
+        new DownloadImageTask((ImageView) header.findViewById(R.id.imageView1))
+                .execute(String.valueOf(user.getPhotoUrl()));
+    }
+
+    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+        ImageView bmImage;
+
+        public DownloadImageTask(ImageView bmImage) {
+            this.bmImage = bmImage;
+        }
+
+        protected Bitmap doInBackground(String... urls) {
+            String urldisplay = urls[0];
+            Bitmap mIcon11 = null;
+            try {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return mIcon11;
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            bmImage.setImageBitmap(result);
+        }
+    }
 
 
 
 }
+
+
+
+
+

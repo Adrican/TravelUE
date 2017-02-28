@@ -1,11 +1,10 @@
 package com.example.application.travelue;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -15,6 +14,8 @@ import android.view.ViewGroup;
 
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,10 +26,8 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-/**
- * Created by Adri on 16/02/2017.
- */
-public class TabRutasTotales extends Fragment {
+public class TabMisRutas extends Fragment {
+
     RecyclerView recyclerView, recyclerBusqueda;
     View view;
 
@@ -63,13 +62,13 @@ public class TabRutasTotales extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        view = inflater.inflate(R.layout.activity_tab_rutas_totales,container,false);
+        view = inflater.inflate(R.layout.activity_tab_mis_rutas, container, false);
 
 
         progressDialog = new ProgressDialog(this.getContext());
 
 
-        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerPrincipal);
+        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerMisRutas);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this.getContext());
         recyclerView.setLayoutManager(layoutManager);
@@ -77,57 +76,22 @@ public class TabRutasTotales extends Fragment {
 
 
         if (lista_busquedas != null && !lista_busquedas.isEmpty()) {
-            prueba();
+            //prueba();
         }
-
-
-
-
-
-
-
-
 
 
         return view;
     }
 
-
-
-    public void prueba() {
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
-
-
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            public void run() {
-                recyclerBusqueda(lista_busquedas);
-                //btnAtras.setVisibility(View.VISIBLE);
-                progressDialog.dismiss();
-
-            }
-        }, 3000);
-
-    }
-
-
-
-
-    private void recyclerBusqueda(ArrayList<Route> lista) {
-        RecContactos rec = new RecContactos(this.getContext(), lista);
-        recyclerView.setAdapter(rec);
-    }
     private void recycler(ArrayList<Route> lista) {
         RecContactos rec = new RecContactos(this.getContext(), lista);
         recyclerView.setAdapter(rec);
     }
 
-
-
     protected void cargaContactos() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference ref = database.getReference("rutas");
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         ref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -139,7 +103,12 @@ public class TabRutasTotales extends Fragment {
                 while (iterador.hasNext()) {
 
                     Route r = iterador.next().getValue(Route.class);
-                    lista_contactos.add(r);
+                    if (user.getEmail().equals(r.getEmailUser())){
+                        lista_contactos.add(r);
+                    }else{
+
+                    }
+
 
                 }
                 //cargarListView(lista_contactos);
@@ -155,6 +124,7 @@ public class TabRutasTotales extends Fragment {
     }
     @Override
     public void onDetach() {
+
         super.onDetach();
 
         try {
@@ -168,7 +138,6 @@ public class TabRutasTotales extends Fragment {
             throw new RuntimeException(e);
         }
     }
-    public static void setArrayList(ArrayList<Route> lista_busqueda) {
-        lista_busquedas = lista_busqueda;
-    }
+
+
 }

@@ -5,11 +5,11 @@
     android:layout_width="match_parent"
     android:id="@+id/card_view"
     android:layout_margin="8dp"
-    card_view:cardBackgroundColor="@color/btn_logut_bg"
+    card_view:cardBackgroundColor="@color/white"
     card_view:cardElevation="10dp"
     android:foreground="?selectableItemBackground"
     android:clickable="true"
-    android:layout_height="170dp">
+    android:layout_height="230dp">
 
 
     <LinearLayout
@@ -19,110 +19,76 @@
         android:weightSum="1">
 
         <LinearLayout
-            android:orientation="vertical"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:weightSum="1"
-            android:layout_width="90dp"
-            android:layout_marginLeft="5dp">
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/item_image"
-                android:src="@drawable/nophoto"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:src="@drawable/rabano"
+                android:background="@color/colorAccent"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentBottom="true"
-                android:layout_alignParentStart="true" />
-
-            <ImageView
-                android:id="@+id/item_image2"
-                android:src="@drawable/nophoto"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_width="115dp" />
 
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:weightSum="1"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="8dp">
+                android:layout_weight="1">
 
                 <LinearLayout
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.31"
-                    android:background="@color/white">
-
-                    <ImageView
-                        card_view:srcCompat="@drawable/ic_airline_seat_recline_normal_black_24dp"
-                        android:id="@+id/ivEstado"
-                        android:layout_gravity="center"
-                        android:layout_width="40dp"
-                        android:layout_height="30dp" />
+                    android:layout_height="match_parent"
+                    android:weightSum="1"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="8dp">
 
                     <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1">
+                        android:layout_weight="0.31"
+                        android:background="@color/white">
 
-                        <TextView
-                            android:text="TextView"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/tvNombre"
-                            android:textSize="20dp" />
-
-                        <TextView
-                            android:text="TextView"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/tvEstado"
-                            android:layout_gravity="top" />
-
-                    </LinearLayout>
-
-                    <FrameLayout
-                        android:layout_width="110dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2.09">
+                        <ImageView
+                            android:id="@+id/ivEstado"
+                            android:layout_gravity="center"
+                            android:layout_width="40dp"
+                            android:layout_height="30dp" />
 
                         <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_weight="1">
 
-                            <ImageView
-                                android:layout_width="wrap_content"
+                            <TextView
+                                android:text="TextView"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                card_view:srcCompat="@drawable/sifumar"
-                                android:id="@+id/ivSiFumar"
-                                android:layout_gravity="center"
-                                android:layout_weight="1" />
+                                android:id="@+id/tvNombre"
+                                android:textSize="20dp" />
 
-                            <ImageView
-                                android:layout_width="wrap_content"
+                            <TextView
+                                android:text="TextView"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                card_view:srcCompat="@drawable/sicomer"
-                                android:id="@+id/ivSiComer"
-                                android:layout_weight="1"
-                                android:layout_gravity="center" />
+                                android:id="@+id/tvEstado"
+                                android:layout_gravity="top" />
 
-                            <FrameLayout
+                        </LinearLayout>
+
+                        <FrameLayout
+                            android:layout_width="110dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2.09">
+
+                            <LinearLayout
+                                android:orientation="horizontal"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1">
@@ -130,80 +96,154 @@
                                 <ImageView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    card_view:srcCompat="@drawable/numpersonas"
-                                    android:id="@+id/ivPersonas"
+                                    card_view:srcCompat="@drawable/sifumar"
+                                    android:id="@+id/ivSiFumar"
+                                    android:layout_gravity="center"
                                     android:layout_weight="1" />
 
-                                <TextView
-                                    android:text="0"
+                                <ImageView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:id="@+id/tvNumberPassengers"
+                                    card_view:srcCompat="@drawable/sicomer"
+                                    android:id="@+id/ivSiComer"
                                     android:layout_weight="1"
-                                    android:textColor="@color/white"
-                                    android:layout_gravity="center"
-                                    android:layout_marginTop="5dp" />
+                                    android:layout_gravity="center" />
 
-                            </FrameLayout>
+                                <FrameLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1">
 
-                        </LinearLayout>
+                                    <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        card_view:srcCompat="@drawable/numpersonas"
+                                        android:id="@+id/ivPersonas"
+                                        android:layout_weight="1" />
+
+                                    <TextView
+                                        android:text="0"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:id="@+id/tvNumberPassengers"
+                                        android:layout_weight="1"
+                                        android:textColor="@color/white"
+                                        android:layout_gravity="center"
+                                        android:layout_marginTop="5dp" />
+
+                                </FrameLayout>
+
+                            </LinearLayout>
 
 
 
-                    </FrameLayout>
+                        </FrameLayout>
 
 
-                </LinearLayout>
+                    </LinearLayout>
 
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
-
-                    <ImageView
-                        card_view:srcCompat="@drawable/origen"
-                        android:id="@+id/ivOrigen"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp" />
-
-                    <TextView
-                        android:text="TextView"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/tvOrigen"
-                        android:layout_weight="1"
-                        android:layout_gravity="center" />
+                        android:layout_marginTop="10dp">
+
+                        <ImageView
+                            card_view:srcCompat="@drawable/origen"
+                            android:id="@+id/ivOrigen"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp" />
+
+                        <TextView
+                            android:text="TextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/tvOrigen"
+                            android:layout_weight="1"
+                            android:layout_gravity="center" />
 
 
-                </LinearLayout>
+                    </LinearLayout>
 
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center">
-
-                    <ImageView
-                        android:layout_height="40dp"
-                        card_view:srcCompat="@drawable/destino"
-                        android:id="@+id/ivDestino"
-                        android:layout_width="40dp" />
-
-                    <TextView
-                        android:text="TextView"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/tvDestino"
-                        android:layout_weight="1" />
+                        android:layout_marginTop="10dp"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_height="40dp"
+                            card_view:srcCompat="@drawable/destino"
+                            android:id="@+id/ivDestino"
+                            android:layout_width="40dp" />
+
+                        <TextView
+                            android:text="TextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/tvDestino"
+                            android:layout_weight="1" />
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center">
+                        <ImageView
+                            card_view:srcCompat="@drawable/ic_event_black_24dp"
+                            android:id="@+id/ivFecha"
+                            android:layout_width="40dp"
+                            android:layout_height="24dp" />
+                        <TextView
+                            android:text="TextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/tvFechas"
+                            android:layout_weight="1" />
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center">
+                        <ImageView
+                            card_view:srcCompat="@drawable/ic_query_builder_black_24dp"
+                            android:id="@+id/ivHora"
+                            android:layout_width="40dp"
+                            android:layout_height="24dp" />
+
+                        <TextView
+                            android:text="TextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/tvHoraSalida"
+                            android:layout_weight="1" />
+
+
+                    </LinearLayout>
+
 
 
                 </LinearLayout>
-
-
             </LinearLayout>
+
         </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:weightSum="1"
+            android:layout_width="124dp">
+
+        </LinearLayout>
+
 
     </LinearLayout>
 

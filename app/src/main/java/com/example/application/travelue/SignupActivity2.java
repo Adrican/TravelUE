@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -56,6 +57,8 @@ public class SignupActivity2 extends AppCompatActivity {
 
     private Uri mImageUri = null;
 
+    private ProgressDialog progressDialog;
+
     private StorageReference mStorage;
     private static final int GALLERY_INTENT = 2;
     private ProgressDialog mProgresDialog;
@@ -65,6 +68,7 @@ public class SignupActivity2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup2);
+        progressDialog = new ProgressDialog(this);
 
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
@@ -212,6 +216,15 @@ finish();
 
 
         if (!TextUtils.isEmpty(live) && !TextUtils.isEmpty(nacionality) && !TextUtils.isEmpty(languages) && mImageUri != null) {
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                public void run() {
+
+                    //btnAtras.setVisibility(View.VISIBLE);
+                    progressDialog.dismiss();
+
+                }
+            }, 3000);
             StorageReference filepath = mStorage.child("Photos").child(mImageUri.getLastPathSegment());
             filepath.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
@@ -226,8 +239,14 @@ finish();
 
                     FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
 
+                    progressDialog.setMessage("Loading...");
+                    progressDialog.show();
+
+
+
                     UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                             .setPhotoUri(downloadUrl)
+
                             .build();
 
                     usuario.updateProfile(profileUpdates)
