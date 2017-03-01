@@ -88,6 +88,8 @@ public class TabMisRutas extends Fragment {
         recyclerView.setAdapter(rec);
     }
 
+
+
     protected void cargaContactos() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference ref = database.getReference("rutas");

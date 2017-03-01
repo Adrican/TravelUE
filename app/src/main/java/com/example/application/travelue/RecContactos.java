@@ -3,10 +3,12 @@
 package com.example.application.travelue;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -23,6 +25,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.InputStream;
@@ -169,7 +172,23 @@ public class RecContactos extends RecyclerView.Adapter<RecContactos.ContactoView
                             Route r = iterador.next().getValue(Route.class);
                 */
                             if (user.getEmail().equals(items.get(position).getEmailUser())){
-                                holder.cv.setVisibility(View.INVISIBLE);
+                                new AlertDialog.Builder(context)
+                                        .setTitle("Delete entry")
+                                        .setMessage("Are you sure you want to delete this entry?")
+                                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                holder.cv.setVisibility(View.INVISIBLE);
+                                                borraRuta(items.get(position));
+                                            }
+                                        })
+                                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                // do nothing
+                                            }
+                                        })
+                                        .setIcon(R.drawable.rabano)
+                                        .show();
+
                            }
 
 
@@ -177,6 +196,10 @@ public class RecContactos extends RecyclerView.Adapter<RecContactos.ContactoView
 
 
         });
+
+
+
+
 
 
         //See if smoke is permited
@@ -209,5 +232,47 @@ public class RecContactos extends RecyclerView.Adapter<RecContactos.ContactoView
         return items.size();
     }
 
+
+    protected void borraRuta(Route rselected) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final DatabaseReference ref = database.getReference("rutas");
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        final Route r1 = rselected;
+        String email=rselected.getEmailUser();
+        String endAddress=rselected.getEndAddress();
+        final String referencia=rselected.getReferenceKey();
+
+
+
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+
+                Iterable i = dataSnapshot.getChildren();
+                Iterator<DataSnapshot> iterador = i.iterator();
+                while (iterador.hasNext()) {
+
+                    DataSnapshot it =  iterador.next();
+                    final Route r = it.getValue(Route.class);
+                    if (r.getReferenceKey().equals(referencia)) {
+
+                        ref.child(it.getKey()).setValue(null);
+
+                    } else {
+
+                    }
+
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.v("mira mi huevo", "");
+            }
+        });
+    }
 
 }

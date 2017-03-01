@@ -488,6 +488,7 @@ public class CreateRouteMap extends FragmentActivity implements OnMapReadyCallba
                 DatabaseReference myRef = database.getReference("rutas");
                 String key = myRef.child("ruta").push().getKey();
                 Map m = new HashMap<>();
+                mR.setReferenceKey(key);
                 m.put(key,mR);
                 myRef.updateChildren(m);
                 Toast.makeText(CreateRouteMap.this, "Uploading a new route....", Toast.LENGTH_LONG).show();

@@ -252,7 +252,7 @@ finish();
 
                     UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                             .setPhotoUri(downloadUrl)
-
+                            .setDisplayName("Josemanuel")
                             .build();
 
                     usuario.updateProfile(profileUpdates)

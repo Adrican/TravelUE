@@ -18,7 +18,7 @@
         <activity
             android:name=".SignupActivity"
             android:label="@string/title_activity_signup"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".SignupActivity2"
             android:label="@string/title_activity_signup2"
@@ -26,9 +26,7 @@
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".ResetPasswordActivity"
             android:label="@string/title_activity_reset_password"
@@ -42,7 +40,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -63,13 +60,10 @@
         <activity
             android:name=".PaginaPrincipalRutas"
             android:label="@string/title_activity_pagina_principal_rutas"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".SearchActivity" />
-        <activity android:name=".Profile">
-
-        </activity>
+        <activity android:name=".Profile"></activity>
+        <activity android:name=".ContactoSeleccionado"></activity>
     </application>
 
 </manifest>

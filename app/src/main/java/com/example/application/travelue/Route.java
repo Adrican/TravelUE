@@ -27,7 +27,7 @@ public class Route {
     public int numberOfPasangers;
     public String typeOfUser, carModel,typeOfInsurance,hour,startDay,finisDay;
     public List<LatLng> points;//no
-
+    public  String referenceKey;
 
     public Route(){}
 /**
@@ -63,6 +63,30 @@ public class Route {
         this.nombreUser = nombreUser;
         this.fotoPerfil = fotoPerfil;
 
+    }
+
+    public Route(String distance, String duration, String endAddress, LatLng endLocation, String startAddress, LatLng startLocation, String emailUser, String nombreUser, String fotoPerfil, boolean allowEating, boolean allowSmoking, boolean isDriver, int numberOfPasangers, String typeOfUser, String carModel, String typeOfInsurance, String hour, String startDay, String finisDay, List<LatLng> points, String referenceKey) {
+        this.distance = distance;
+        this.duration = duration;
+        this.endAddress = endAddress;
+        this.endLocation = endLocation;
+        this.startAddress = startAddress;
+        this.startLocation = startLocation;
+        this.emailUser = emailUser;
+        this.nombreUser = nombreUser;
+        this.fotoPerfil = fotoPerfil;
+        this.allowEating = allowEating;
+        this.allowSmoking = allowSmoking;
+        this.isDriver = isDriver;
+        this.numberOfPasangers = numberOfPasangers;
+        this.typeOfUser = typeOfUser;
+        this.carModel = carModel;
+        this.typeOfInsurance = typeOfInsurance;
+        this.hour = hour;
+        this.startDay = startDay;
+        this.finisDay = finisDay;
+        this.points = points;
+        this.referenceKey = referenceKey;
     }
 
     public String getFotoPerfil() {
@@ -163,6 +187,14 @@ public class Route {
 
     public void setTypeOfUser(String typeOfUser) {
         this.typeOfUser = typeOfUser;
+    }
+
+    public String getReferenceKey() {
+        return referenceKey;
+    }
+
+    public void setReferenceKey(String referenceKey) {
+        this.referenceKey = referenceKey;
     }
 
     public boolean estadoConductor() {
