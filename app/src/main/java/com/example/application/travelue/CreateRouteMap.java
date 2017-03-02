@@ -152,6 +152,8 @@ public class CreateRouteMap extends FragmentActivity implements OnMapReadyCallba
             public void onClick(View v) {
                 mpBarRoute.setVisibility(View.VISIBLE);
                 insertFirebase();
+                Intent intent = new Intent(CreateRouteMap.this, PaginaPrincipalRutas.class);
+                startActivity(intent);
             }
         });
 
@@ -293,7 +295,7 @@ public class CreateRouteMap extends FragmentActivity implements OnMapReadyCallba
 
             PolylineOptions polylineOptions = new PolylineOptions().
                     geodesic(true).
-                    color(Color.BLUE).
+                    color(Color.rgb(233,189,21)).
                     width(10);
 
             for (int i = 0; i < route.points.size(); i++)

@@ -4,6 +4,7 @@ package com.example.application.travelue;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -34,9 +35,9 @@ import java.util.Iterator;
 
 
 /**
-     * Created by Eduardo on 24/11/2016.
+ * Created by Eduardo on 24/11/2016.
  */
-public class RecContactos extends RecyclerView.Adapter<RecContactos.ContactoViewHolder>  {
+public class RecContactos extends RecyclerView.Adapter<RecContactos.ContactoViewHolder> {
 
     private ArrayList<Route> items;
     public Context context;
@@ -83,41 +84,39 @@ public class RecContactos extends RecyclerView.Adapter<RecContactos.ContactoView
             imagen.setScaleType(ImageView.ScaleType.CENTER_CROP);//CENTER_CROP
 
 
-
         }
     }
 
-        // show The Image in a ImageView
+    // show The Image in a ImageView
 
 
-        private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-            ImageView bmImage;
+    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+        ImageView bmImage;
 
-            public DownloadImageTask(ImageView bmImage) {
-                this.bmImage = bmImage;
-            }
-
-            protected Bitmap doInBackground(String... urls) {
-                String urldisplay = urls[0];
-                Bitmap mIcon11 = null;
-                try {
-                    InputStream in = new java.net.URL(urldisplay).openStream();
-                    mIcon11 = BitmapFactory.decodeStream(in);
-                } catch (Exception e) {
-                    Log.e("Error", e.getMessage());
-                    e.printStackTrace();
-                }
-                return mIcon11;
-            }
-
-            protected void onPostExecute(Bitmap result) {
-                bmImage.setImageBitmap(result);
-            }
+        public DownloadImageTask(ImageView bmImage) {
+            this.bmImage = bmImage;
         }
 
+        protected Bitmap doInBackground(String... urls) {
+            String urldisplay = urls[0];
+            Bitmap mIcon11 = null;
+            try {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return mIcon11;
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            bmImage.setImageBitmap(result);
+        }
+    }
 
 
-    public RecContactos(Context context,ArrayList<Route> items){
+    public RecContactos(Context context, ArrayList<Route> items) {
         this.context = context;
         this.items = items;
     }
@@ -134,15 +133,13 @@ public class RecContactos extends RecyclerView.Adapter<RecContactos.ContactoView
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
 
+        if (items.get(position).getFotoPerfil() != null) {
 
-        if (items.get(position).getFotoPerfil()!=null) {
-
-        new DownloadImageTask(holder.imagen).execute(items.get(position).getFotoPerfil());
+            new DownloadImageTask(holder.imagen).execute(items.get(position).getFotoPerfil());
         }
 
 
-
-        holder.calendar.setText(items.get(position).getStartDay() + " - " +items.get(position).getFinisDay());
+        holder.calendar.setText(items.get(position).getStartDay() + " - " + items.get(position).getFinisDay());
         holder.hours.setText(items.get(position).getHour());
 
         holder.nombre.setText(items.get(position).getNombreUser());
@@ -150,7 +147,6 @@ public class RecContactos extends RecyclerView.Adapter<RecContactos.ContactoView
         holder.origen.setText(items.get(position).getStartAddress());
         holder.destino.setText(items.get(position).getEndAddress());
         holder.numberPassengers.setText(String.valueOf(items.get(position).getNumberOfPasangers()));
-
 
 
         holder.cv.setOnClickListener(new View.OnClickListener() {
@@ -161,68 +157,75 @@ public class RecContactos extends RecyclerView.Adapter<RecContactos.ContactoView
                 DatabaseReference ref = database.getReference("rutas");
                 final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 /**
-                ref.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
+ ref.addValueEventListener(new ValueEventListener() {
+@Override public void onDataChange(DataSnapshot dataSnapshot) {
 
-                        Iterable i = dataSnapshot.getChildren();
-                        Iterator<DataSnapshot> iterador = i.iterator();
-                        while (iterador.hasNext()) {
+Iterable i = dataSnapshot.getChildren();
+Iterator<DataSnapshot> iterador = i.iterator();
+while (iterador.hasNext()) {
 
-                            Route r = iterador.next().getValue(Route.class);
-                */
-                            if (user.getEmail().equals(items.get(position).getEmailUser())){
-                                new AlertDialog.Builder(context)
-                                        .setTitle("Delete entry")
-                                        .setMessage("Are you sure you want to delete this entry?")
-                                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                holder.cv.setVisibility(View.INVISIBLE);
-                                                borraRuta(items.get(position));
-                                            }
-                                        })
-                                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                // do nothing
-                                            }
-                                        })
-                                        .setIcon(R.drawable.rabano)
-                                        .show();
+Route r = iterador.next().getValue(Route.class);
+ */
+                if (user.getEmail().equals(items.get(position).getEmailUser())) {
+                    new AlertDialog.Builder(context)
+                            .setTitle("Delete entry")
+                            .setMessage("Are you sure you want to delete this entry?")
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    holder.cv.setVisibility(View.INVISIBLE);
+                                    borraRuta(items.get(position));
+                                }
+                            })
+                            .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // do nothing
+                                }
+                            })
+                            .setIcon(R.drawable.rabano)
+                            .show();
 
-                           }
+                }
+
+                if (!user.getEmail().equals(items.get(position).getEmailUser())) {
+                    ContactoSeleccionado.setName(items.get(position).getNombreUser());
+                    ContactoSeleccionado.setCar(items.get(position).getCarModel());
+                    ContactoSeleccionado.setOrigin(items.get(position).getStartAddress());
+                    ContactoSeleccionado.setDestination(items.get(position).getEndAddress());
+                    ContactoSeleccionado.setPicture(items.get(position).getFotoPerfil());
+                    Intent intent = new Intent(RecContactos.this.context, ContactoSeleccionado.class);
+                    context.startActivity(intent);
+
+                }
 
 
-                        }
+            }
 
 
         });
 
 
-
-
-
-
         //See if smoke is permited
-        if(items.get(position).isAllowSmoking()){
+        if (items.get(position).isAllowSmoking()) {
             holder.imageSmoke.setImageResource(R.drawable.sifumar);
-        }else{
+        } else {
             holder.imageSmoke.setImageResource(R.drawable.nofumarbueno);
         }
 
         //See if the eating is permited
-        if(items.get(position).isAllowEating()){
+        if (items.get(position).isAllowEating()) {
             holder.imageEat.setImageResource(R.drawable.sicomer);
-        }else{
+        } else {
             holder.imageEat.setImageResource(R.drawable.nocomer);
         }
 
 
-        if(items.get(position).estadoConductor()){
+        if (items.get(position).estadoConductor()) {
             holder.estadoConductor.setImageResource(R.drawable.ic_volante);
-        }else{
+        } else {
             holder.estadoConductor.setImageResource(R.drawable.ic_airline_seat_recline_normal_black_24dp);
         }
     }
+
     public void onViewAttachedToWindow(ContactoViewHolder holder) {
         super.onViewAttachedToWindow(holder);
     }
@@ -238,10 +241,9 @@ public class RecContactos extends RecyclerView.Adapter<RecContactos.ContactoView
         final DatabaseReference ref = database.getReference("rutas");
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         final Route r1 = rselected;
-        String email=rselected.getEmailUser();
-        String endAddress=rselected.getEndAddress();
-        final String referencia=rselected.getReferenceKey();
-
+        String email = rselected.getEmailUser();
+        String endAddress = rselected.getEndAddress();
+        final String referencia = rselected.getReferenceKey();
 
 
         ref.addValueEventListener(new ValueEventListener() {
@@ -253,7 +255,7 @@ public class RecContactos extends RecyclerView.Adapter<RecContactos.ContactoView
                 Iterator<DataSnapshot> iterador = i.iterator();
                 while (iterador.hasNext()) {
 
-                    DataSnapshot it =  iterador.next();
+                    DataSnapshot it = iterador.next();
                     final Route r = it.getValue(Route.class);
                     if (r.getReferenceKey().equals(referencia)) {
 
