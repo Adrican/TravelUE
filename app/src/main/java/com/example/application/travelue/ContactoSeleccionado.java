@@ -1,6 +1,7 @@
 package com.example.application.travelue;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,7 +12,11 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -42,7 +47,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class ContactoSeleccionado extends FragmentActivity implements OnMapReadyCallback, DirectionFinderListener {
+public class ContactoSeleccionado extends AppCompatActivity implements OnMapReadyCallback, DirectionFinderListener  {
 
     private GoogleMap mMap;
     private List<Marker> originMarkers = new ArrayList<>();
@@ -55,32 +60,50 @@ public class ContactoSeleccionado extends FragmentActivity implements OnMapReady
     private static String origen = "";
     private static String destino = "";
     private static String foto = "";
-    private TextView tvNombre, tvCoche, tvOrigen, tvDestino;
-    private ImageView tvFoto;
+    private static String idiomas = "";
+    private static String nacionalidad = "";
+    private static String seguro = "";
+    private TextView tvNombre, tvCoche, tvOrigen, tvDestino, tvNacionalidad, tvSeguro;
+    private ImageView ivFoto;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacto_seleccionado);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle(nombre);
+
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+        /*
         tvNombre = (TextView) findViewById(R.id.tvNombreContacto);
         tvNombre.setText(nombre);
         tvCoche = (TextView) findViewById(R.id.tvCocheContacto);
         tvCoche.setText(coche);
+        */
         tvOrigen = (TextView) findViewById(R.id.tvOrigenRuta);
         tvOrigen.setText(origen);
         tvDestino = (TextView) findViewById(R.id.tvDestinoRuta);
         tvDestino.setText(destino);
+        /*
+        tvNacionalidad = (TextView) findViewById(R.id.tvNacionalidad);
+        tvNacionalidad.setText(nacionalidad);
+        */
+        tvSeguro = (TextView) findViewById(R.id.tvSeguro);
+        tvSeguro.setText(seguro);
 
 
         sendRequest();
 
-        tvFoto = (ImageView) findViewById(R.id.ivFotoContacto);
+        ivFoto = (ImageView) findViewById(R.id.ivFotoContacto);
         cogerImagen();
-        tvFoto.setScaleType(ImageView.ScaleType.CENTER_CROP);//CENTER_CROP
+        ivFoto.setScaleType(ImageView.ScaleType.CENTER_CROP);//CENTER_CROP
 
     }
 
@@ -100,6 +123,15 @@ public class ContactoSeleccionado extends FragmentActivity implements OnMapReady
     }
     public static void setPicture(String picture) {
         foto = picture;
+    }
+    public static void setLanguages(String languages) {
+        idiomas = languages;
+    }
+    public static void setNacionality(String nacionality) {
+        nacionalidad = nacionality;
+    }
+    public static void setInsurance(String insurance) {
+        seguro = insurance;
     }
 
     public void cogerImagen(){
@@ -134,6 +166,7 @@ public class ContactoSeleccionado extends FragmentActivity implements OnMapReady
     private void sendRequest() {
         String origin = origen;
         String destination = destino;
+        /*
         if (origin.isEmpty()) {
             Toast.makeText(this, "Please enter origin address!", Toast.LENGTH_SHORT).show();
             return;
@@ -142,7 +175,7 @@ public class ContactoSeleccionado extends FragmentActivity implements OnMapReady
             Toast.makeText(this, "Please enter destination address!", Toast.LENGTH_SHORT).show();
             return;
         }
-
+        */
         try {
             new DirectionFinder(this, origin, destination).execute();
         } catch (UnsupportedEncodingException e) {
@@ -156,21 +189,7 @@ public class ContactoSeleccionado extends FragmentActivity implements OnMapReady
         LatLng uem = new LatLng(40.372607, -3.918427);
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(uem, 16)); // newLatLngZoom hara que se acerque
-        originMarkers.add(mMap.addMarker(new MarkerOptions()
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.rabanopng))
-                .title("Universidad Europea de Madrid")
-                .position(uem)));
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        mMap.setMyLocationEnabled(true);
+
     }
 
 
@@ -205,7 +224,7 @@ public class ContactoSeleccionado extends FragmentActivity implements OnMapReady
         destinationMarkers = new ArrayList<>();
 
         for (Route route : routes) {
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(route.startLocation, 16));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(route.startLocation, 10));
 
             ((TextView) findViewById(R.id.tvDuration)).setText(route.duration);
             ((TextView) findViewById(R.id.tvDistance)).setText(route.distance);
@@ -222,7 +241,7 @@ public class ContactoSeleccionado extends FragmentActivity implements OnMapReady
 
             PolylineOptions polylineOptions = new PolylineOptions().
                     geodesic(true).
-                    color(Color.rgb(233,189,21)).
+                    color(Color.rgb(164,46,54)).
                     width(10);
 
             for (int i = 0; i < route.points.size(); i++)
@@ -230,6 +249,24 @@ public class ContactoSeleccionado extends FragmentActivity implements OnMapReady
 
             polylinePaths.add(mMap.addPolyline(polylineOptions));
         }
+    }
+
+
+
+
+
+
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+            case android.R.id.home:
+                Intent homeIntent = new Intent(this, PaginaPrincipalRutas.class);
+                homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(homeIntent);
+        }
+        return (super.onOptionsItemSelected(menuItem));
     }
 
 }

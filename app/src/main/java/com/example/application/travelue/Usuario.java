@@ -48,6 +48,14 @@ public class Usuario {
         return email;
     }
 
+    public String getNacionalidad() {
+        return nacionalidad;
+    }
+
+    public String getIdiomas() {
+        return idiomas;
+    }
+
     public void setEmail(String email) {
         this.email = email;
     }

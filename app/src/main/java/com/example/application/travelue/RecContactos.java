@@ -192,6 +192,8 @@ Route r = iterador.next().getValue(Route.class);
                     ContactoSeleccionado.setOrigin(items.get(position).getStartAddress());
                     ContactoSeleccionado.setDestination(items.get(position).getEndAddress());
                     ContactoSeleccionado.setPicture(items.get(position).getFotoPerfil());
+                    ContactoSeleccionado.setInsurance(items.get(position).getTypeOfInsurance());
+
                     Intent intent = new Intent(RecContactos.this.context, ContactoSeleccionado.class);
                     context.startActivity(intent);
 

@@ -21,6 +21,7 @@ public class Route {
     public LatLng startLocation;//
     public String emailUser;
     public String nombreUser;
+    public String nacionalidad;
     public String fotoPerfil;
     public boolean allowEating, allowSmoking;
     public boolean isDriver;

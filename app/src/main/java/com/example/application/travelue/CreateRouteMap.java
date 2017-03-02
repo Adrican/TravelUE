@@ -295,7 +295,7 @@ public class CreateRouteMap extends FragmentActivity implements OnMapReadyCallba
 
             PolylineOptions polylineOptions = new PolylineOptions().
                     geodesic(true).
-                    color(Color.rgb(233,189,21)).
+                    color(Color.rgb(164,46,54)).
                     width(10);
 
             for (int i = 0; i < route.points.size(); i++)
