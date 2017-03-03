@@ -20,12 +20,25 @@
             android:layout_width="match_parent"
             android:layout_height="130dp">
 
-            <ImageView
+            <android.support.v7.widget.CardView
+                android:elevation="12dp"
+                android:id="@+id/view2"
+                app:cardCornerRadius="50dp"
+                android:layout_centerHorizontal="true"
+                android:innerRadius="0dp"
+                android:shape="ring"
+                android:thicknessRatio="1.9"
                 android:layout_width="100dp"
-                android:layout_height="100dp"
-                app:srcCompat="@drawable/nophoto"
-                android:id="@+id/ivNoPhoto"
-                android:layout_weight="1" />
+                android:layout_height="100dp">
+                <ImageView
+                    android:layout_width="100dp"
+                    android:id="@+id/ivNoPhoto"
+                    android:src="@drawable/rabano"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_height="100dp">
+                </ImageView>
+            </android.support.v7.widget.CardView>
 
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/fab"
@@ -35,7 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="70dp"
-                android:layout_marginTop="50dp" />
+                android:layout_marginTop="60dp" />
 
 
         </FrameLayout>

@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -64,6 +66,8 @@ public class CreateRouteMap extends AppCompatActivity implements OnMapReadyCallb
     private AutoCompleteTextView etOrigin;
     private AutoCompleteTextView etDestination;
     private EditText etCantidadPasajeros;
+    private EditText modeloCoche;
+    private TextInputLayout modelCoche;
     private List<Marker> originMarkers = new ArrayList<>();
     private List<Marker> destinationMarkers = new ArrayList<>();
     private List<Polyline> polylinePaths = new ArrayList<>();
@@ -125,8 +129,10 @@ public class CreateRouteMap extends AppCompatActivity implements OnMapReadyCallb
         imgSiComer = (ImageView) findViewById(R.id.imgSiComer);
         imgSiPersonas = (ImageView) findViewById(R.id.imgSiPersonas);
 
+        modeloCoche = (EditText) findViewById(R.id.etCar);
+        modelCoche = (TextInputLayout) findViewById(R.id.modelcoche);
         etCantidadPasajeros = (EditText) findViewById(R.id.etCantidadPasajeros);
-
+        etCantidadPasajeros.setText("1");
 
         btnFloat = (FloatingActionButton) findViewById(R.id.mapearRuta);
 
@@ -297,23 +303,59 @@ public class CreateRouteMap extends AppCompatActivity implements OnMapReadyCallb
         }
     }
 
-    public void cargarVistas(){
-
-        Spinner spConducPasaj = (Spinner) findViewById(R.id.spEstado);
+    public void cargarVistas() {
 
 
-        ArrayAdapter spinner_adapter = ArrayAdapter.createFromResource( this, R.array.options , R.layout.spinner_item);
+        final Spinner spConducPasaj = (Spinner) findViewById(R.id.spEstado);
+
+
+        ArrayAdapter spinner_adapter = ArrayAdapter.createFromResource(this, R.array.options, R.layout.spinner_item);
         spinner_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spConducPasaj.setAdapter(spinner_adapter);
 
-        Spinner spCarInsurance = (Spinner) findViewById(R.id.spCarInsurance);
 
 
-        ArrayAdapter saCarInsurance = ArrayAdapter.createFromResource( this, R.array.insurance , R.layout.spinner_item);
+        final Spinner spCarInsurance = (Spinner) findViewById(R.id.spCarInsurance);
+
+
+        ArrayAdapter saCarInsurance = ArrayAdapter.createFromResource(this, R.array.insurance, R.layout.spinner_item);
         saCarInsurance.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spCarInsurance.setAdapter(saCarInsurance);
 
+
+        spConducPasaj.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String pasajero = spConducPasaj.getItemAtPosition(position).toString();
+                if (pasajero.equals("Passenger")) {
+                    modeloCoche.setVisibility(View.INVISIBLE);
+                    modelCoche.setVisibility(View.INVISIBLE);
+                    spCarInsurance.setVisibility(View.INVISIBLE);
+
+
+                }else if(pasajero.equals("Driver")) {
+                    modeloCoche.setVisibility(View.VISIBLE);
+                    modelCoche.setVisibility(View.VISIBLE);
+                    spCarInsurance.setVisibility(View.VISIBLE);
+                }
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
     }
+
+
+
+
+
+
+
 
 
     public void sacarHora() {
@@ -530,6 +572,7 @@ public class CreateRouteMap extends AppCompatActivity implements OnMapReadyCallb
 
         allowEating = isVisible(imgSiComer);
         allowSmoking = isVisible(imgSiFumar);
+
         numberOfPasangers = Integer.parseInt(String.valueOf(etCantidadPasajeros.getText()));
 
         try {

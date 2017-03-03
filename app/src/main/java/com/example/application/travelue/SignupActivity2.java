@@ -88,7 +88,12 @@ public class SignupActivity2 extends AppCompatActivity {
         inputPassword = (EditText) findViewById(R.id.password);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         btnResetPassword = (Button) findViewById(R.id.btn_reset_password);
+
+
+        //Crop Imagen
         imgProfile = (ImageView) findViewById(R.id.ivNoPhoto);
+        imgProfile.setScaleType(ImageView.ScaleType.CENTER_CROP);//CENTER_CROP
+
         btnFloat = (FloatingActionButton) findViewById(R.id.fab);
 
 
