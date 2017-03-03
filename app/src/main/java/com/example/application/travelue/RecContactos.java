@@ -146,6 +146,7 @@ public class RecContactos extends RecyclerView.Adapter<RecContactos.ContactoView
         holder.estado.setText(items.get(position).getTypeOfUser());
         holder.origen.setText(items.get(position).getStartAddress());
         holder.destino.setText(items.get(position).getEndAddress());
+
         holder.numberPassengers.setText(String.valueOf(items.get(position).getNumberOfPasangers()));
 
 
@@ -193,6 +194,7 @@ Route r = iterador.next().getValue(Route.class);
                     ContactoSeleccionado.setDestination(items.get(position).getEndAddress());
                     ContactoSeleccionado.setPicture(items.get(position).getFotoPerfil());
                     ContactoSeleccionado.setInsurance(items.get(position).getTypeOfInsurance());
+                    ContactoSeleccionado.setEmail(items.get(position).getEmailUser());
 
                     Intent intent = new Intent(RecContactos.this.context, ContactoSeleccionado.class);
                     context.startActivity(intent);
@@ -246,6 +248,7 @@ Route r = iterador.next().getValue(Route.class);
         String email = rselected.getEmailUser();
         String endAddress = rselected.getEndAddress();
         final String referencia = rselected.getReferenceKey();
+
 
 
         ref.addValueEventListener(new ValueEventListener() {

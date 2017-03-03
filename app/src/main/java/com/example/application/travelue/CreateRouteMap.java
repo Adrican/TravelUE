@@ -13,6 +13,9 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -52,7 +55,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CreateRouteMap extends FragmentActivity implements OnMapReadyCallback, DirectionFinderListener {
+public class CreateRouteMap extends AppCompatActivity implements OnMapReadyCallback, DirectionFinderListener {
+
+
     private GoogleMap mMap;
     private Button btnFindPath, mbtnCreateRoute, btnBack;
     private ImageView imgNoCar, imgNoFumar, imgNoComer, imgNoPersonas, imgSiFumar, imgSiComer, imgSiPersonas;
@@ -85,6 +90,10 @@ public class CreateRouteMap extends FragmentActivity implements OnMapReadyCallba
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_route_map);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -94,13 +103,10 @@ public class CreateRouteMap extends FragmentActivity implements OnMapReadyCallba
         mStorage = FirebaseStorage.getInstance().getReference();
         mProgresDialog = new ProgressDialog(this);
         //imgNoCar = (ImageView) findViewById(R.id.ivNoPhotoxx);
-        btnFindPath = (Button) findViewById(R.id.btnFindPath);
         etOrigin = (AutoCompleteTextView) findViewById(R.id.etOrigen);
         etOrigin.setAdapter(new PlacesAutoCompleteAdapter(this, R.layout.autocomplete_list_item));
 
         etDestination = (AutoCompleteTextView) findViewById(R.id.etDestino);
-
-
 
 
         //etOrigin.setText("Introduce the start of the route");
@@ -111,7 +117,6 @@ public class CreateRouteMap extends FragmentActivity implements OnMapReadyCallba
         btnBack = (Button) findViewById(R.id.btnBack);
         mpBarRoute = (ProgressBar) findViewById(R.id.pBarRoute);
 
-        imgNoCar = (ImageView) findViewById(R.id.ivNoPhotoCar);
         imgNoFumar = (ImageView) findViewById(R.id.imgNoFumar);
         imgNoComer = (ImageView) findViewById(R.id.imgNoComer);
         imgNoPersonas = (ImageView) findViewById(R.id.imgNoPersonas);
@@ -123,23 +128,17 @@ public class CreateRouteMap extends FragmentActivity implements OnMapReadyCallba
         etCantidadPasajeros = (EditText) findViewById(R.id.etCantidadPasajeros);
 
 
-        btnFloat = (FloatingActionButton) findViewById(R.id.fab2);
-
+        btnFloat = (FloatingActionButton) findViewById(R.id.mapearRuta);
 
 
         btnFloat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                abrirGaleria(v);
-            }
-        });
-
-        btnFindPath.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
                 sendRequest();
             }
         });
+
+
 
         cargarVistas();
         sacarHora();
@@ -158,13 +157,6 @@ public class CreateRouteMap extends FragmentActivity implements OnMapReadyCallba
         });
 
 
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(CreateRouteMap.this, PaginaPrincipalRutas.class);
-                startActivity(intent);
-            }
-        });
     }
 
 
@@ -413,7 +405,7 @@ public class CreateRouteMap extends FragmentActivity implements OnMapReadyCallba
 
     }
 
-
+/**
     public void abrirGaleria(View v){
 
         Intent intent = new Intent(Intent.ACTION_PICK);
@@ -426,10 +418,11 @@ public class CreateRouteMap extends FragmentActivity implements OnMapReadyCallba
          startActivityForResult(
          Intent.createChooser(intent, "Seleccione una imagen"),
          SELECT_FILE);
-         */
+         *
 
 
     }
+
 
     protected void onActivityResult (int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
@@ -442,7 +435,7 @@ public class CreateRouteMap extends FragmentActivity implements OnMapReadyCallba
              mProgresDialog.show();
              */
 
-
+/**
             Uri selectedImageUri = data.getData();
             if (null != selectedImageUri) {
                 // Get the path from the Uri
@@ -463,7 +456,8 @@ public class CreateRouteMap extends FragmentActivity implements OnMapReadyCallba
             });
         }
     }
-
+*/
+/**
     public String getPathFromURI(Uri contentUri) {
         String res = null;
         String[] proj = {MediaStore.Images.Media.DATA};
@@ -475,6 +469,8 @@ public class CreateRouteMap extends FragmentActivity implements OnMapReadyCallba
         cursor.close();
         return res;
     }
+
+        */
 
 
 
@@ -554,6 +550,17 @@ public class CreateRouteMap extends FragmentActivity implements OnMapReadyCallba
         }else{
             return true;
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+            case android.R.id.home:
+                Intent homeIntent = new Intent(this, PaginaPrincipalRutas.class);
+                homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(homeIntent);
+        }
+        return (super.onOptionsItemSelected(menuItem));
     }
 
 

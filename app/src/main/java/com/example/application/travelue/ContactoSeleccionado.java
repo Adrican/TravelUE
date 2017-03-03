@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.AsyncTask;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
@@ -63,7 +64,9 @@ public class ContactoSeleccionado extends AppCompatActivity implements OnMapRead
     private static String idiomas = "";
     private static String nacionalidad = "";
     private static String seguro = "";
-    private TextView tvNombre, tvCoche, tvOrigen, tvDestino, tvNacionalidad, tvSeguro;
+    private static String mail = "";
+    private FloatingActionButton mensajear;
+    private TextView tvNombre, tvCoche, tvOrigen, tvDestino, tvNacionalidad, tvSeguro, tvNacional, tvIdioma;
     private ImageView ivFoto;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,26 +87,42 @@ public class ContactoSeleccionado extends AppCompatActivity implements OnMapRead
         /*
         tvNombre = (TextView) findViewById(R.id.tvNombreContacto);
         tvNombre.setText(nombre);
+        */
+        tvIdioma = (TextView) findViewById(R.id.tvIdiomasContacto);
+
         tvCoche = (TextView) findViewById(R.id.tvCocheContacto);
         tvCoche.setText(coche);
-        */
+
         tvOrigen = (TextView) findViewById(R.id.tvOrigenRuta);
         tvOrigen.setText(origen);
         tvDestino = (TextView) findViewById(R.id.tvDestinoRuta);
         tvDestino.setText(destino);
-        /*
-        tvNacionalidad = (TextView) findViewById(R.id.tvNacionalidad);
-        tvNacionalidad.setText(nacionalidad);
-        */
+
+
+        tvNacional = (TextView) findViewById(R.id.tvNacionalidadContacto);
+
+
         tvSeguro = (TextView) findViewById(R.id.tvSeguro);
         tvSeguro.setText(seguro);
-
+        sacarDatosUsuario();
 
         sendRequest();
 
         ivFoto = (ImageView) findViewById(R.id.ivFotoContacto);
         cogerImagen();
         ivFoto.setScaleType(ImageView.ScaleType.CENTER_CROP);//CENTER_CROP
+
+        mensajear = (FloatingActionButton) findViewById(R.id.fab);
+
+        mensajear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /*
+                Intent homeIntent = new Intent(ContactoSeleccionado.this, ChatInterfaz.class);
+                startActivity(homeIntent);
+                */
+            }
+        });
 
     }
 
@@ -127,9 +146,12 @@ public class ContactoSeleccionado extends AppCompatActivity implements OnMapRead
     public static void setLanguages(String languages) {
         idiomas = languages;
     }
-    public static void setNacionality(String nacionality) {
-        nacionalidad = nacionality;
+
+    public static String setEmail(String email) {
+        mail = email;
+        return email;
     }
+
     public static void setInsurance(String insurance) {
         seguro = insurance;
     }
@@ -252,9 +274,50 @@ public class ContactoSeleccionado extends AppCompatActivity implements OnMapRead
     }
 
 
+    /**
+     * Con este metodo recorreremos los usuarios para sacar los datos de dentro.
+     * @param
+     * @return
+     */
+    public void sacarDatosUsuario(){
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    final DatabaseReference ref = database.getReference("usuarios");
+    final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    final String email = mail;
 
 
 
+
+    ref.addValueEventListener(new ValueEventListener() {
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
+
+
+            Iterable i = dataSnapshot.getChildren();
+            Iterator<DataSnapshot> iterador = i.iterator();
+            while (iterador.hasNext()) {
+
+                DataSnapshot it = iterador.next();
+                final Usuario u = it.getValue(Usuario.class);
+                if (email.equals(u.getEmail())) {
+                    tvNacional.setText(u.getNacionalidad());
+                    tvIdioma.setText(u.getIdiomas());
+
+                } else {
+
+                }
+
+
+            }
+
+        }
+
+        @Override
+        public void onCancelled(DatabaseError databaseError) {
+            Log.v("mira mi huevo", "");
+        }
+    });
+}
 
 
 

@@ -49,6 +49,8 @@ public class SignupActivity2 extends AppCompatActivity {
     private Button mbtnBack, btnSignUp, btnResetPassword;
 
     private static String password = "";
+    private static String nacionalidad ="";
+
 
     private ProgressBar progressBar;
     private ImageView imgProfile;
@@ -74,6 +76,7 @@ public class SignupActivity2 extends AppCompatActivity {
 
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
+
 
         mbtnBack = (Button) findViewById(R.id.btnBack);
         btnSignUp = (Button) findViewById(R.id.sign_up_button);
@@ -242,6 +245,7 @@ finish();
                     user.setNacionalidad(nacionality);
                     user.setIdiomas(languages);
                     user.setUrlFoto(foto);
+
                     insertarContacto(user);
 
                     FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
@@ -252,7 +256,7 @@ finish();
 
                     UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                             .setPhotoUri(downloadUrl)
-                            .setDisplayName("Josemanuel")
+                            .setDisplayName(usuario.getDisplayName())
                             .build();
 
                     usuario.updateProfile(profileUpdates)
@@ -400,6 +404,10 @@ finish();
     }
     public static void setPassword(String pass) {
         password = pass;
+    }
+
+    public static void setNacionality(String nacionality) {
+        nacionalidad = nacionality;
     }
 }
 

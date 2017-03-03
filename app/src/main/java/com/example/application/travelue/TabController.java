@@ -90,7 +90,7 @@ public class TabController extends Fragment {
                 case 1:
                     return new TabMisRutas();
                 case 2:
-                    return new TabRutasTotales();
+                    return new TabMisRutas();
                 default:
                     return null;
             }

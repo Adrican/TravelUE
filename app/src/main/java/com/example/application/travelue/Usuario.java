@@ -28,6 +28,13 @@ public class Usuario {
         this.urlFoto = urlFoto;
     }
 
+    public Usuario(String residencia, String nacionalidad, String idiomas, String urlFoto) {
+        this.residencia = residencia;
+        this.nacionalidad = nacionalidad;
+        this.idiomas = idiomas;
+        this.urlFoto = urlFoto;
+    }
+
     public String getNombre() {
         return nombre;
     }

@@ -51,10 +51,18 @@
         android:clipToPadding="false"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:background="@color/colorPrimarioOscuro">
-                    <LinearLayout
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+
+        <LinearLayout
                         android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_marginTop="24dp">
 
 
@@ -130,7 +138,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:id="@+id/tvNameOrigin"
-                                    android:paddingLeft="8dp" />
+                                    android:paddingLeft="8dp"
+                                    android:paddingTop="8dp" />
 
                                 <TextView
                                     android:text="TextView"
@@ -161,6 +170,25 @@
                                     android:paddingBottom="16dp" />
 
                                 <TextView
+                                    android:text="Car"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/tvCar"
+                                    android:layout_weight="1"
+                                    android:layout_marginLeft="8dp"
+                                    android:layout_marginTop="8dp" />
+
+                                <TextView
+                                    android:text="TextView"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/tvCocheContacto"
+                                    android:textSize="18dp"
+                                    android:paddingLeft="16dp"
+                                    android:paddingTop="12dp"
+                                    android:paddingBottom="16dp" />
+
+                                <TextView
                                     android:text="Type Of Insurance"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -179,22 +207,46 @@
                                     android:paddingBottom="16dp"/>
 
                                 <TextView
-                                    android:text="TextView"
+                                    android:text="Nacionality"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:id="@+id/tvIdiomas" />
+                                    android:id="@+id/tvNacionalidad"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginLeft="8dp" />
 
                                 <TextView
                                     android:text="TextView"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:id="@+id/tvNacionalidad" />
+                                    android:id="@+id/tvNacionalidadContacto"
+                                    android:textSize="18dp"
+                                    android:paddingLeft="16dp"
+                                    android:paddingTop="12dp"
+                                    android:paddingBottom="16dp" />
+
+                                <TextView
+                                    android:text="Languages"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/tvIdiomas"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginLeft="8dp" />
+
+                                <TextView
+                                    android:text="TextView"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/tvIdiomasContacto"
+                                    android:textSize="18dp"
+                                    android:paddingLeft="16dp"
+                                    android:paddingTop="12dp"
+                                    android:paddingBottom="16dp" />
 
 
                             </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
-
+        </ScrollView>
                 </android.support.v4.widget.NestedScrollView>
 
     <android.support.design.widget.FloatingActionButton
