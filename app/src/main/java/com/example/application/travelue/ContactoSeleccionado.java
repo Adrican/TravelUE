@@ -84,7 +84,7 @@ public class ContactoSeleccionado extends AppCompatActivity implements OnMapRead
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        /*
+        /*//
         tvNombre = (TextView) findViewById(R.id.tvNombreContacto);
         tvNombre.setText(nombre);
         */
