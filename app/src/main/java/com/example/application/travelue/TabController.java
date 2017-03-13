@@ -36,6 +36,9 @@ public class TabController extends Fragment {
         viewPager.setAdapter(new sliderAdapter(getChildFragmentManager()));
         tabLayout = (TabLayout) view.findViewById(R.id.sliding_tabs);
 
+        int page = getActivity().getIntent().getIntExtra("page", 0);
+        viewPager.setCurrentItem(page);
+
         tabLayout.post(new Runnable() {
             @Override
             public void run() {
@@ -90,7 +93,7 @@ public class TabController extends Fragment {
                 case 1:
                     return new TabMisRutas();
                 case 2:
-                    return new TabMisRutas();
+                    return new TabMisChats();
                 default:
                     return null;
             }

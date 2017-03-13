@@ -14,6 +14,7 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -217,6 +218,7 @@ public class CreateRouteMap extends AppCompatActivity implements OnMapReadyCallb
 
         try {
             new DirectionFinder(this, origin, destination).execute();
+            btnFloat.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_eye));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }

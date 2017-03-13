@@ -81,9 +81,14 @@ startActivity(new Intent(SignupActivity.this, ResetPasswordActivity.class));
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                String nombre = inputName.getText().toString().trim();
                 String email = inputEmail.getText().toString().trim();
                 final String password = inputPassword.getText().toString().trim();
+
+                if (TextUtils.isEmpty(nombre)) {
+                    Toast.makeText(getApplicationContext(), "Enter your name!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 if (TextUtils.isEmpty(email)) {
                     Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();

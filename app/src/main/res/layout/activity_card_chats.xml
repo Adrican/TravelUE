@@ -9,7 +9,7 @@
     card_view:cardElevation="10dp"
     android:foreground="?selectableItemBackground"
     android:clickable="true"
-    android:layout_height="240dp">
+    android:layout_height="160dp">
 
 
     <LinearLayout
@@ -188,60 +188,10 @@
 
 
                     </LinearLayout>
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:gravity="center">
-                        <ImageView
-                            card_view:srcCompat="@drawable/calendariogris"
-                            android:id="@+id/ivFecha"
-                            android:layout_width="40dp"
-                            android:layout_height="24dp" />
-                        <TextView
-                            android:text="TextView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/tvFechas"
-                            android:layout_weight="1" />
-
-
-                    </LinearLayout>
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:gravity="center">
-                        <ImageView
-                            card_view:srcCompat="@drawable/horagris"
-                            android:id="@+id/ivHora"
-                            android:layout_width="40dp"
-                            android:layout_height="24dp" />
-
-                        <TextView
-                            android:text="TextView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/tvHoraSalida"
-                            android:layout_weight="1" />
-
-
-                    </LinearLayout>
-
 
 
                 </LinearLayout>
             </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_height="wrap_content"
-            android:weightSum="1"
-            android:layout_width="124dp">
 
         </LinearLayout>
 

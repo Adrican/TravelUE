@@ -19,8 +19,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,10 +47,23 @@ import com.google.firebase.database.ValueEventListener;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
-public class ContactoSeleccionado extends AppCompatActivity implements OnMapReadyCallback, DirectionFinderListener  {
+public class ContactoSeleccionado extends AppCompatActivity implements OnMapReadyCallback, DirectionFinderListener {
+
+
+    ArrayList<Route> lista_contactos;
+
+
+    private ArrayAdapter<String> arrayAdapter;
+    private static ArrayList<String> list_of_rooms = new ArrayList<>();
+    private String name;
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     private GoogleMap mMap;
     private List<Marker> originMarkers = new ArrayList<>();
@@ -68,6 +83,10 @@ public class ContactoSeleccionado extends AppCompatActivity implements OnMapRead
     private FloatingActionButton mensajear;
     private TextView tvNombre, tvCoche, tvOrigen, tvDestino, tvNacionalidad, tvSeguro, tvNacional, tvIdioma;
     private ImageView ivFoto;
+
+    private String emailSinPunto = user.getEmail().replace(".","");
+    private DatabaseReference root = FirebaseDatabase.getInstance().getReference().child("Chats");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -117,32 +136,41 @@ public class ContactoSeleccionado extends AppCompatActivity implements OnMapRead
         mensajear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*
-                Intent homeIntent = new Intent(ContactoSeleccionado.this, ChatInterfaz.class);
-                startActivity(homeIntent);
-                */
+                //Set the user in the
+                TabMisChats.setArrayList(ChargeRoutes(mail, destino));
+
+                //Change to layout PaguinaPrincipalRutas
+                Intent intentSurvey = new Intent(ContactoSeleccionado.this, PaginaPrincipalRutas.class);
+                intentSurvey.putExtra("page", 2);
+                startActivity(intentSurvey);
+
+
             }
         });
 
     }
 
 
-
     public static void setName(String name) {
         nombre = name;
     }
+
     public static void setCar(String car) {
         coche = car;
     }
+
     public static void setOrigin(String origin) {
         origen = origin;
     }
+
     public static void setDestination(String destination) {
         destino = destination;
     }
+
     public static void setPicture(String picture) {
         foto = picture;
     }
+
     public static void setLanguages(String languages) {
         idiomas = languages;
     }
@@ -156,7 +184,7 @@ public class ContactoSeleccionado extends AppCompatActivity implements OnMapRead
         seguro = insurance;
     }
 
-    public void cogerImagen(){
+    public void cogerImagen() {
         new DownloadImageTask((ImageView) findViewById(R.id.ivFotoContacto))
                 .execute(foto);
     }
@@ -232,7 +260,7 @@ public class ContactoSeleccionado extends AppCompatActivity implements OnMapRead
         }
 
         if (polylinePaths != null) {
-            for (Polyline polyline:polylinePaths ) {
+            for (Polyline polyline : polylinePaths) {
                 polyline.remove();
             }
         }
@@ -263,7 +291,7 @@ public class ContactoSeleccionado extends AppCompatActivity implements OnMapRead
 
             PolylineOptions polylineOptions = new PolylineOptions().
                     geodesic(true).
-                    color(Color.rgb(164,46,54)).
+                    color(Color.rgb(164, 46, 54)).
                     width(10);
 
             for (int i = 0; i < route.points.size(); i++)
@@ -276,49 +304,47 @@ public class ContactoSeleccionado extends AppCompatActivity implements OnMapRead
 
     /**
      * Con este metodo recorreremos los usuarios para sacar los datos de dentro.
+     *
      * @param
      * @return
      */
-    public void sacarDatosUsuario(){
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    final DatabaseReference ref = database.getReference("usuarios");
-    final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    final String email = mail;
+    public void sacarDatosUsuario() {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final DatabaseReference ref = database.getReference("usuarios");
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        final String email = mail;
 
 
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
 
-    ref.addValueEventListener(new ValueEventListener() {
-        @Override
-        public void onDataChange(DataSnapshot dataSnapshot) {
+                Iterable i = dataSnapshot.getChildren();
+                Iterator<DataSnapshot> iterador = i.iterator();
+                while (iterador.hasNext()) {
 
+                    DataSnapshot it = iterador.next();
+                    final Usuario u = it.getValue(Usuario.class);
+                    if (email.equals(u.getEmail())) {
+                        tvNacional.setText(u.getNacionalidad());
+                        tvIdioma.setText(u.getIdiomas());
 
-            Iterable i = dataSnapshot.getChildren();
-            Iterator<DataSnapshot> iterador = i.iterator();
-            while (iterador.hasNext()) {
+                    } else {
 
-                DataSnapshot it = iterador.next();
-                final Usuario u = it.getValue(Usuario.class);
-                if (email.equals(u.getEmail())) {
-                    tvNacional.setText(u.getNacionalidad());
-                    tvIdioma.setText(u.getIdiomas());
+                    }
 
-                } else {
 
                 }
 
-
             }
 
-        }
-
-        @Override
-        public void onCancelled(DatabaseError databaseError) {
-            Log.v("mira mi huevo", "");
-        }
-    });
-}
-
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.v("mira mi huevo", "");
+            }
+        });
+    }
 
 
     @Override
@@ -332,4 +358,44 @@ public class ContactoSeleccionado extends AppCompatActivity implements OnMapRead
         return (super.onOptionsItemSelected(menuItem));
     }
 
+
+
+
+    public ArrayList ChargeRoutes(final String email, final String destiny) {
+        lista_contactos = new ArrayList<>();
+
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        lista_contactos = new ArrayList();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference("rutas");
+
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                lista_contactos.clear();
+                Iterable i = dataSnapshot.getChildren();
+                Iterator<DataSnapshot> iterador = i.iterator();
+                while (iterador.hasNext()) {
+                    Route route = iterador.next().getValue(Route.class);
+                    if(route.getEmailUser().equals(email) && route.getEndAddress().equals(destiny)) {
+                        lista_contactos.add(route);
+                    }
+                    else{
+
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(getApplicationContext(), "Problem Charging the routes", Toast.LENGTH_SHORT).show();
+                /*
+                Route a = new Route("","","","","","","","", false, false, 0);
+                lista_contactos.add(a);
+                */
+            }
+        });
+        return lista_contactos;
+    }
 }

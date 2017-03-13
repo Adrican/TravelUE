@@ -62,6 +62,7 @@ public class PaginaPrincipalRutas extends AppCompatActivity
 
     RecyclerView recyclerView, recyclerBusqueda;
 
+    private TextView emailNav;
     private TextView pruebita;
 
     private ProgressDialog progressDialog;
@@ -210,6 +211,7 @@ public class PaginaPrincipalRutas extends AppCompatActivity
                 }
                 recargarLayout();
 
+
                 //cargaContactos();
 
 
@@ -228,9 +230,12 @@ public class PaginaPrincipalRutas extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         setFragment(new TabController());
+
         View header = navigationView.getHeaderView(0);
         pruebita = (TextView) header.findViewById(R.id.tvNombreUsuario);
-        mostrarNombre();
+        pruebita.setText(user.getDisplayName());
+        emailNav = (TextView) header.findViewById(R.id.tvValoraciones);
+        emailNav.setText(user.getEmail());
 
         ivPerfil = (ImageView) header.findViewById(R.id.imageView1);
         cogerImagen();
@@ -264,30 +269,8 @@ public class PaginaPrincipalRutas extends AppCompatActivity
         startActivity(new Intent(this, PaginaPrincipalRutas.class));
 
     }
-    public void mostrarNombre(){
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            // User is signed in
-            String displayName = user.getDisplayName();
-            Uri profileUri = user.getPhotoUrl();
-
-            // If the above were null, iterate the provider data
-            // and set with the first non null data
-            for (UserInfo userInfo : user.getProviderData()) {
-                if (displayName == null && userInfo.getDisplayName() != null) {
-                    displayName = userInfo.getDisplayName();
-                }
-                if (profileUri == null && userInfo.getPhotoUrl() != null) {
-                    profileUri = userInfo.getPhotoUrl();
-                }
-            }
-
-            pruebita.setText(displayName);
 
 
-        }
-
-    }
     /**
 
 
@@ -335,18 +318,22 @@ public class PaginaPrincipalRutas extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_routes) {
             // Handle the camera action
             setFragment(new TabController());
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_myroutes) {
+            Intent intent = new Intent(PaginaPrincipalRutas.this, CreateRouteMap.class);
+            this.startActivity(intent);
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_message) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_profile) {
+            Intent intent = new Intent(PaginaPrincipalRutas.this, Profile.class);
+            this.startActivity(intent);
 
         } else if (id == R.id.nav_share) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_logout) {
 
         }
         return true;

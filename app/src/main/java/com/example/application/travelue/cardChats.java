@@ -1,6 +1,31 @@
-
-
 package com.example.application.travelue;
+
+import android.app.ProgressDialog;
+import android.os.Handler;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -32,23 +57,29 @@ import com.google.firebase.database.ValueEventListener;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Map;
+import java.util.Random;
+import java.util.Set;
 
 
 /**
  * Created by Eduardo on 24/11/2016.
  */
-public class RecContactos extends RecyclerView.Adapter<RecContactos.ContactoViewHolder> {
+public class cardChats extends RecyclerView.Adapter<cardChats.cardChatViewHolder> {
 
     private ArrayList<Route> items;
     public Context context;
+    DatabaseReference root = FirebaseDatabase.getInstance().getReference().child("Chats");
 
-    public class ContactoViewHolder extends RecyclerView.ViewHolder {
+
+    public class cardChatViewHolder extends RecyclerView.ViewHolder {
 
         public CardView cv;
         public TextView nombre;
         public TextView estado;
         public TextView origen;
         public TextView destino;
+        public TextView mail;
         public TextView numberPassengers;
         public TextView hours;
         public TextView calendar;
@@ -58,7 +89,13 @@ public class RecContactos extends RecyclerView.Adapter<RecContactos.ContactoView
         public ImageView imageEat;
 
 
-        public ContactoViewHolder(View itemView) {
+
+
+
+
+
+
+        public cardChatViewHolder(View itemView) {
             super(itemView);
 
 
@@ -70,8 +107,6 @@ public class RecContactos extends RecyclerView.Adapter<RecContactos.ContactoView
             estado = (TextView) itemView.findViewById(R.id.tvEstado);
             origen = (TextView) itemView.findViewById(R.id.tvOrigen);
             destino = (TextView) itemView.findViewById(R.id.tvDestino);
-            hours = (TextView) itemView.findViewById(R.id.tvHoraSalida);
-            calendar = (TextView) itemView.findViewById(R.id.tvFechas);
             imagen = (ImageView) itemView.findViewById(R.id.item_image);
 
             estadoConductor = (ImageView) itemView.findViewById(R.id.ivEstado);
@@ -116,20 +151,20 @@ public class RecContactos extends RecyclerView.Adapter<RecContactos.ContactoView
     }
 
 
-    public RecContactos(Context context, ArrayList<Route> items) {
+    public cardChats(Context context, ArrayList<Route> items) {
         this.context = context;
         this.items = items;
     }
 
     @Override
-    public ContactoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view, parent, false);
+    public cardChatViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_card_chats, parent, false);
 
-        return new ContactoViewHolder(v);
+        return new cardChatViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(final ContactoViewHolder holder, final int position) {
+    public void onBindViewHolder(final cardChatViewHolder holder, final int position) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
 
@@ -139,13 +174,12 @@ public class RecContactos extends RecyclerView.Adapter<RecContactos.ContactoView
         }
 
 
-        holder.calendar.setText(items.get(position).getStartDay() + " - " + items.get(position).getFinisDay());
-        holder.hours.setText(items.get(position).getHour());
 
         holder.nombre.setText(items.get(position).getNombreUser());
         holder.estado.setText(items.get(position).getTypeOfUser());
         holder.origen.setText(items.get(position).getStartAddress());
         holder.destino.setText(items.get(position).getEndAddress());
+        String nombre = items.get(position).getEmailUser().replace(".","");
 
         holder.numberPassengers.setText(String.valueOf(items.get(position).getNumberOfPasangers()));
 
@@ -154,58 +188,34 @@ public class RecContactos extends RecyclerView.Adapter<RecContactos.ContactoView
             @Override
             public void onClick(View v) {
 
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference ref = database.getReference("rutas");
                 final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-/**
- ref.addValueEventListener(new ValueEventListener() {
-@Override public void onDataChange(DataSnapshot dataSnapshot) {
 
-Iterable i = dataSnapshot.getChildren();
-Iterator<DataSnapshot> iterador = i.iterator();
-while (iterador.hasNext()) {
+                String nombre = items.get(position).getEmailUser().replace(".","");
+                Map<String,Object> map = new HashMap<String, Object>();
 
-Route r = iterador.next().getValue(Route.class);
- */
-                if (user.getEmail().equals(items.get(position).getEmailUser())) {
-                    new AlertDialog.Builder(context)
-                            .setTitle("Delete entry")
-                            .setMessage("Are you sure you want to delete this entry?")
-                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    holder.cv.setVisibility(View.INVISIBLE);
-                                    borraRuta(items.get(position));
-                                }
-                            })
-                            .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    // do nothing
-                                }
-                            })
-                            .setIcon(R.drawable.rabano)
-                            .show();
+                map.put(nombre,"");
 
-                }
 
-                if (!user.getEmail().equals(items.get(position).getEmailUser())) {
-                    ContactoSeleccionado.setName(items.get(position).getNombreUser());
-                    ContactoSeleccionado.setCar(items.get(position).getCarModel());
-                    ContactoSeleccionado.setOrigin(items.get(position).getStartAddress());
-                    ContactoSeleccionado.setDestination(items.get(position).getEndAddress());
-                    ContactoSeleccionado.setPicture(items.get(position).getFotoPerfil());
-                    ContactoSeleccionado.setInsurance(items.get(position).getTypeOfInsurance());
-                    ContactoSeleccionado.setEmail(items.get(position).getEmailUser());
 
-                    Intent intent = new Intent(RecContactos.this.context, ContactoSeleccionado.class);
+
+
+                    Intent intent = new Intent(cardChats.this.context, ChatRoom.class);
+                    intent.putExtra("room_name", nombre);
+                    intent.putExtra("user_name", user.getDisplayName());
                     context.startActivity(intent);
 
-                }
+
+
 
 
             }
 
 
+
+
         });
+
+
 
 
         //See if smoke is permited
@@ -230,7 +240,7 @@ Route r = iterador.next().getValue(Route.class);
         }
     }
 
-    public void onViewAttachedToWindow(ContactoViewHolder holder) {
+    public void onViewAttachedToWindow(cardChatViewHolder holder) {
         super.onViewAttachedToWindow(holder);
     }
 
@@ -280,6 +290,21 @@ Route r = iterador.next().getValue(Route.class);
                 Log.v("mira mi huevo", "");
             }
         });
+    }
+
+    String getCadenaAlfanumAleatoria (int longitud){
+        String cadenaAleatoria = "";
+        long milis = new java.util.GregorianCalendar().getTimeInMillis();
+        Random r = new Random(milis);
+        int i = 0;
+        while ( i < longitud){
+            char c = (char)r.nextInt(255);
+            if ( (c >= '0' && c <='9') || (c >='A' && c <='Z') ){
+                cadenaAleatoria += c;
+                i ++;
+            }
+        }
+        return cadenaAleatoria;
     }
 
 }

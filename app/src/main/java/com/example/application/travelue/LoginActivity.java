@@ -1,5 +1,6 @@
 package com.example.application.travelue;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -22,6 +23,8 @@ import com.google.firebase.auth.FirebaseAuth;
  */
 public class LoginActivity extends AppCompatActivity {
 
+    private ProgressDialog progressDialog;
+
     private EditText inputEmail, inputPassword;
     private FirebaseAuth auth;
     private ProgressBar progressBar;
@@ -33,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
 
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
+        progressDialog = new ProgressDialog(this);
 
 /*
         if (auth.getCurrentUser() != null) {
@@ -53,6 +57,7 @@ public class LoginActivity extends AppCompatActivity {
         btnSignup = (Button) findViewById(R.id.btn_signup);
         btnLogin = (Button) findViewById(R.id.btn_login);
         btnReset = (Button) findViewById(R.id.btn_reset_password);
+        final int unicode = 0x1F60A;
 
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
@@ -87,7 +92,8 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
 
-                progressBar.setVisibility(View.VISIBLE);
+                progressDialog.setMessage("Thank you for using Beet ♥");
+                progressDialog.show();
 
                 //authenticate user
                 auth.signInWithEmailAndPassword(email, password)
@@ -97,7 +103,7 @@ public class LoginActivity extends AppCompatActivity {
                                 // If sign in fails, display a message to the user. If sign in succeeds
                                 // the auth state listener will be notified and logic to handle the
                                 // signed in user can be handled in the listener.
-                                progressBar.setVisibility(View.GONE);
+                                progressDialog.dismiss();
                                 if (!task.isSuccessful()) {
                                     // there was an error
                                     if (password.length() < 6) {

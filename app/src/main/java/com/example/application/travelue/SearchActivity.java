@@ -26,6 +26,7 @@ import java.util.Iterator;
 
 public class SearchActivity extends AppCompatActivity {
     ArrayList<Route> lista_contactos;
+
     //TextView txt_Origen;
     //TextView txt_Destino;
     private AutoCompleteTextView etOrigin;
@@ -162,6 +163,9 @@ public class SearchActivity extends AppCompatActivity {
                     Route route = iterador.next().getValue(Route.class);
                     if(route.getStartAddress().equals(origen) && route.getEndAddress().equals(destiny)) {
                         lista_contactos.add(route);
+                    }
+                    else{
+                        Toast.makeText(getApplicationContext(), "No routes found ;(. And if you publish it? :)", Toast.LENGTH_SHORT).show();
                     }
                 }
             }

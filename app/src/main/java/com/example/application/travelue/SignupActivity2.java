@@ -239,6 +239,68 @@ finish();
         final String languages = inputLanguages.getText().toString().trim();
 
 
+        if (mImageUri == null){
+            String fotoEjemplo = "http://i.imgur.com/ANzU2qO.jpg";
+            mImageUri = Uri.parse(fotoEjemplo);
+            user.setResidencia(live);
+            user.setNacionalidad(nacionality);
+            user.setIdiomas(languages);
+            user.setUrlFoto(fotoEjemplo);
+
+            insertarContacto(user);
+
+            FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
+
+
+
+
+
+            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                    .setPhotoUri(mImageUri)
+                    .setDisplayName(usuario.getDisplayName())
+                    .build();
+
+            usuario.updateProfile(profileUpdates)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+
+                        }
+                    });
+            //
+
+            auth.signInWithEmailAndPassword(user.getEmail().toString(), password.toString())
+                    .addOnCompleteListener(SignupActivity2.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            // If sign in fails, display a message to the user. If sign in succeeds
+                            // the auth state listener will be notified and logic to handle the
+                            // signed in user can be handled in the listener.
+                            progressBar.setVisibility(View.GONE);
+                            if (!task.isSuccessful()) {
+                                // there was an error
+                            } else {
+                                Intent intent = new Intent(SignupActivity2.this, PaginaPrincipalRutas.class);
+                                startActivity(intent);
+                                finish();
+                            }
+                        }
+                    });
+
+
+
+
+            Toast.makeText(SignupActivity2.this, "Upload new Image file to Firebase done", Toast.LENGTH_LONG).show();
+
+            mProgresDialog.dismiss();
+                    /*
+                    Intent intent = new Intent(SignupActivity2.this, PaginaPrincipalRutas.class);
+                    startActivity(intent);
+                    finish();
+                    */
+
+
+        }
         if (!TextUtils.isEmpty(live) && !TextUtils.isEmpty(nacionality) && !TextUtils.isEmpty(languages) && mImageUri != null) {
             StorageReference filepath = mStorage.child("Photos").child(mImageUri.getLastPathSegment());
             filepath.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
