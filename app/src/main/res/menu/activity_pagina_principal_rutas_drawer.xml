@@ -4,12 +4,12 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_routes"
-            android:icon="@drawable/rutasgris"
-            android:title="Routes" />
-        <item
-            android:id="@+id/nav_myroutes"
             android:icon="@drawable/fab_add"
             android:title="Create new route" />
+        <item
+            android:id="@+id/nav_myroutes"
+            android:icon="@drawable/ic_search"
+            android:title="Search for a route" />
         <item
             android:id="@+id/nav_message"
             android:icon="@drawable/mensajesgris"

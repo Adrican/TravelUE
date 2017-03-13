@@ -320,20 +320,35 @@ public class PaginaPrincipalRutas extends AppCompatActivity
 
         if (id == R.id.nav_routes) {
             // Handle the camera action
-            setFragment(new TabController());
+            Intent intent = new Intent(PaginaPrincipalRutas.this, SearchActivity.class);
+            this.startActivity(intent);
         } else if (id == R.id.nav_myroutes) {
             Intent intent = new Intent(PaginaPrincipalRutas.this, CreateRouteMap.class);
             this.startActivity(intent);
 
         } else if (id == R.id.nav_message) {
 
+            Intent intentSurvey = new Intent(PaginaPrincipalRutas.this, PaginaPrincipalRutas.class);
+            intentSurvey.putExtra("page", 2);
+            startActivity(intentSurvey);
+
         } else if (id == R.id.nav_profile) {
             Intent intent = new Intent(PaginaPrincipalRutas.this, Profile.class);
             this.startActivity(intent);
 
         } else if (id == R.id.nav_share) {
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "Download Beet and lets go together to the university!");
+            sendIntent.setType("text/plain");
+            startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.send_to)));
 
-        } else if (id == R.id.nav_logout) {
+        } else if (id == R.id.nav_about) {
+
+
+        }
+        else if (id == R.id.nav_logout) {
+
 
         }
         return true;

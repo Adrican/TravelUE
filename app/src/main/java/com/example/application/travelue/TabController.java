@@ -1,6 +1,8 @@
 package com.example.application.travelue;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -36,6 +38,7 @@ public class TabController extends Fragment {
         viewPager.setAdapter(new sliderAdapter(getChildFragmentManager()));
         tabLayout = (TabLayout) view.findViewById(R.id.sliding_tabs);
 
+
         int page = getActivity().getIntent().getIntExtra("page", 0);
         viewPager.setCurrentItem(page);
 
@@ -48,9 +51,7 @@ public class TabController extends Fragment {
 
 
 
-                    tabLayout.getTabAt(0).setIcon(R.drawable.ic_explore_white_24dp);
-                    tabLayout.getTabAt(1).setIcon(R.drawable.misrutasbuenas);
-                    tabLayout.getTabAt(2).setIcon(R.drawable.ic_mail_outline_white_24dp);
+                    setupTabIcons();
 
 /**
                 view = getActivity().getLayoutInflater().inflate(R.layout.customtab, null);
@@ -114,5 +115,35 @@ public class TabController extends Fragment {
 
         }
         */
+    }
+
+    private void setupTabIcons() {
+        tabLayout.getTabAt(0).setIcon(R.drawable.ic_explore_white_24dp);
+        tabLayout.getTabAt(1).setIcon(R.drawable.misrutasbuenas);
+        tabLayout.getTabAt(2).setIcon(R.drawable.ic_mail_outline_white_24dp);
+
+
+        tabLayout.getTabAt(0).getIcon().setColorFilter(Color.parseColor("#FFFFFF"), PorterDuff.Mode.SRC_IN);
+        tabLayout.getTabAt(1).getIcon().setColorFilter(Color.parseColor("#BDBDBD"), PorterDuff.Mode.SRC_IN);
+        tabLayout.getTabAt(2).getIcon().setColorFilter(Color.parseColor("#BDBDBD"), PorterDuff.Mode.SRC_IN);
+
+
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                tab.getIcon().setColorFilter(Color.parseColor("#FFFFFF"), PorterDuff.Mode.SRC_IN);
+
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+                tab.getIcon().setColorFilter(Color.parseColor("#BDBDBD"), PorterDuff.Mode.SRC_IN);
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
 }
