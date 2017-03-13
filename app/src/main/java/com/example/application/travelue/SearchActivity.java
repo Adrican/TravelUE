@@ -164,8 +164,9 @@ public class SearchActivity extends AppCompatActivity {
                     if(route.getStartAddress().equals(origen) && route.getEndAddress().equals(destiny)) {
                         lista_contactos.add(route);
                     }
-                    else{
+                    else if(!route.getStartAddress().equals(origen) && !route.getEndAddress().equals(destiny)){
                         Toast.makeText(getApplicationContext(), "No routes found ;(. And if you publish it? :)", Toast.LENGTH_SHORT).show();
+
                     }
                 }
             }

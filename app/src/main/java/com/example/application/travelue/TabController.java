@@ -42,6 +42,7 @@ public class TabController extends Fragment {
         int page = getActivity().getIntent().getIntExtra("page", 0);
         viewPager.setCurrentItem(page);
 
+
         tabLayout.post(new Runnable() {
             @Override
             public void run() {
@@ -121,6 +122,7 @@ public class TabController extends Fragment {
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_explore_white_24dp);
         tabLayout.getTabAt(1).setIcon(R.drawable.misrutasbuenas);
         tabLayout.getTabAt(2).setIcon(R.drawable.ic_mail_outline_white_24dp);
+
 
 
         tabLayout.getTabAt(0).getIcon().setColorFilter(Color.parseColor("#FFFFFF"), PorterDuff.Mode.SRC_IN);

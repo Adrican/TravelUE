@@ -79,7 +79,7 @@ public class TabMisChats extends Fragment {
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this.getContext());
         recyclerView.setLayoutManager(layoutManager);
-        cargaContactos();
+        //cargaContactos();
 
         if (lista_busquedas != null && !lista_busquedas.isEmpty()) {
             prueba();
@@ -105,17 +105,12 @@ public class TabMisChats extends Fragment {
         progressDialog.setMessage("Loading...");
         progressDialog.show();
 
-
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            public void run() {
                 recyclerBusqueda(lista_busquedas);
                 //btnAtras.setVisibility(View.VISIBLE);
                 progressDialog.dismiss();
 
 
-            }
-        }, 2000);
+
 
 
 
@@ -181,8 +176,10 @@ public class TabMisChats extends Fragment {
             throw new RuntimeException(e);
         }
     }
+
     public static void setArrayList(ArrayList<Route> lista_busqueda) {
         lista_busquedas = lista_busqueda;
+
     }
 
 }

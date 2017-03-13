@@ -65,6 +65,8 @@ public class PaginaPrincipalRutas extends AppCompatActivity
     private TextView emailNav;
     private TextView pruebita;
 
+    private FirebaseAuth auth;
+
     private ProgressDialog progressDialog;
     private FloatingActionButton btnFloat, btnAtras, btnBuscar;
 
@@ -103,6 +105,7 @@ public class PaginaPrincipalRutas extends AppCompatActivity
 
 
 
+        auth = FirebaseAuth.getInstance();
 
 
         mDataBase = FirebaseDatabase.getInstance().getReference().child("usuarios");
@@ -348,7 +351,9 @@ public class PaginaPrincipalRutas extends AppCompatActivity
 
         }
         else if (id == R.id.nav_logout) {
-
+            FirebaseAuth.getInstance().signOut();
+            Intent intentSurvey = new Intent(PaginaPrincipalRutas.this, LoginActivity.class);
+            startActivity(intentSurvey);
 
         }
         return true;
