@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.application.travelue.Profile">
+    tools:context="com.beet.application.travelue.Profile">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
@@ -243,16 +243,20 @@
 
                     </LinearLayout>
 
+                    <TextView
+                        android:textColor="@color/grey"
+                        android:text="Insurance"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tvInsurance"
+                        android:layout_weight="1"
+                        android:layout_marginTop="20dp" />
+
                     <Spinner
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:id="@+id/spCarInsurance"
-                        style="@style/mySpinnerItemStyle"/>
-
-
-
-
-
+                        style="@style/mySpinnerItemStyle" />
 
 
                     <FrameLayout
