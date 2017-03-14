@@ -66,6 +66,7 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait" />
         <activity android:name="com.beet.application.travelue.SearchActivity"
+            android:label="@string/title_activity_search"
             android:screenOrientation="portrait" />
         <activity android:name="com.beet.application.travelue.Profile"
             android:screenOrientation="portrait" />

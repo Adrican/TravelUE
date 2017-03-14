@@ -78,7 +78,7 @@ public class CreateRouteMap extends AppCompatActivity implements OnMapReadyCallb
     private ProgressDialog mProgresDialog;
 
 
-    private Spinner spConducPasaj, spCarInsurance;
+    private Spinner spConducPasaj, spCarInsurance, spUniversidades;
     private TimePicker tpHora;
     private EditText metTime, metDate, metDate2;
     int hour_x;
@@ -106,6 +106,12 @@ public class CreateRouteMap extends AppCompatActivity implements OnMapReadyCallb
         etOrigin.setAdapter(new PlacesAutoCompleteAdapter(this, R.layout.autocomplete_list_item));
 
         etDestination = (AutoCompleteTextView) findViewById(R.id.etDestino);
+        etDestination.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                etDestination.setText("");
+            }
+        });
 
 
         //etOrigin.setText("Introduce the start of the route");
@@ -329,11 +335,35 @@ public class CreateRouteMap extends AppCompatActivity implements OnMapReadyCallb
                     spCarInsurance.setVisibility(View.INVISIBLE);
 
 
+
                 }else if(pasajero.equals("Driver")) {
                     modeloCoche.setVisibility(View.VISIBLE);
                     modelCoche.setVisibility(View.VISIBLE);
                     spCarInsurance.setVisibility(View.VISIBLE);
                 }
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        final Spinner spUniversidades = (Spinner) findViewById(R.id.spuniversities);
+
+
+        ArrayAdapter saUniversidades = ArrayAdapter.createFromResource(this, R.array.universities, R.layout.spinner_item);
+        saUniversidades.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spUniversidades.setAdapter(saUniversidades);
+
+
+        spUniversidades.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String universidad = spUniversidades.getItemAtPosition(position).toString();
+                etDestination.setText(universidad);
 
 
             }

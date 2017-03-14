@@ -93,6 +93,14 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginBottom="12dp" />
 
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:id="@+id/spuniversities"
+                android:padding="@dimen/activity_horizontal_margin"
+                android:layout_marginBottom="20dp"
+                style="@style/mySpinnerItemStyle"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
