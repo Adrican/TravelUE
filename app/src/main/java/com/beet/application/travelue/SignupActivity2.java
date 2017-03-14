@@ -68,7 +68,7 @@ public class SignupActivity2 extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
 
 
-        mbtnBack = (Button) findViewById(R.id.btnBack);
+        //mbtnBack = (Button) findViewById(R.id.btnBack);
         btnSignUp = (Button) findViewById(R.id.sign_up_button);
         inputLive = (EditText) findViewById(R.id.etLive);
         inputNacionality = (EditText) findViewById(R.id.etNacionality);
@@ -115,7 +115,7 @@ finish();
  */
 
 
-
+/*
         mbtnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -123,6 +123,7 @@ finish();
                 startActivity(intent);
             }
         });
+        */
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
