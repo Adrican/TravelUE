@@ -8,6 +8,10 @@
         <item>All risk</item>
         <item>Third party insurance</item>
     </string-array>
+    <string-array name="universities">
+        <item>Universidad Europea de Madrid</item>
+        <item>Universidad Europea, Alcobendas</item>
+    </string-array>
 </resources>
 
 

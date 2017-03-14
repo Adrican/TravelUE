@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.example.application.travelue.LoginActivity">
+    tools:context="com.beet.application.travelue.LoginActivity">
 
     <ProgressBar
         android:id="@+id/progressBar"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.example.application.travelue.SearchActivity"
+    tools:context="com.beet.application.travelue.SearchActivity"
     android:layout_height="match_parent"
     android:background="@color/colorPrimarioOscuro">
 
@@ -13,46 +13,58 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:background="@color/colorPrimarioOscuro"
-        android:gravity="center"
         android:orientation="vertical"
-        android:padding="@dimen/activity_horizontal_margin">
+        android:weightSum="1">
 
 
-    <LinearLayout
-        android:background="@color/white"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="16dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:elevation="0dp"
-        android:paddingBottom="16dp">
+        <ImageView
+            android:layout_width="match_parent"
+            app:srcCompat="@drawable/searchi"
+            android:id="@+id/imageView"
+            android:layout_marginTop="70dp"
+            android:layout_weight="0.29"
 
-        <AutoCompleteTextView
-            android:textColor="@color/letras_editText"
-            android:hint="Origin"
-            android:textColorHint="@color/grey"
+            android:layout_height="120dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp" />
+
+        <LinearLayout
+            android:background="@color/white"
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/etOrigen"
-            android:padding="@dimen/activity_horizontal_margin" />
+            android:paddingTop="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:elevation="0dp"
+            android:paddingBottom="16dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp">
+
+            <AutoCompleteTextView
+                android:textColor="@color/letras_editText"
+                android:hint="Origin"
+                android:textColorHint="@color/grey"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/etOrigen"
+                android:padding="@dimen/activity_horizontal_margin" />
 
 
-        <AutoCompleteTextView
-            android:textColor="@color/letras_editText"
-            android:hint="Destination"
-            android:textColorHint="@color/grey"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/etDestino"
-            android:padding="@dimen/activity_horizontal_margin" />
+            <AutoCompleteTextView
+                android:textColor="@color/letras_editText"
+                android:hint="Destination"
+                android:textColorHint="@color/grey"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/etDestino"
+                android:padding="@dimen/activity_horizontal_margin" />
 
 
 
 
-    </LinearLayout>
-    <!-- Login Button -->
+        </LinearLayout>
+        <!-- Login Button -->
         <Button
             android:id="@+id/btnSearchRoute"
             android:layout_width="fill_parent"
@@ -62,9 +74,11 @@
             android:textStyle="bold"
             android:textSize="15dp"
             android:textColor="@color/white"
-            android:elevation="1dp" />
+            android:elevation="1dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp" />
 
-</LinearLayout>
+    </LinearLayout>
 
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"

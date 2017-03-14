@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.application.travelue.Profile">
+    tools:context="com.beet.application.travelue.Profile">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
@@ -62,92 +62,100 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@color/white"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
-            android:layout_marginTop="48dp">
-
-            <AutoCompleteTextView
-                android:textColor="@color/letras_editText"
-                android:hint="Origin"
-                android:textColorHint="@color/grey"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/etOrigen"
-                android:padding="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="12dp" />
-
-
-            <AutoCompleteTextView
-                android:textColor="@color/letras_editText"
-                android:hint="Destination"
-                android:textColorHint="@color/grey"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/etDestino"
-                android:padding="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="12dp" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="@dimen/activity_horizontal_margin"
-                android:background="@color/colorAccent">
+                android:orientation="vertical"
+                android:background="@color/white"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="48dp">
 
-                <FrameLayout
+                <AutoCompleteTextView
+                    android:textColor="@color/letras_editText"
+                    android:hint="Origin"
+                    android:textColorHint="@color/grey"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:id="@+id/etOrigen"
+                    android:padding="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="12dp" />
 
-                    <LinearLayout
-                        android:orientation="horizontal"
+
+                <AutoCompleteTextView
+                    android:textColor="@color/letras_editText"
+                    android:hint="Destination"
+                    android:textColorHint="@color/grey"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/etDestino"
+                    android:padding="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="12dp" />
+
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:id="@+id/spuniversities"
+                    android:padding="@dimen/activity_horizontal_margin"
+                    android:layout_marginBottom="20dp"
+                    style="@style/mySpinnerItemStyle"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/activity_horizontal_margin"
+                    android:background="@color/colorAccent">
+
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="match_parent">
 
-                        <ImageView
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:src="@drawable/ic_distance"
-                            android:layout_weight="1" />
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
 
-                        <TextView
-                            android:layout_marginLeft="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="0 km"
-                            android:id="@+id/tvDistance"
-                            android:textColor="@color/white"
-                            android:layout_weight="1" />
+                            <ImageView
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@drawable/ic_distance"
+                                android:layout_weight="1" />
 
-                        <ImageView
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:padding="5dp"
-                            android:src="@drawable/ic_query_builder_white_48dp"
+                            <TextView
+                                android:layout_marginLeft="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0 km"
+                                android:id="@+id/tvDistance"
+                                android:textColor="@color/white"
+                                android:layout_weight="1" />
 
-                            android:layout_weight="1" />
+                            <ImageView
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:padding="5dp"
+                                android:src="@drawable/ic_query_builder_white_48dp"
 
-                        <TextView
-                            android:textColor="@color/white"
-                            android:layout_marginLeft="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="0 min"
-                            android:id="@+id/tvDuration"
-                            android:layout_weight="1" />
-                    </LinearLayout>
-                </FrameLayout>
+                                android:layout_weight="1" />
 
-            </LinearLayout>
+                            <TextView
+                                android:textColor="@color/white"
+                                android:layout_marginLeft="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0 min"
+                                android:id="@+id/tvDuration"
+                                android:layout_weight="1" />
+                        </LinearLayout>
+                    </FrameLayout>
+
+                </LinearLayout>
 
 
 
@@ -243,16 +251,20 @@
 
                     </LinearLayout>
 
+                    <TextView
+                        android:textColor="@color/grey"
+                        android:text="Insurance"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tvInsurance"
+                        android:layout_weight="1"
+                        android:layout_marginTop="20dp" />
+
                     <Spinner
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:id="@+id/spCarInsurance"
-                        style="@style/mySpinnerItemStyle"/>
-
-
-
-
-
+                        style="@style/mySpinnerItemStyle" />
 
 
                     <FrameLayout
@@ -357,34 +369,34 @@
                 </LinearLayout>
 
 
-            <FrameLayout android:layout_height="match_parent"
-                android:layout_width="match_parent"
-                android:layout_marginTop="12dp">
-
-                <ProgressBar
-                    style="?android:attr/progressBarStyleSmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/pBarRoute"
-                    android:layout_weight="0.27"
-                    android:layout_gravity="bottom|center"
-                    android:visibility="invisible" />
-
-                <Button
-                    android:id="@+id/btnCreateRoute"
-                    style="?android:textAppearanceSmall"
-                    android:background="@drawable/button_custom"
-                    android:text="Create Route"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    android:layout_weight="1"
+                <FrameLayout android:layout_height="match_parent"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_marginTop="12dp">
+
+                    <ProgressBar
+                        style="?android:attr/progressBarStyleSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/pBarRoute"
+                        android:layout_weight="0.27"
+                        android:layout_gravity="bottom|center"
+                        android:visibility="invisible" />
+
+                    <Button
+                        android:id="@+id/btnCreateRoute"
+                        style="?android:textAppearanceSmall"
+                        android:background="@drawable/button_custom"
+                        android:text="Create Route"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
 
-            </FrameLayout>
+                </FrameLayout>
 
-        </LinearLayout>
+            </LinearLayout>
         </ScrollView>
 
     </android.support.v4.widget.NestedScrollView>
