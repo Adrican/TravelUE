@@ -1,8 +1,10 @@
 package com.beet.application.travelue;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -30,6 +33,7 @@ public class SignupActivity extends AppCompatActivity {
 
     private EditText inputEmail, inputPassword, inputName, inputSurname;
     private Button btnSignIn, btnSignUp, btnResetPassword, mbtnBack;
+    private TextView tvTerminos;
     private ProgressBar progressBar;
 
     private DatabaseReference mDatabase;
@@ -50,8 +54,25 @@ public class SignupActivity extends AppCompatActivity {
         inputSurname = (EditText) findViewById(R.id.surname);
         inputEmail = (EditText) findViewById(R.id.email);
         inputPassword = (EditText) findViewById(R.id.password);
+
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         btnResetPassword = (Button) findViewById(R.id.btn_reset_password);
+        tvTerminos = (TextView) findViewById(R.id.tvTerminos);
+        tvTerminos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(SignupActivity.this)
+                        .setTitle("Terms and Conditions")
+                        .setMessage("We do not take any responsability on what happens to you with any driver or passenger. We also have access to the profile picture you upload (we are not going to use it, but we can see it because is stored in our Database), and we can also see your conversations with other passengers and drivers, and have access to the data you upload to the App. Also we reserve the right to cancel your account for any reason.")
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        })
+                        .setIcon(R.drawable.rabano)
+                        .show();
+            }
+        });
         mbtnBack = (Button) findViewById(R.id.btnBack);
 /**
  btnResetPassword.setOnClickListener(new View.OnClickListener() {

@@ -116,7 +116,16 @@
 
 
 
+
         </android.support.design.widget.TextInputLayout>
+            <TextView
+                android:text="Clicking register, you are accepting our Terms and Conditions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvTerminos"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_marginTop="12dp" />
 
         </LinearLayout>
         <Button
@@ -145,6 +154,7 @@
         <!-- Link to Login Screen -->
 
     </LinearLayout>
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

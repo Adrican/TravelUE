@@ -17,25 +17,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.beet.application.travelue.SignupActivity"
+            android:name=".SignupActivity"
             android:label="@string/title_activity_signup"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.beet.application.travelue.SignupActivity2"
+            android:name=".SignupActivity2"
             android:label="@string/title_activity_signup2"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.beet.application.travelue.LoginActivity"
+            android:name=".LoginActivity"
             android:label="@string/title_activity_login"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
-            android:name="com.beet.application.travelue.ResetPasswordActivity"
+            android:name=".ResetPasswordActivity"
             android:label="@string/title_activity_reset_password"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.beet.application.travelue.SplashScreen"
+            android:name=".SplashScreen"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
@@ -57,22 +55,27 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name="com.beet.application.travelue.CreateRouteMap"
+            android:name=".CreateRouteMap"
             android:label="@string/title_activity_create_route_map"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.beet.application.travelue.PaginaPrincipalRutas"
+            android:name=".PaginaPrincipalRutas"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".SearchActivity"
             android:screenOrientation="portrait" />
-        <activity android:name="com.beet.application.travelue.SearchActivity"
+        <activity
+            android:name=".Profile"
             android:screenOrientation="portrait" />
-        <activity android:name="com.beet.application.travelue.Profile"
+        <activity
+            android:name=".ContactoSeleccionado"
             android:screenOrientation="portrait" />
-        <activity android:name="com.beet.application.travelue.ContactoSeleccionado"
+        <activity
+            android:name=".ChatRoom"
             android:screenOrientation="portrait" />
-        <activity android:name="com.beet.application.travelue.ChatRoom"
-            android:screenOrientation="portrait" />
+        <activity android:name=".AboutUs"></activity>
     </application>
 
 </manifest>
