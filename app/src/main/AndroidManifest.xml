@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.application.travelue">
+    package="com.beet.application.travelue">
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
@@ -17,25 +17,25 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".SignupActivity"
+            android:name="com.beet.application.travelue.SignupActivity"
             android:label="@string/title_activity_signup"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".SignupActivity2"
+            android:name="com.beet.application.travelue.SignupActivity2"
             android:label="@string/title_activity_signup2"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".LoginActivity"
+            android:name="com.beet.application.travelue.LoginActivity"
             android:label="@string/title_activity_login"
             android:screenOrientation="portrait">
 
         </activity>
         <activity
-            android:name=".ResetPasswordActivity"
+            android:name="com.beet.application.travelue.ResetPasswordActivity"
             android:label="@string/title_activity_reset_password"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".SplashScreen"
+            android:name="com.beet.application.travelue.SplashScreen"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
@@ -57,21 +57,21 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".CreateRouteMap"
+            android:name="com.beet.application.travelue.CreateRouteMap"
             android:label="@string/title_activity_create_route_map"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".PaginaPrincipalRutas"
+            android:name="com.beet.application.travelue.PaginaPrincipalRutas"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait" />
-        <activity android:name=".SearchActivity"
+        <activity android:name="com.beet.application.travelue.SearchActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".Profile"
+        <activity android:name="com.beet.application.travelue.Profile"
             android:screenOrientation="portrait" />
-        <activity android:name=".ContactoSeleccionado"
+        <activity android:name="com.beet.application.travelue.ContactoSeleccionado"
             android:screenOrientation="portrait" />
-        <activity android:name=".ChatRoom"
+        <activity android:name="com.beet.application.travelue.ChatRoom"
             android:screenOrientation="portrait" />
     </application>
 

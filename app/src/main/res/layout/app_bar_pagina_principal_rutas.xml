@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="false"
     app:layout_scrollFlags="scroll|enterAlways"
-    tools:context="com.example.application.travelue.PaginaPrincipalRutas">
+    tools:context="com.beet.application.travelue.PaginaPrincipalRutas">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
