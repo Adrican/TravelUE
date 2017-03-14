@@ -74,7 +74,7 @@ public class CreateRouteMap extends AppCompatActivity implements OnMapReadyCallb
 
     private static final int  GALLERY_INTENT = 2;
 
-
+//
     private StorageReference mStorage;
     private ProgressDialog mProgresDialog;
 
