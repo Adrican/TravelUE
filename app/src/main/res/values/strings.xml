@@ -44,8 +44,9 @@
     <string name="btn_remove">Remove</string>
     <string name="btn_sign_out">Sign Out</string>
     <string name="lbl_forgot_password">Forgot password?</string>
-    <string name="forgot_password_msg">Hi, we are three Universidad Europea de Madrid (Villaviciosa) DAM students which have done this app for a project. We are so proud and we have learned a lot with these. Beet was made with Firebase and with Android Studio from 0. Maybe you will found some bugs, please understand this we made this App in two and a half months and we were finishing our Technical degree at the same time ♥</string>
+    <string name="txtAboutus">Hi, we are three Universidad Europea de Madrid (Villaviciosa) DAM students which have done this app for a project. We are so proud and we have learned a lot with these. Beet was made with Firebase and with Android Studio from 0. Maybe you will found some bugs, please understand this we made this App in two and a half months and we were finishing our Technical degree at the same time ♥</string>
     <string name="nombre_adrian">Adrian Canas Ramos</string>
+    <string name="forgot_password_msg">Write your email, open it , wait for the message and click on the link for changing your pasword</string>
     <string name="nombre_morgado">Daniel Morgado Jara</string>
     <string name="nombre_marco">Marco Pérez Aranda</string>
     <string name="title_activity_signup">Register</string>

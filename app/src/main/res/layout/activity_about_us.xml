@@ -54,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:padding="@dimen/activity_horizontal_margin"
-                android:text="@string/forgot_password_msg"
+                android:text="@string/txtAboutus"
                 android:textColor="@color/letras_editText"
                 android:textSize="14dp" />
 
