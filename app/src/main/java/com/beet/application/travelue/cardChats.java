@@ -126,6 +126,7 @@ public class cardChats extends RecyclerView.Adapter<cardChats.cardChatViewHolder
         this.context = context;
         this.items = items;
     }
+    //
 
     @Override
     public cardChatViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
