@@ -8,8 +8,11 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,8 +50,8 @@ public class SearchActivity extends AppCompatActivity {
         setSupportActionBar(toolbar2);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("Profile");
         componetsCharge();
+
     }
 
     //--
@@ -63,6 +66,12 @@ public class SearchActivity extends AppCompatActivity {
         etOrigin.setAdapter(new PlacesAutoCompleteAdapter(this, R.layout.autocomplete_list_item));
 
         etDestination = (AutoCompleteTextView) findViewById(R.id.etDestino);
+        etDestination.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                etDestination.setText("");
+            }
+        });
         etDestination.setAdapter(new PlacesAutoCompleteAdapter(this, R.layout.autocomplete_list_item));
         /**
         txt_Time = (TextView) findViewById(R.id.etTime);
@@ -78,7 +87,31 @@ public class SearchActivity extends AppCompatActivity {
         //btnFindPathListner();
         //btnBackListener();
         btnSearchListener();
+
+        final Spinner spUniversidades = (Spinner) findViewById(R.id.spuniversities);
+
+
+        ArrayAdapter saUniversidades = ArrayAdapter.createFromResource(this, R.array.universities, R.layout.spinner_item);
+        saUniversidades.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spUniversidades.setAdapter(saUniversidades);
+
+
+        spUniversidades.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String universidad = spUniversidades.getItemAtPosition(position).toString();
+                etDestination.setText(universidad);
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
+
 
     //--
     //Btn Listeners

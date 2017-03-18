@@ -3,6 +3,8 @@ package com.beet.application.travelue;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -30,6 +32,9 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -46,7 +51,7 @@ public class SignupActivity2 extends AppCompatActivity {
     private ImageView imgProfile;
     private FirebaseAuth auth;
     private FloatingActionButton btnFloat;
-    private static final int SELECT_FILE = 1;
+    private static final int SELECT_FILE = 2;
     private static Usuario user;
 
     private Uri mImageUri = null;
@@ -91,6 +96,7 @@ public class SignupActivity2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 abrirGaleria(v);
+
             }
         });
 
@@ -208,20 +214,18 @@ finish();
 
     public void abrirGaleria(View v) {
 
-        Intent intent = new Intent(Intent.ACTION_PICK);
-        intent.setType("image/*");
-        startActivityForResult(intent, GALLERY_INTENT);
-        /**
+
          Intent intent = new Intent();
          intent.setType("image/*");
          intent.setAction(Intent.ACTION_GET_CONTENT);
          startActivityForResult(
          Intent.createChooser(intent, "Seleccione una imagen"),
          SELECT_FILE);
-         */
+
 
 
     }
+
 
 
     private void startPosting() {
@@ -364,7 +368,8 @@ finish();
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == GALLERY_INTENT && resultCode == RESULT_OK) {
+        if (requestCode == SELECT_FILE && resultCode == RESULT_OK) {
+
 
             //Code for the progressBar Craeted
             /**
@@ -379,6 +384,7 @@ finish();
                 String path = getPathFromURI(mImageUri);
                 //Log.i(TAG, "Image Path : " + path);
                 // Set the image in ImageView
+
                 imgProfile.setImageURI(mImageUri);
             }
             /**

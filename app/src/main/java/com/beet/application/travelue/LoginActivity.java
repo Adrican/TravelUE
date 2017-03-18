@@ -38,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
 
 
+
         if (auth.getCurrentUser() != null) {
             startActivity(new Intent(LoginActivity.this, PaginaPrincipalRutas.class));
             finish();

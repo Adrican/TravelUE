@@ -65,6 +65,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SearchActivity"
+            android:label="@string/search_activity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Profile"
@@ -75,7 +76,9 @@
         <activity
             android:name=".ChatRoom"
             android:screenOrientation="portrait" />
-        <activity android:name=".AboutUs"></activity>
+        <activity android:name=".AboutUs"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>

@@ -313,10 +313,10 @@ public class PaginaPrincipalRutas extends AppCompatActivity
 
         if (id == R.id.nav_routes) {
             // Handle the camera action
-            Intent intent = new Intent(PaginaPrincipalRutas.this, SearchActivity.class);
+            Intent intent = new Intent(PaginaPrincipalRutas.this, CreateRouteMap.class);
             this.startActivity(intent);
         } else if (id == R.id.nav_myroutes) {
-            Intent intent = new Intent(PaginaPrincipalRutas.this, CreateRouteMap.class);
+            Intent intent = new Intent(PaginaPrincipalRutas.this, SearchActivity.class);
             this.startActivity(intent);
 
         } else if (id == R.id.nav_message) {

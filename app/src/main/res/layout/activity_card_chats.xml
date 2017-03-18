@@ -9,7 +9,7 @@
     card_view:cardElevation="10dp"
     android:foreground="?selectableItemBackground"
     android:clickable="true"
-    android:layout_height="160dp">
+    android:layout_height="180dp">
 
 
     <LinearLayout

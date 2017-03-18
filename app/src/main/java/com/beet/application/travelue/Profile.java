@@ -47,7 +47,7 @@ public class Profile extends AppCompatActivity {
     private ProgressDialog progressDialog;
 
     private StorageReference mStorage;
-    private static final int GALLERY_INTENT = 2;
+    private static final int SELECT_FILE = 2;
 
     private static Usuario usuario;
 
@@ -106,7 +106,7 @@ public class Profile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                    //actualizarFoto();
+                    actualizarFoto();
                     //recorrerUsuarioActualizar();
 
 
@@ -221,7 +221,6 @@ public class Profile extends AppCompatActivity {
 
                 UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                         .setPhotoUri(downloadUrl)
-                        .setDisplayName(usuario.getDisplayName())
                         .build();
 
                 usuario.updateProfile(profileUpdates)
@@ -232,7 +231,7 @@ public class Profile extends AppCompatActivity {
                             }
                         });
 
-                Toast.makeText(Profile.this, "Upload new Image file to Firebase done", Toast.LENGTH_LONG).show();
+                Toast.makeText(Profile.this, "You must log in again to see the changes", Toast.LENGTH_LONG).show();
 
                 //mProgresDialog.dismiss();
                     /*
@@ -247,10 +246,17 @@ public class Profile extends AppCompatActivity {
 
     public void abrirGaleria(View v) {
 
+        /*
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
         startActivityForResult(intent, GALLERY_INTENT);
-
+*/
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(
+                Intent.createChooser(intent, "Seleccione una imagen"),
+                SELECT_FILE);
 
 
     }
@@ -259,7 +265,7 @@ public class Profile extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == GALLERY_INTENT && resultCode == RESULT_OK) {
+        if (requestCode == SELECT_FILE && resultCode == RESULT_OK) {
 
 
 
