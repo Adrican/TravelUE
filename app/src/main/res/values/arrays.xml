@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-        <string-array name="options">
+        <string-array name="options" translatable="false">
             <item>Driver</item>
             <item>Passenger</item>
         </string-array>
-    <string-array name="insurance">
+    <string-array name="insurance" translatable="false">
         <item>All risk</item>
         <item>Third party insurance</item>
     </string-array>
-    <string-array name="universities">
+    <string-array name="universities" translatable="false">
         <item>Universidad Europea de Madrid</item>
         <item>Universidad Europea, Alcobendas</item>
     </string-array>

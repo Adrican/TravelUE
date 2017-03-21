@@ -139,17 +139,17 @@ finish();
                 String languages = inputLanguages.getText().toString().trim();
 
                 if (TextUtils.isEmpty(live)) {
-                    Toast.makeText(getApplicationContext(), "Enter where do you live!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.alerta_vive), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (TextUtils.isEmpty(nacionality)) {
-                    Toast.makeText(getApplicationContext(), "Enter your nacionality!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.alerta_nacionalidad), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (TextUtils.isEmpty(languages)) {
-                    Toast.makeText(getApplicationContext(), "Enter the languages you speak!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.alerta_idiomas), Toast.LENGTH_SHORT).show();
                     return;
                 }
                 /*

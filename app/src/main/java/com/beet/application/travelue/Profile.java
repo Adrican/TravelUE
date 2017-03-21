@@ -231,7 +231,7 @@ public class Profile extends AppCompatActivity {
                             }
                         });
 
-                Toast.makeText(Profile.this, "You must log in again to see the changes", Toast.LENGTH_LONG).show();
+                Toast.makeText(Profile.this, getString(R.string.alerta_actualizar), Toast.LENGTH_LONG).show();
 
                 //mProgresDialog.dismiss();
                     /*

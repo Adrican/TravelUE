@@ -54,6 +54,71 @@
 
     <string name="search_activity">Search route</string>
     <string name="action_search">Search</string>
+    <string name="action_send">Send</string>
+
+
+    <!-- Strings contacto seleccionado -->
+    <string name="selec_origen">Origin</string>
+    <string name="selec_destino">Destination</string>
+    <string name="selec_coche">Car</string>
+    <string name="selec_seguro">Type of insurance</string>
+    <string name="selec_nacionalidad">Nacionality</string>
+    <string name="selec_idiomas">Languages</string>
+
+
+
+    <!-- Strings crear ruta -->
+    <string name="ruta_seguro">Insurance</string>
+    <string name="boton_crear">Create Route</string>
+    <string name="alerta_origen">Please enter origin address!</string>
+    <string name="alerta_destino">Please enter destination address!</string>
+    <string name="alerta_nuevaruta">Uploading a new route....</string>
+    <string name="alerta_encontrar">Finding direction..!</string>
+    <string name="alerta_esperar">Please wait.</string>
+    <string name="alerta_hora">Select Time</string>
+    <string name="alerta_fecha">Select Date</string>
+
+    <!-- Strings terminos y condiciones -->
+    <string name="terminos">Clicking register, you are accepting our Terms and Conditions</string>
+    <string name="terminosycondiciones">We do not take any responsability on what happens to you with any driver or passenger. We also have access to the profile picture you upload (we are not going to use it, but we can see it because is stored in our Database), and we can also see your conversations with other passengers and drivers, and have access to the data you upload to the App. Also we reserve the right to cancel your account for any reason.</string>
+    <string name="terminostitulo">Terms and Conditions</string>
+
+
+    <!-- Strings navigation -->
+    <string name="nav_crear">Create new route</string>
+    <string name="nav_buscar">Search for a route</string>
+    <string name="nav_mensajes">Messages</string>
+    <string name="nav_perfil">Profile</string>
+    <string name="nav_compartir">Share</string>
+    <string name="nav_acercade">About us</string>
+    <string name="nav_logout">Log out</string>
+    <string name="alerta_compartir">Download Beet and lets go together to the university!</string>
+
+
+
+    <!-- Strings Profile -->
+    <string name="alerta_actualizar">You must log in again to see the changes</string>
+    <string name="btn_actualizar">Update changes</string>
+
+
+    <!-- Strings change pass -->
+    <string name="alerta_cambioclave">We have sent you instructions to reset your password!</string>
+    <string name="alerta_introduceemail">Enter your registered email id</string>
+    <string name="alerta_falloemail">Failed to send reset email!</string>
+
+
+    <!-- Strings Sign up -->
+    <string name="alerta_nombre">Enter your name!</string>
+    <string name="alerta_email">Enter email address!</string>
+    <string name="alerta_clave">Enter password!</string>
+    <string name="alerta_clavecorta">Password too short, enter minimum 6 characters!</string>
+    <string name="alerta_usuariocreado">User created</string>
+    <string name="alerta_vive">Enter where do you live!</string>
+    <string name="alerta_idiomas">Enter your nacionality!</string>
+    <string name="alerta_nacionalidad">Enter the languages you speak!</string>
+
+
+
 
 
     <!-- Strings related to login -->
@@ -77,4 +142,12 @@
     <string name="title_activity_pagina_principal_busqueda">PaginaPrincipalBusqueda</string>
     <string name="title_activity_tab">TabActivity</string>
     <string name="section_format">Hello World from section: %1$d</string>
+
+
+
+    <string name="mensaje_bienvenida">Thank you for using Beet ♥</string>
+    <string name="intro_mail">Enter email address!</string>
+    <string name="intro_clave">Enter password!</string>
+
+
 </resources>

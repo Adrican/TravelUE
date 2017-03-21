@@ -73,7 +73,7 @@
 
                 <AutoCompleteTextView
                     android:textColor="@color/letras_editText"
-                    android:hint="Origin"
+                    android:hint="@string/selec_origen"
                     android:textColorHint="@color/grey"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -84,7 +84,7 @@
 
                 <AutoCompleteTextView
                     android:textColor="@color/letras_editText"
-                    android:hint="Destination"
+                    android:hint="@string/selec_destino"
                     android:textColorHint="@color/grey"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -253,7 +253,7 @@
 
                     <TextView
                         android:textColor="@color/grey"
-                        android:text="Insurance"
+                        android:text="@string/ruta_seguro"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/tvInsurance"
@@ -386,7 +386,7 @@
                         android:id="@+id/btnCreateRoute"
                         style="?android:textAppearanceSmall"
                         android:background="@drawable/button_custom"
-                        android:text="Create Route"
+                        android:text="@string/boton_crear"
                         android:textColor="@color/white"
                         android:textStyle="bold"
                         android:layout_weight="1"

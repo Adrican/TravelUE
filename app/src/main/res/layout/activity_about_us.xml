@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:padding="10dp"
-            android:text="About us"
+            android:text="@string/nav_acercade"
             android:textColor="@color/white"
             android:textSize="20dp" />
 

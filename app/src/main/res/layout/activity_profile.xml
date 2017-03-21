@@ -172,7 +172,7 @@
                         android:id="@+id/btnActualizaPerfil"
                         style="?android:textAppearanceSmall"
                         android:background="@drawable/button_custom"
-                        android:text="@string/action_sign_in_short"
+                        android:text="@string/btn_actualizar"
                         android:textColor="@color/white"
                         android:textStyle="bold"
                         android:layout_weight="0.04"

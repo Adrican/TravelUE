@@ -43,7 +43,7 @@
 
             <AutoCompleteTextView
                 android:textColor="@color/letras_editText"
-                android:hint="Origin"
+                android:hint="@string/selec_origen"
                 android:textColorHint="@color/grey"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -53,7 +53,7 @@
 
             <AutoCompleteTextView
                 android:textColor="@color/letras_editText"
-                android:hint="Destination"
+                android:hint="@string/selec_destino"
                 android:textColorHint="@color/grey"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

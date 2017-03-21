@@ -332,7 +332,7 @@ public class PaginaPrincipalRutas extends AppCompatActivity
         } else if (id == R.id.nav_share) {
             Intent sendIntent = new Intent();
             sendIntent.setAction(Intent.ACTION_SEND);
-            sendIntent.putExtra(Intent.EXTRA_TEXT, "Download Beet and lets go together to the university! https://play.google.com/store/apps/details?id=com.beet.application.travelue&hl=es");
+            sendIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.alerta_compartir) +" https://play.google.com/store/apps/details?id=com.beet.application.travelue&hl=es");
             sendIntent.setType("text/plain");
             startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.send_to)));
 

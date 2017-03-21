@@ -83,16 +83,16 @@ public class LoginActivity extends AppCompatActivity {
                 final String password = inputPassword.getText().toString();
 
                 if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.intro_mail), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.intro_clave), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                progressDialog.setMessage("Thank you for using Beet ♥");
+                progressDialog.setMessage(getString(R.string.mensaje_bienvenida));
                 progressDialog.show();
 
                 //authenticate user

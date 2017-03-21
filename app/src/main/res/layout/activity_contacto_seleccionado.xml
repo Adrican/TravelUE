@@ -134,7 +134,7 @@
                                 android:layout_height="match_parent">
 
                                 <TextView
-                                    android:text="Origin"
+                                    android:text="@string/selec_origen"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:id="@+id/tvNameOrigin"
@@ -152,7 +152,7 @@
                                     android:paddingBottom="16dp" />
 
                                 <TextView
-                                    android:text="Destination"
+                                    android:text="@string/selec_destino"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:id="@+id/tvNameDestination"
@@ -170,7 +170,7 @@
                                     android:paddingBottom="16dp" />
 
                                 <TextView
-                                    android:text="Car"
+                                    android:text="@string/selec_coche"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:id="@+id/tvCar"
@@ -189,7 +189,7 @@
                                     android:paddingBottom="16dp" />
 
                                 <TextView
-                                    android:text="Type Of Insurance"
+                                    android:text="@string/selec_seguro"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:id="@+id/tvNameInsurance"
@@ -207,7 +207,7 @@
                                     android:paddingBottom="16dp"/>
 
                                 <TextView
-                                    android:text="Nacionality"
+                                    android:text="@string/selec_nacionalidad"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:id="@+id/tvNacionalidad"
@@ -225,7 +225,7 @@
                                     android:paddingBottom="16dp" />
 
                                 <TextView
-                                    android:text="Languages"
+                                    android:text="@string/selec_idiomas"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:id="@+id/tvIdiomas"

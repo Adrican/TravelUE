@@ -5,19 +5,19 @@
         <item
             android:id="@+id/nav_routes"
             android:icon="@drawable/fab_add"
-            android:title="Create new route" />
+            android:title="@string/nav_crear" />
         <item
             android:id="@+id/nav_myroutes"
             android:icon="@drawable/ic_search"
-            android:title="Search for a route" />
+            android:title="@string/nav_buscar" />
         <item
             android:id="@+id/nav_message"
             android:icon="@drawable/mensajesgris"
-            android:title="Messages" />
+            android:title="@string/nav_mensajes" />
         <item
             android:id="@+id/nav_profile"
             android:icon="@drawable/perfilgris"
-            android:title="Profile" />
+            android:title="@string/nav_perfil" />
     </group>
 
     <item android:title="Others">
@@ -25,15 +25,15 @@
             <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:title="@string/nav_compartir" />
             <item
                 android:id="@+id/nav_about"
                 android:icon="@drawable/ic_information"
-                android:title="About us" />
+                android:title="@string/nav_acercade" />
             <item
                 android:id="@+id/nav_logout"
                 android:icon="@drawable/power"
-                android:title="Log out" />
+                android:title="@string/nav_logout" />
 
         </menu>
     </item>

@@ -62,8 +62,8 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 new AlertDialog.Builder(SignupActivity.this)
-                        .setTitle("Terms and Conditions")
-                        .setMessage("We do not take any responsability on what happens to you with any driver or passenger. We also have access to the profile picture you upload (we are not going to use it, but we can see it because is stored in our Database), and we can also see your conversations with other passengers and drivers, and have access to the data you upload to the App. Also we reserve the right to cancel your account for any reason.")
+                        .setTitle(getString(R.string.terminostitulo))
+                        .setMessage(getString(R.string.terminosycondiciones))
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
 
@@ -105,22 +105,22 @@ startActivity(new Intent(SignupActivity.this, ResetPasswordActivity.class));
                 final String password = inputPassword.getText().toString().trim();
 
                 if (TextUtils.isEmpty(nombre)) {
-                    Toast.makeText(getApplicationContext(), "Enter your name!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.alerta_nombre), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.alerta_email), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.alerta_clave), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (password.length() < 6) {
-                    Toast.makeText(getApplicationContext(), "Password too short, enter minimum 6 characters!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.alerta_clavecorta), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -130,7 +130,7 @@ startActivity(new Intent(SignupActivity.this, ResetPasswordActivity.class));
                         .addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                Toast.makeText(SignupActivity.this, "User created ", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignupActivity.this, getString(R.string.alerta_usuariocreado), Toast.LENGTH_SHORT).show();
                                 progressBar.setVisibility(View.GONE);
                                 // If sign in fails, display a message to the user. If sign in succeeds
                                 // the auth state listener will be notified and logic to handle the

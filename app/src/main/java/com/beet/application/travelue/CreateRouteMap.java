@@ -210,11 +210,11 @@ public class CreateRouteMap extends AppCompatActivity implements OnMapReadyCallb
         String origin = etOrigin.getText().toString();
         String destination = etDestination.getText().toString();
         if (origin.isEmpty()) {
-            Toast.makeText(this, "Please enter origin address!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.alerta_origen), Toast.LENGTH_SHORT).show();
             return;
         }
         if (destination.isEmpty()) {
-            Toast.makeText(this, "Please enter destination address!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.alerta_destino), Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -252,8 +252,8 @@ public class CreateRouteMap extends AppCompatActivity implements OnMapReadyCallb
 
     @Override
     public void onDirectionFinderStart() {
-        progressDialog = ProgressDialog.show(this, "Please wait.",
-                "Finding direction..!", true);
+        progressDialog = ProgressDialog.show(this, getString(R.string.alerta_esperar),
+                getString(R.string.alerta_encontrar), true);
 
         if (originMarkers != null) {
             for (Marker marker : originMarkers) {
@@ -405,7 +405,7 @@ public class CreateRouteMap extends AppCompatActivity implements OnMapReadyCallb
                         metTime.setText( selectedHour + ":" + selectedMinute);
                     }
                 }, hour, minute, true);//Yes 24 hour time
-                mTimePicker.setTitle("Select Time");
+                mTimePicker.setTitle(getString(R.string.alerta_hora));
                 mTimePicker.show();
 
 
@@ -440,7 +440,7 @@ public class CreateRouteMap extends AppCompatActivity implements OnMapReadyCallb
                         metDate.setText("" + selectedday + "/" + selectedmonth + "/" + selectedyear);
                     }
                 }, mYear, mMonth, mDay);
-                mDatePicker.setTitle("Select Date");
+                mDatePicker.setTitle(getString(R.string.alerta_fecha));
                 mDatePicker.show();
             }
         });
@@ -470,7 +470,7 @@ public class CreateRouteMap extends AppCompatActivity implements OnMapReadyCallb
                         metDate2.setText("" + selectedday + "/" + selectedmonth + "/" + selectedyear);
                     }
                 }, mYear, mMonth, mDay);
-                mDatePicker.setTitle("Select Date");
+                mDatePicker.setTitle(getString(R.string.alerta_fecha));
                 mDatePicker.show();
             }
         });
@@ -561,7 +561,7 @@ public class CreateRouteMap extends AppCompatActivity implements OnMapReadyCallb
                 mR.setReferenceKey(key);
                 m.put(key,mR);
                 myRef.updateChildren(m);
-                Toast.makeText(CreateRouteMap.this, "Uploading a new route....", Toast.LENGTH_LONG).show();
+                Toast.makeText(CreateRouteMap.this, getString(R.string.alerta_nuevaruta), Toast.LENGTH_LONG).show();
             }catch (Exception e){
                 Toast.makeText(CreateRouteMap.this, e.getMessage(), Toast.LENGTH_LONG).show();
             }
